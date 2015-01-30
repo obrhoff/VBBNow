@@ -1,0 +1,662 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05851702EA9C1BED0EF26C46 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924C42E609AE4CA64600D651 /* libPods.a */; };
+		14221E029A1368A58A03A841 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924C42E609AE4CA64600D651 /* libPods.a */; };
+		E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19086D61A79870300364EA2 /* MainMenu.xib */; };
+		E17F979B1A7C0E3C00623FB2 /* VBBListRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */; };
+		E17F979C1A7C0E3C00623FB2 /* VBBListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17F97971A7C0E3C00623FB2 /* VBBListRowViewController.xib */; };
+		E17F979D1A7C0E3C00623FB2 /* VBBTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17F97991A7C0E3C00623FB2 /* VBBTodayViewController.m */; };
+		E17F979E1A7C0E3C00623FB2 /* VBBTodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17F979A1A7C0E3C00623FB2 /* VBBTodayViewController.xib */; };
+		E17F97A51A7C0E4800623FB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A01A7C0E4800623FB2 /* InfoPlist.strings */; };
+		E17F97A61A7C0E4800623FB2 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A21A7C0E4800623FB2 /* Icons.xcassets */; };
+		E17F97A81A7C0E4800623FB2 /* vbbnow.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */; };
+		E19086D11A79870300364EA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D01A79870300364EA2 /* AppDelegate.m */; };
+		E19086D31A79870300364EA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D21A79870300364EA2 /* main.m */; };
+		E19086D51A79870300364EA2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19086D41A79870300364EA2 /* Images.xcassets */; };
+		E19086F11A79886400364EA2 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
+		E1948A971A7A3EB0005C9D97 /* VBBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */; };
+		E1948A9C1A7A46DB005C9D97 /* VBBDepatureParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */; };
+		E1948A9F1A7A46F1005C9D97 /* VBBDepature.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */; };
+		E1A5689B1A79893100C2EA16 /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
+		E1A5689F1A7990C500C2EA16 /* VBBStationParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689E1A7990C500C2EA16 /* VBBStationParser.m */; };
+		E1A568A21A7991CE00C2EA16 /* VBBStation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A568A11A7991CE00C2EA16 /* VBBStation.m */; };
+		E1AEBBE81A7B701D00196F97 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */; };
+		E1AEBBFC1A7B701D00196F97 /* VBBNow.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1AEBBE71A7B701D00196F97 /* VBBNow.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1AEBC021A7B72F700196F97 /* VBBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */; };
+		E1AEBC031A7B72F700196F97 /* VBBStationParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689E1A7990C500C2EA16 /* VBBStationParser.m */; };
+		E1AEBC041A7B72F700196F97 /* VBBDepatureParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */; };
+		E1AEBC051A7B72F700196F97 /* VBBStation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A568A11A7991CE00C2EA16 /* VBBStation.m */; };
+		E1AEBC061A7B72F700196F97 /* VBBDepature.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */; };
+		E1AEBC071A7B72F700196F97 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
+		E1AEBC081A7B72F700196F97 /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1AEBBFA1A7B701D00196F97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E19086C21A79870300364EA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1AEBBE61A7B701D00196F97;
+			remoteInfo = today;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1948A921A7A3DEB005C9D97 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E1AEBBFC1A7B701D00196F97 /* VBBNow.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3211C39C502DC762C4057730 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		924C42E609AE4CA64600D651 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16440861A7AAB890008ECA3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
+		E17F97951A7C0E3C00623FB2 /* VBBListRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBBListRowViewController.h; path = VBBNow/VBBListRowViewController.h; sourceTree = SOURCE_ROOT; };
+		E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBBListRowViewController.m; path = VBBNow/VBBListRowViewController.m; sourceTree = SOURCE_ROOT; };
+		E17F97971A7C0E3C00623FB2 /* VBBListRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VBBListRowViewController.xib; path = VBBNow/VBBListRowViewController.xib; sourceTree = SOURCE_ROOT; };
+		E17F97981A7C0E3C00623FB2 /* VBBTodayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBBTodayViewController.h; path = VBBNow/VBBTodayViewController.h; sourceTree = SOURCE_ROOT; };
+		E17F97991A7C0E3C00623FB2 /* VBBTodayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBBTodayViewController.m; path = VBBNow/VBBTodayViewController.m; sourceTree = SOURCE_ROOT; };
+		E17F979A1A7C0E3C00623FB2 /* VBBTodayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VBBTodayViewController.xib; path = VBBNow/VBBTodayViewController.xib; sourceTree = SOURCE_ROOT; };
+		E17F97A11A7C0E4800623FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		E17F97A21A7C0E4800623FB2 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = VBBNow/Icons.xcassets; sourceTree = SOURCE_ROOT; };
+		E17F97A31A7C0E4800623FB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VBBNow/Info.plist; sourceTree = SOURCE_ROOT; };
+		E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = vbbnow.entitlements; path = VBBNow/vbbnow.entitlements; sourceTree = SOURCE_ROOT; };
+		E19086CA1A79870300364EA2 /* VBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19086CE1A79870300364EA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E19086CF1A79870300364EA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E19086D01A79870300364EA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E19086D21A79870300364EA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E19086D41A79870300364EA2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E19086D71A79870300364EA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E19086EF1A79886400364EA2 /* VBBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBNetworkManager.h; sourceTree = "<group>"; };
+		E19086F01A79886400364EA2 /* VBBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBNetworkManager.m; sourceTree = "<group>"; };
+		E1948A781A7A3D95005C9D97 /* vbb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = vbb.entitlements; sourceTree = "<group>"; };
+		E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		E1948A951A7A3EB0005C9D97 /* VBBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBaseParser.h; sourceTree = "<group>"; };
+		E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBaseParser.m; sourceTree = "<group>"; };
+		E1948A9A1A7A46DB005C9D97 /* VBBDepatureParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBDepatureParser.h; sourceTree = "<group>"; };
+		E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBDepatureParser.m; sourceTree = "<group>"; };
+		E1948A9D1A7A46F1005C9D97 /* VBBDepature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBDepature.h; sourceTree = "<group>"; };
+		E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBDepature.m; sourceTree = "<group>"; };
+		E1A568991A79893100C2EA16 /* VBBPersistanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBPersistanceManager.h; sourceTree = "<group>"; };
+		E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBPersistanceManager.m; sourceTree = "<group>"; };
+		E1A5689D1A7990C500C2EA16 /* VBBStationParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBStationParser.h; sourceTree = "<group>"; };
+		E1A5689E1A7990C500C2EA16 /* VBBStationParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBStationParser.m; sourceTree = "<group>"; };
+		E1A568A01A7991CE00C2EA16 /* VBBStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBStation.h; sourceTree = "<group>"; };
+		E1A568A11A7991CE00C2EA16 /* VBBStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBStation.m; sourceTree = "<group>"; };
+		E1AEBBE71A7B701D00196F97 /* VBBNow.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VBBNow.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E19086C71A79870300364EA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05851702EA9C1BED0EF26C46 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1AEBBE41A7B701D00196F97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1AEBBE81A7B701D00196F97 /* NotificationCenter.framework in Frameworks */,
+				14221E029A1368A58A03A841 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A48A955ABE2F79EED0725CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3211C39C502DC762C4057730 /* Pods.debug.xcconfig */,
+				58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E114AB8D017F74B47967DFA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E16440861A7AAB890008ECA3 /* libPods.a */,
+				E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */,
+				924C42E609AE4CA64600D651 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E17F979F1A7C0E4800623FB2 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				E17F97A01A7C0E4800623FB2 /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = VBBNow/en.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		E19086C11A79870300364EA2 = {
+			isa = PBXGroup;
+			children = (
+				E19086CC1A79870300364EA2 /* VBB */,
+				E1AEBBE91A7B701D00196F97 /* VBBNow */,
+				E19086CB1A79870300364EA2 /* Products */,
+				7A48A955ABE2F79EED0725CB /* Pods */,
+				E114AB8D017F74B47967DFA8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E19086CB1A79870300364EA2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E19086CA1A79870300364EA2 /* VBB.app */,
+				E1AEBBE71A7B701D00196F97 /* VBBNow.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E19086CC1A79870300364EA2 /* VBB */ = {
+			isa = PBXGroup;
+			children = (
+				E1948A781A7A3D95005C9D97 /* vbb.entitlements */,
+				E1A5689C1A7990AE00C2EA16 /* Parser */,
+				E19086EE1A79885600364EA2 /* Model */,
+				E19086ED1A79885100364EA2 /* Manager */,
+				E19086CF1A79870300364EA2 /* AppDelegate.h */,
+				E19086D01A79870300364EA2 /* AppDelegate.m */,
+				E19086D41A79870300364EA2 /* Images.xcassets */,
+				E19086D61A79870300364EA2 /* MainMenu.xib */,
+				E19086CD1A79870300364EA2 /* Supporting Files */,
+			);
+			name = VBB;
+			path = VBB/;
+			sourceTree = "<group>";
+		};
+		E19086CD1A79870300364EA2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E19086CE1A79870300364EA2 /* Info.plist */,
+				E19086D21A79870300364EA2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E19086ED1A79885100364EA2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E19086EF1A79886400364EA2 /* VBBNetworkManager.h */,
+				E19086F01A79886400364EA2 /* VBBNetworkManager.m */,
+				E1A568991A79893100C2EA16 /* VBBPersistanceManager.h */,
+				E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		E19086EE1A79885600364EA2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1A568A01A7991CE00C2EA16 /* VBBStation.h */,
+				E1A568A11A7991CE00C2EA16 /* VBBStation.m */,
+				E1948A9D1A7A46F1005C9D97 /* VBBDepature.h */,
+				E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E1A5689C1A7990AE00C2EA16 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				E1948A951A7A3EB0005C9D97 /* VBBaseParser.h */,
+				E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */,
+				E1A5689D1A7990C500C2EA16 /* VBBStationParser.h */,
+				E1A5689E1A7990C500C2EA16 /* VBBStationParser.m */,
+				E1948A9A1A7A46DB005C9D97 /* VBBDepatureParser.h */,
+				E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		E1AEBBE91A7B701D00196F97 /* VBBNow */ = {
+			isa = PBXGroup;
+			children = (
+				E17F97951A7C0E3C00623FB2 /* VBBListRowViewController.h */,
+				E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */,
+				E17F97971A7C0E3C00623FB2 /* VBBListRowViewController.xib */,
+				E17F97981A7C0E3C00623FB2 /* VBBTodayViewController.h */,
+				E17F97991A7C0E3C00623FB2 /* VBBTodayViewController.m */,
+				E17F979A1A7C0E3C00623FB2 /* VBBTodayViewController.xib */,
+				E1AEBBEA1A7B701D00196F97 /* Supporting Files */,
+			);
+			name = VBBNow;
+			path = today;
+			sourceTree = "<group>";
+		};
+		E1AEBBEA1A7B701D00196F97 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E17F979F1A7C0E4800623FB2 /* en.lproj */,
+				E17F97A21A7C0E4800623FB2 /* Icons.xcassets */,
+				E17F97A31A7C0E4800623FB2 /* Info.plist */,
+				E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E19086C91A79870300364EA2 /* VBB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E19086E71A79870300364EA2 /* Build configuration list for PBXNativeTarget "VBB" */;
+			buildPhases = (
+				F3720E7B4810B79E1048F416 /* Check Pods Manifest.lock */,
+				E19086C61A79870300364EA2 /* Sources */,
+				E19086C71A79870300364EA2 /* Frameworks */,
+				E19086C81A79870300364EA2 /* Resources */,
+				72592E10898DB524B7D785BC /* Copy Pods Resources */,
+				E1948A921A7A3DEB005C9D97 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1AEBBFB1A7B701D00196F97 /* PBXTargetDependency */,
+			);
+			name = VBB;
+			productName = VBB/;
+			productReference = E19086CA1A79870300364EA2 /* VBB.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E1AEBBE61A7B701D00196F97 /* VBBNow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1AEBBFD1A7B701D00196F97 /* Build configuration list for PBXNativeTarget "VBBNow" */;
+			buildPhases = (
+				02E8E59907E4B969B6C8BEF7 /* Check Pods Manifest.lock */,
+				E1AEBBE31A7B701D00196F97 /* Sources */,
+				E1AEBBE41A7B701D00196F97 /* Frameworks */,
+				E1AEBBE51A7B701D00196F97 /* Resources */,
+				6D0D6C1E5CB094A364EF6BAE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VBBNow;
+			productName = today;
+			productReference = E1AEBBE71A7B701D00196F97 /* VBBNow.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E19086C21A79870300364EA2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VBB;
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Dennis Oberhoff";
+				TargetAttributes = {
+					E19086C91A79870300364EA2 = {
+						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
+						};
+					};
+					E1AEBBE61A7B701D00196F97 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = E19086C51A79870300364EA2 /* Build configuration list for PBXProject "VBB" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E19086C11A79870300364EA2;
+			productRefGroup = E19086CB1A79870300364EA2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E19086C91A79870300364EA2 /* VBB */,
+				E1AEBBE61A7B701D00196F97 /* VBBNow */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E19086C81A79870300364EA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */,
+				E19086D51A79870300364EA2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1AEBBE51A7B701D00196F97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E17F979E1A7C0E3C00623FB2 /* VBBTodayViewController.xib in Resources */,
+				E17F979C1A7C0E3C00623FB2 /* VBBListRowViewController.xib in Resources */,
+				E17F97A81A7C0E4800623FB2 /* vbbnow.entitlements in Resources */,
+				E17F97A61A7C0E4800623FB2 /* Icons.xcassets in Resources */,
+				E17F97A51A7C0E4800623FB2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02E8E59907E4B969B6C8BEF7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6D0D6C1E5CB094A364EF6BAE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72592E10898DB524B7D785BC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3720E7B4810B79E1048F416 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E19086C61A79870300364EA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1A5689F1A7990C500C2EA16 /* VBBStationParser.m in Sources */,
+				E1948A971A7A3EB0005C9D97 /* VBBaseParser.m in Sources */,
+				E19086D31A79870300364EA2 /* main.m in Sources */,
+				E1948A9F1A7A46F1005C9D97 /* VBBDepature.m in Sources */,
+				E1A5689B1A79893100C2EA16 /* VBBPersistanceManager.m in Sources */,
+				E1948A9C1A7A46DB005C9D97 /* VBBDepatureParser.m in Sources */,
+				E19086D11A79870300364EA2 /* AppDelegate.m in Sources */,
+				E1A568A21A7991CE00C2EA16 /* VBBStation.m in Sources */,
+				E19086F11A79886400364EA2 /* VBBNetworkManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1AEBBE31A7B701D00196F97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1AEBC061A7B72F700196F97 /* VBBDepature.m in Sources */,
+				E1AEBC071A7B72F700196F97 /* VBBNetworkManager.m in Sources */,
+				E1AEBC041A7B72F700196F97 /* VBBDepatureParser.m in Sources */,
+				E1AEBC081A7B72F700196F97 /* VBBPersistanceManager.m in Sources */,
+				E17F979D1A7C0E3C00623FB2 /* VBBTodayViewController.m in Sources */,
+				E1AEBC021A7B72F700196F97 /* VBBaseParser.m in Sources */,
+				E1AEBC051A7B72F700196F97 /* VBBStation.m in Sources */,
+				E17F979B1A7C0E3C00623FB2 /* VBBListRowViewController.m in Sources */,
+				E1AEBC031A7B72F700196F97 /* VBBStationParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1AEBBFB1A7B701D00196F97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1AEBBE61A7B701D00196F97 /* VBBNow */;
+			targetProxy = E1AEBBFA1A7B701D00196F97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E17F97A01A7C0E4800623FB2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E17F97A11A7C0E4800623FB2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E19086D61A79870300364EA2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E19086D71A79870300364EA2 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E19086E51A79870300364EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E19086E61A79870300364EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E19086E81A79870300364EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3211C39C502DC762C4057730 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "VBB//Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E19086E91A79870300364EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "VBB//Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E1AEBBFE1A7B701D00196F97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3211C39C502DC762C4057730 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VBBNow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E1AEBBFF1A7B701D00196F97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = VBBNow/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E19086C51A79870300364EA2 /* Build configuration list for PBXProject "VBB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19086E51A79870300364EA2 /* Debug */,
+				E19086E61A79870300364EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E19086E71A79870300364EA2 /* Build configuration list for PBXNativeTarget "VBB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E19086E81A79870300364EA2 /* Debug */,
+				E19086E91A79870300364EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1AEBBFD1A7B701D00196F97 /* Build configuration list for PBXNativeTarget "VBBNow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1AEBBFE1A7B701D00196F97 /* Debug */,
+				E1AEBBFF1A7B701D00196F97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E19086C21A79870300364EA2 /* Project object */;
+}

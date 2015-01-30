@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "VBBNow";
+"com.apple.notificationcenter.widget.description" = "A VBB Widget for Berlin / Brandenburg";
+
