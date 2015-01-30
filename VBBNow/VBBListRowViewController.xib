@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="VBBListRowViewController" customModule="today" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="VBBListRowViewController" customModule="VBBNow" customModuleProvider="target">
             <connections>
                 <outlet property="directionLabel" destination="Uo5-ao-vEl" id="Dzq-61-kra"/>
                 <outlet property="iconView" destination="D5X-L3-Ix7" id="ZtM-YT-EKl"/>
@@ -26,7 +26,7 @@
                         <constraint firstAttribute="height" constant="14" id="gwU-si-3Ev"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Station" usesSingleLineMode="YES" id="e0b-j5-uKL">
-                        <font key="font" size="16" name="HelveticaNeue-Thin"/>
+                        <font key="font" metaFont="system" size="15"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -37,7 +37,7 @@
                         <constraint firstAttribute="height" constant="14" id="pMC-yG-wiF"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" sendsActionOnEndEditing="YES" alignment="left" title="Direction" usesSingleLineMode="YES" id="cPZ-mB-uFg">
-                        <font key="font" size="12" name="HelveticaNeue"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -48,7 +48,7 @@
                         <constraint firstAttribute="height" constant="16" id="HrG-YU-FJD"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Stop" usesSingleLineMode="YES" id="Eiu-Pd-lk6">
-                        <font key="font" size="12" name="HelveticaNeue"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -68,13 +68,13 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField identifier="timeLeftLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-AA-PgH">
+                <textField identifier="timeLeftLabel" horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-AA-PgH">
                     <rect key="frame" x="8" y="26" width="44" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="ALp-hV-j5G"/>
                     </constraints>
-                    <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="50" id="10Q-HZ-b74">
-                        <font key="font" size="29" name="HelveticaNeue-Thin"/>
+                    <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="50" usesSingleLineMode="YES" id="10Q-HZ-b74">
+                        <font key="font" metaFont="system" size="26"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
