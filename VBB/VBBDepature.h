@@ -14,6 +14,7 @@
 @property (nonatomic) NSString* arrivalName;
 @property (nonatomic) NSString* directionName;
 @property (nonatomic) NSInteger departureType;
+@property (nonatomic, readonly) RLMObject *station;
 
 @end
 RLM_ARRAY_TYPE(VBBDepature)
