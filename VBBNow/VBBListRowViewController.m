@@ -26,12 +26,6 @@
     [self.view.layer addSublayer:self.seperatorLayer];
 }
 
--(void)viewDidAppear {
-    [super viewDidAppear];
-    VBBStation *station = self.representedObject;
-    [self setInformations:station];
-}
-
 -(void)viewDidLayout {
     self.seperatorLayer.frame =  CGRectMake(CGRectGetMaxX(self.timeLabel.frame), CGRectGetMinY(self.stopLabel.frame),
                                             2.5, CGRectGetMinY(self.timeLabel.frame) + CGRectGetMaxY(self.timeDescLabel.frame));
@@ -65,6 +59,10 @@
             image = [NSImage imageNamed:@"ubahn"];
             color = [NSColor colorWithRed:0 green:0.35 blue:0.58 alpha:1];
             break;
+        case 4:
+            image = [NSImage imageNamed:@"tram"];
+            color = [NSColor colorWithRed:0.88 green:0 blue:0 alpha:1];
+            break;
         case 8: {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^Bus M\\d+"];
             if ([predicate evaluateWithObject:nextDepature.arrivalName]) {
@@ -86,6 +84,11 @@
 
 - (NSString *)nibName {
     return NSStringFromClass([self class]);
+}
+
+-(void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+    [self setInformations:representedObject];
 }
 
 -(TTTTimeIntervalFormatter*)timeFormatter {

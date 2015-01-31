@@ -20,7 +20,7 @@
 -(void)fetchNearedStations:(CLLocation*)location andCompletionHandler:(void (^)(NSArray *stations))completionHandler{
     
     [[VBBPersistanceManager manager] trim];
-    
+
     NSNumber *latitude = @(location.coordinate.latitude * 1000000);
     NSNumber *longitude = @(location.coordinate.longitude * 1000000);
     
