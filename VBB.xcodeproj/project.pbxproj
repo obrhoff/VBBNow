@@ -19,7 +19,6 @@
 		E17F97A81A7C0E4800623FB2 /* vbbnow.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */; };
 		E19086D11A79870300364EA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D01A79870300364EA2 /* AppDelegate.m */; };
 		E19086D31A79870300364EA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D21A79870300364EA2 /* main.m */; };
-		E19086D51A79870300364EA2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E19086D41A79870300364EA2 /* Images.xcassets */; };
 		E19086F11A79886400364EA2 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
 		E1948A971A7A3EB0005C9D97 /* VBBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */; };
 		E1948A9C1A7A46DB005C9D97 /* VBBDepatureParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */; };
@@ -36,6 +35,7 @@
 		E1AEBC061A7B72F700196F97 /* VBBDepature.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */; };
 		E1AEBC071A7B72F700196F97 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
 		E1AEBC081A7B72F700196F97 /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
+		E1F6153B1A7D407F00EEA639 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A21A7C0E4800623FB2 /* Icons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,6 @@
 		E19086CF1A79870300364EA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E19086D01A79870300364EA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E19086D21A79870300364EA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E19086D41A79870300364EA2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E19086D71A79870300364EA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E19086EF1A79886400364EA2 /* VBBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBNetworkManager.h; sourceTree = "<group>"; };
 		E19086F01A79886400364EA2 /* VBBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBNetworkManager.m; sourceTree = "<group>"; };
@@ -181,7 +180,7 @@
 				E19086ED1A79885100364EA2 /* Manager */,
 				E19086CF1A79870300364EA2 /* AppDelegate.h */,
 				E19086D01A79870300364EA2 /* AppDelegate.m */,
-				E19086D41A79870300364EA2 /* Images.xcassets */,
+				E17F97A21A7C0E4800623FB2 /* Icons.xcassets */,
 				E19086D61A79870300364EA2 /* MainMenu.xib */,
 				E19086CD1A79870300364EA2 /* Supporting Files */,
 			);
@@ -252,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				E17F979F1A7C0E4800623FB2 /* en.lproj */,
-				E17F97A21A7C0E4800623FB2 /* Icons.xcassets */,
 				E17F97A31A7C0E4800623FB2 /* Info.plist */,
 				E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */,
 			);
@@ -349,8 +347,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F6153B1A7D407F00EEA639 /* Icons.xcassets in Resources */,
 				E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */,
-				E19086D51A79870300364EA2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3211C39C502DC762C4057730 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -616,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
