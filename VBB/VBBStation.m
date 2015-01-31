@@ -34,8 +34,14 @@
         return [dictOne[@"distance"] doubleValue] > [dictTwo[@"distance"] doubleValue];
     }];
     
-    if (limit) [unsorted removeObjectsInRange:NSMakeRange(limit, unsorted.count - limit)];
-   
+    NSDate *future = [NSDate dateWithTimeInterval:180 sinceDate:[NSDate date]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate > %@", future];
+    [unsorted enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+        VBBStation *station = dict[@"station"];
+        VBBDepature *nextDepature = [station.depatures objectsWithPredicate:predicate].firstObject;
+        if (!nextDepature) [unsorted removeObject:dict];
+    }];
+    if (limit < unsorted.count) [unsorted removeObjectsInRange:NSMakeRange(limit, unsorted.count - limit)];
     /*
     [unsorted sortWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(NSDictionary *dictOne, NSDictionary *dictTwo) {
         NSDate *future = [NSDate dateWithTimeInterval:180 sinceDate:[NSDate date]];
