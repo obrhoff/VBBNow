@@ -50,7 +50,7 @@
     
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
     documentPath = [documentPath stringByAppendingPathComponent:[NSBundle mainBundle].bundleIdentifier];
-    NSString *realmFileName = [documentPath stringByAppendingPathComponent:@"cache.realm"];
+    NSString *realmFileName = [documentPath stringByAppendingPathComponent:@"dataCache.realm"];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
