@@ -28,7 +28,7 @@
 
 -(void)parserDidStartDocument:(NSXMLParser *)parser {
     [super parserDidStartDocument:parser];
-    [self.station.depatures removeAllObjects];
+    [self.realm deleteObjects:self.station.depatures];
 }
 
 -(void)parseTable:(NSDictionary*)dict {
