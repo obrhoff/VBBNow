@@ -34,14 +34,15 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     [NSURLCache setSharedURLCache:nil];
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
-
+    self.listViewController.preferredContentSize = CGSizeMake(320, 350);
+    [self reloadDataForLocation:[VBBPersistanceManager manager].storedLocation];
 }
 
 -(void)reloadDataForLocation:(CLLocation*)location {
     
     if (!location) return;
     self.listViewController.contents = [[VBBStation class] sortByDistance:location andLimit:5];
-    
+
 }
 
 #pragma mark - NCWidgetProviding
@@ -103,7 +104,10 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if (self.didUpdateLocationBlock) {
-        [[VBBPersistanceManager manager] storeLocation:locations.firstObject];
+        CLLocation *newLocation = locations.firstObject;
+        CLLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
+        if ([newLocation distanceFromLocation:storedLocation] < 20) return;
+        [[VBBPersistanceManager manager] storeLocation:newLocation];
         self.didUpdateLocationBlock(locations.firstObject);
         self.didUpdateLocationBlock = nil;
     }
