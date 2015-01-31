@@ -30,6 +30,22 @@
     [self.operationQueue addOperation:operation];
 }
 
+-(void)storeLocation:(CLLocation*)location {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:location.coordinate.latitude forKey:@"latitude"];
+    [defaults setDouble:location.coordinate.longitude forKey:@"longitude"];
+    [defaults synchronize];
+}
+
+-(CLLocation*)storedLocation {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    double latitude = [[defaults objectForKey:@"latitude"] doubleValue];
+    double longitude = [[defaults objectForKey:@"longitude"] doubleValue];
+    CLLocation *location;
+    if (latitude && longitude) location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    return location;
+}
+
 +(RLMRealm*)createRealm {
     
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;

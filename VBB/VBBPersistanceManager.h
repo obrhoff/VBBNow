@@ -16,7 +16,8 @@
 @property (nonatomic, readonly) NSOperationQueue *operationQueue;
 
 -(void)trim;
-
+-(CLLocation*)storedLocation;
+-(void)storeLocation:(CLLocation*)location;
 +(VBBPersistanceManager *)manager;
 +(RLMRealm*)createRealm;
 

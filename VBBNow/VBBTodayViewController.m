@@ -50,8 +50,8 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
  
     __block typeof(self) blockSelf = self;
     void (^responseBlock)(CLLocation *location) = ^void(CLLocation *location) {
-        if (location) [blockSelf storeLocation:location];
-        else location = [blockSelf storedLocation];
+        if (location) [[VBBPersistanceManager manager]  storeLocation:location];
+        else location = [[VBBPersistanceManager manager]  storedLocation];
         if (!location) {
             completionHandler(NCUpdateResultFailed);
             return;
@@ -64,7 +64,7 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     };
     
     if ([[CLLocationManager class] authorizationStatus] != kCLAuthorizationStatusAuthorized) {
-        responseBlock([self storedLocation]);
+        responseBlock([[VBBPersistanceManager manager]  storedLocation]);
     }
     
     [self setDidUpdateLocationBlock:responseBlock];
@@ -99,28 +99,11 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     return NO;
 }
 
-#pragma mark Location Persistance
-
--(void)storeLocation:(CLLocation*)location {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setDouble:location.coordinate.latitude forKey:@"latitude"];
-    [defaults setDouble:location.coordinate.longitude forKey:@"longitude"];
-    [defaults synchronize];
-}
-
--(CLLocation*)storedLocation {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    double latitude = [[defaults objectForKey:@"latitude"] doubleValue];
-    double longitude = [[defaults objectForKey:@"longitude"] doubleValue];
-    CLLocation *location;
-    if (latitude && longitude) location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-    return location;
-}
-
 #pragma mark CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if (self.didUpdateLocationBlock) {
+        [[VBBPersistanceManager manager] storeLocation:locations.firstObject];
         self.didUpdateLocationBlock(locations.firstObject);
         self.didUpdateLocationBlock = nil;
     }
