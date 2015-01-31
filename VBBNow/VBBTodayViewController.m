@@ -8,6 +8,7 @@
 
 @import CoreLocation;
 @import NotificationCenter;
+@import QuartzCore;
 
 #import "VBBTodayViewController.h"
 #import "VBBListRowViewController.h"
@@ -41,7 +42,10 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 -(void)reloadDataForLocation:(CLLocation*)location {
     
     if (!location) return;
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
     self.listViewController.contents = [[VBBStation class] sortByDistance:location andLimit:5];
+    [CATransaction commit];
 
 }
 
@@ -106,7 +110,7 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     if (self.didUpdateLocationBlock) {
         CLLocation *newLocation = locations.firstObject;
         CLLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
-        if ([newLocation distanceFromLocation:storedLocation] < 20) return;
+        if (storedLocation && [newLocation distanceFromLocation:storedLocation] < 20) return;
         [[VBBPersistanceManager manager] storeLocation:newLocation];
         self.didUpdateLocationBlock(locations.firstObject);
         self.didUpdateLocationBlock = nil;
