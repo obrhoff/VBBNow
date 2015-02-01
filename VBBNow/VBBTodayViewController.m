@@ -47,6 +47,10 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     self.listViewController.contents = [[VBBStation class] sortByDistance:location andLimit:5];
     [CATransaction commit];
 
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
+    NSTimeInterval refreshInterval = 60 - components.second;
+    [self performSelector:@selector(reloadDataForLocation:) withObject:[VBBPersistanceManager manager].storedLocation afterDelay:refreshInterval];
+        
 }
 
 #pragma mark - NCWidgetProviding

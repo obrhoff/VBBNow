@@ -62,12 +62,10 @@
     
     __block NSUInteger count = stations.count;
     void (^responseBlock)(VBBStation *station, BOOL completed) = ^void(VBBStation *station, BOOL completed) {
-        count--;
-        if (!count && completionHandler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(stations);
-            });
-        }
+        if (--count) return;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completionHandler) completionHandler(stations);
+        });
     };
     for (VBBStation *station in stations) [self fetchDepature:station andCompletionHandler:responseBlock];
     

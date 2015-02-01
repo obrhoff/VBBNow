@@ -33,7 +33,7 @@
 
 -(void)setInformations: (VBBStation *)station {
     
-    NSDate *future = [NSDate dateWithTimeInterval:180 sinceDate:[NSDate date]];
+    NSDate *future = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate > %@", future];
     VBBDepature *nextDepature = [station.depatures objectsWithPredicate:predicate].firstObject;
     NSTimeInterval left = [nextDepature.arrivalDate timeIntervalSinceDate:[NSDate date]];
