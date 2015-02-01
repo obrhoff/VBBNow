@@ -44,7 +44,7 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     if (!location) return;
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
-    self.listViewController.contents = [[VBBStation class] sortByDistance:location andLimit:5];
+    self.listViewController.contents = [[VBBStation class] sortByRelevance:location andLimit:5];
     [CATransaction commit];
 
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
