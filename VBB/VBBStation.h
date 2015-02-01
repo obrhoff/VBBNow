@@ -23,7 +23,7 @@
 
 -(void)setLocation:(CLLocation*)location;
 -(CLLocation*)location;
-+(NSArray *)sortByDistance:(CLLocation*)userLocation andLimit:(NSUInteger)limit;
++(NSArray *)sortByRelevance:(CLLocation*)userLocation andLimit:(NSUInteger)limit;
 
 @end
 

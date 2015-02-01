@@ -18,11 +18,12 @@
 
 @implementation VBBStation
 
-+ (NSArray *)sortByDistance:(CLLocation*)userLocation andLimit:(NSUInteger)limit {
++ (NSArray *)sortByRelevance:(CLLocation*)userLocation andLimit:(NSUInteger)limit {
     
     RLMRealm *realm = [[VBBPersistanceManager class] createRealm];
     RLMResults *stations = [VBBStation allObjectsInRealm:realm];
     
+    NSDate *now = [NSDate date];
     NSMutableArray *unsorted = [NSMutableArray arrayWithCapacity:stations.count];
     for (VBBStation *station in stations) {
         if (!station.depatures.count) continue;
@@ -34,32 +35,20 @@
         return [dictOne[@"distance"] doubleValue] > [dictTwo[@"distance"] doubleValue];
     }];
     
-    NSDate *future = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
+    NSDate *future = [NSDate dateWithTimeInterval:60 sinceDate:now];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate > %@", future];
     [unsorted enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         VBBStation *station = dict[@"station"];
         VBBDepature *nextDepature = [station.depatures objectsWithPredicate:predicate].firstObject;
-        if (!nextDepature) [unsorted removeObject:dict];
+        if (!nextDepature || [nextDepature.arrivalDate timeIntervalSinceDate:now] > 3600) [unsorted removeObject:dict];
     }];
     if (limit < unsorted.count) [unsorted removeObjectsInRange:NSMakeRange(limit, unsorted.count - limit)];
-
-    // Sort Stations by distance
-    /*
-    [unsorted sortWithOptions:NSSortConcurrent usingComparator:^NSComparisonResult(NSDictionary *dictOne, NSDictionary *dictTwo) {
-        NSDate *future = [NSDate dateWithTimeInterval:180 sinceDate:[NSDate date]];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate > %@", future];
-        VBBStation *station = dictOne[@"station"];
-        VBBStation *comparesStation = dictTwo[@"station"];
-        VBBDepature *departure = [station.depatures objectsWithPredicate:predicate].firstObject;
-        VBBDepature *compareDeparture = [comparesStation.depatures objectsWithPredicate:predicate].firstObject;
-        return [departure.arrivalDate timeIntervalSinceDate:future] > [compareDeparture.arrivalDate timeIntervalSinceDate:future];
-    }]; */
     
-    NSMutableArray *sortByDistance = [NSMutableArray arrayWithCapacity:stations.count];
+    NSMutableArray *sortByRelevance = [NSMutableArray arrayWithCapacity:stations.count];
     [unsorted enumerateObjectsUsingBlock:^(NSDictionary *placeDict, NSUInteger idx, BOOL *stop) {
-        [sortByDistance insertObject:placeDict[@"station"] atIndex:idx];
+        [sortByRelevance insertObject:placeDict[@"station"] atIndex:idx];
     }];
-    return sortByDistance.copy;
+    return sortByRelevance.copy;
 }
 
 -(void)setLocation:(CLLocation *)location {
