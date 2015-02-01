@@ -4,13 +4,11 @@ VBB Now is an OSX Yosemite Today widget that displays current nearby transit arr
 
 It's not entirly done, so do not blame me if you don't catch the bus :-)
 
-<img src="http://i.imgur.com/RcjCcgk.jpg" alt="VBBNow" width=300/>
+<img src="http://i.imgur.com/4tBh4ML.jpg" alt="VBBNow" width=300/>
 
 ## Todo
 - State handling (No Data, No Internet Connection etc.)
-- Better reloading animation
 - Reverse Geocoding as an title
 - probably an UI for the main application that ships the widget
-- Better Icons and a better style
 
 [Download Binary](https://dl.dropboxusercontent.com/u/1850177/VBB.app.zip)
