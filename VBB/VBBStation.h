@@ -8,6 +8,7 @@
 
 #import <Realm/Realm.h>
 #import "VBBDepature.h"
+#import "VBBLine.h"
 
 @import CoreLocation;
 
@@ -19,7 +20,9 @@
 @property (nonatomic) NSString *stationType;
 
 @property (readonly) CLLocation *location;
+
 @property RLMArray <VBBDepature> *depatures;
+@property RLMArray <VBBLine> *lines;
 
 -(void)setLocation:(CLLocation*)location;
 -(CLLocation*)location;

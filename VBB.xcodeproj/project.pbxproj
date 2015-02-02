@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		05851702EA9C1BED0EF26C46 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924C42E609AE4CA64600D651 /* libPods.a */; };
 		14221E029A1368A58A03A841 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924C42E609AE4CA64600D651 /* libPods.a */; };
+		E14CDF0C1A7EB911007B1C46 /* VBBLine.m in Sources */ = {isa = PBXBuildFile; fileRef = E14CDF0B1A7EB911007B1C46 /* VBBLine.m */; };
+		E14CDF0D1A7EBB01007B1C46 /* VBBLine.m in Sources */ = {isa = PBXBuildFile; fileRef = E14CDF0B1A7EB911007B1C46 /* VBBLine.m */; };
 		E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19086D61A79870300364EA2 /* MainMenu.xib */; };
 		E17F979B1A7C0E3C00623FB2 /* VBBListRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */; };
 		E17F979C1A7C0E3C00623FB2 /* VBBListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E17F97971A7C0E3C00623FB2 /* VBBListRowViewController.xib */; };
@@ -66,6 +68,8 @@
 		3211C39C502DC762C4057730 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		924C42E609AE4CA64600D651 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14CDF0A1A7EB911007B1C46 /* VBBLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBLine.h; sourceTree = "<group>"; };
+		E14CDF0B1A7EB911007B1C46 /* VBBLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBLine.m; sourceTree = "<group>"; };
 		E16440861A7AAB890008ECA3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
 		E17F97951A7C0E3C00623FB2 /* VBBListRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBBListRowViewController.h; path = VBBNow/VBBListRowViewController.h; sourceTree = SOURCE_ROOT; };
 		E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBBListRowViewController.m; path = VBBNow/VBBListRowViewController.m; sourceTree = SOURCE_ROOT; };
@@ -215,6 +219,8 @@
 				E1A568A11A7991CE00C2EA16 /* VBBStation.m */,
 				E1948A9D1A7A46F1005C9D97 /* VBBDepature.h */,
 				E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */,
+				E14CDF0A1A7EB911007B1C46 /* VBBLine.h */,
+				E14CDF0B1A7EB911007B1C46 /* VBBLine.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				E1948A9C1A7A46DB005C9D97 /* VBBDepatureParser.m in Sources */,
 				E19086D11A79870300364EA2 /* AppDelegate.m in Sources */,
 				E1A568A21A7991CE00C2EA16 /* VBBStation.m in Sources */,
+				E14CDF0C1A7EB911007B1C46 /* VBBLine.m in Sources */,
 				E19086F11A79886400364EA2 /* VBBNetworkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +465,7 @@
 				E1AEBC021A7B72F700196F97 /* VBBaseParser.m in Sources */,
 				E1AEBC051A7B72F700196F97 /* VBBStation.m in Sources */,
 				E17F979B1A7C0E3C00623FB2 /* VBBListRowViewController.m in Sources */,
+				E14CDF0D1A7EBB01007B1C46 /* VBBLine.m in Sources */,
 				E1AEBC031A7B72F700196F97 /* VBBStationParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

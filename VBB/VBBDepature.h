@@ -7,14 +7,14 @@
 //
 
 #import <Realm/Realm.h>
+#import "VBBLine.h"
 
 @interface VBBDepature : RLMObject
 
 @property (nonatomic) NSDate *arrivalDate;
-@property (nonatomic) NSString* arrivalName;
-@property (nonatomic) NSString* directionName;
-@property (nonatomic) NSInteger departureType;
 @property (nonatomic, readonly) RLMObject *station;
+@property (nonatomic) VBBLine *line;
 
 @end
+
 RLM_ARRAY_TYPE(VBBDepature)

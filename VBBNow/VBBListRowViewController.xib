@@ -6,10 +6,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="VBBListRowViewController" customModule="VBBNow" customModuleProvider="target">
             <connections>
-                <outlet property="directionLabel" destination="Uo5-ao-vEl" id="Dzq-61-kra"/>
                 <outlet property="iconView" destination="D5X-L3-Ix7" id="ZtM-YT-EKl"/>
-                <outlet property="stationLabel" destination="1EJ-Eh-cSd" id="iun-Lt-7Pf"/>
-                <outlet property="stopLabel" destination="bxs-pZ-7VI" id="IvI-b9-WFb"/>
+                <outlet property="lineEndLabel" destination="Uo5-ao-vEl" id="xXr-Lb-Szn"/>
+                <outlet property="lineNameLabel" destination="1EJ-Eh-cSd" id="bgn-j3-plY"/>
+                <outlet property="stationLabel" destination="bxs-pZ-7VI" id="Pa5-yA-lZA"/>
                 <outlet property="timeDescLabel" destination="opW-nT-mF5" id="RH1-F9-619"/>
                 <outlet property="timeLabel" destination="ic8-AA-PgH" id="7gy-72-d1P"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="fRf-eQ-izg"/>

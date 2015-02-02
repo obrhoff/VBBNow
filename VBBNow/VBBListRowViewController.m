@@ -27,7 +27,7 @@
 }
 
 -(void)viewDidLayout {
-    self.seperatorLayer.frame =  CGRectMake(CGRectGetMaxX(self.timeLabel.frame), CGRectGetMinY(self.stopLabel.frame),
+    self.seperatorLayer.frame =  CGRectMake(CGRectGetMaxX(self.timeLabel.frame), CGRectGetMinY(self.stationLabel.frame),
                                             2.5, CGRectGetMinY(self.timeLabel.frame) + CGRectGetMaxY(self.timeDescLabel.frame));
 }
 
@@ -38,23 +38,18 @@
     VBBDepature *nextDepature = [station.depatures objectsWithPredicate:predicate].firstObject;
     NSTimeInterval left = [nextDepature.arrivalDate timeIntervalSinceDate:[NSDate date]];
     
+    
     NSArray *timeDescriptions = [[[self timeFormatter] stringForTimeInterval:left] componentsSeparatedByString:@" "];
-    self.stopLabel.stringValue = station.stationName;
+    self.stationLabel.stringValue = station.stationName;
     self.timeLabel.stringValue =  timeDescriptions.firstObject;
     self.timeDescLabel.stringValue =  timeDescriptions.lastObject;
-    self.directionLabel.stringValue = nextDepature.directionName;
-    self.stationLabel.stringValue = nextDepature.arrivalName;
+    self.lineEndLabel.stringValue = nextDepature.line.lineEnd;
+    self.lineNameLabel.stringValue = nextDepature.line.lineName;
     
     NSImage *image;
     NSColor *color = [NSColor colorWithWhite:0.5 alpha:0.5];
     
-    // bahn [NSColor colorWithRed:0.82 green:0 blue:0 alpha:1]
-    // sbahn [NSColor colorWithRed:0 green:0.6 blue:0.37 alpha:1]
-    // ubahn [NSColor colorWithRed:0 green:0.35 blue:0.58 alpha:1]
-    // tram [NSColor colorWithRed:0.82 green:0 blue:0 alpha:1]
-    // bus [NSColor colorWithRed:0.26 green:0.55 blue:0.74 alpha:1]
-    // fähre  [NSColor colorWithRed:0.26 green:0.55 blue:0.74 alpha:1]
-    switch (nextDepature.departureType) {
+    switch (nextDepature.line.departureType) {
         case 2:
             image = [NSImage imageNamed:@"ubahn"];
             color = [NSColor colorWithRed:0 green:0.35 blue:0.58 alpha:1];
@@ -65,7 +60,7 @@
             break;
         case 8: {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^Bus M\\d+"];
-            if ([predicate evaluateWithObject:nextDepature.arrivalName]) {
+            if ([predicate evaluateWithObject:nextDepature.line.lineName]) {
                 image = [NSImage imageNamed:@"metroBus"];
                 color = [NSColor colorWithRed:1 green:0.44 blue:0 alpha:1];
             } else {

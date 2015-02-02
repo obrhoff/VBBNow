@@ -34,14 +34,22 @@
 -(void)parseTable:(NSDictionary*)dict {
     
     VBBDepature *departure = [VBBDepature new];
-   
+    NSString *lineId = dict[@"dirnr"];
+    NSPredicate *directionPredicate = [NSPredicate predicateWithFormat:@"lineId == %@", lineId];
+    VBBLine *line = [VBBLine objectsInRealm:self.realm withPredicate:directionPredicate].firstObject;
+    if (!line) {
+        line = [VBBLine new];
+        line.lineId = lineId;
+        line.lineEnd = dict[@"dir"];
+        line.lineName = dict[@"hafasname"];
+        line.departureType = [dict[@"class"] integerValue];
+        [self.realm addObject:line];
+    }
+    if ([self.station.lines indexOfObject:line] == NSNotFound) [self.station.lines addObject:line];
+    
     NSString *dateFormatted = [NSString stringWithFormat:@"%@ %@", dict[@"fpDate"], dict[@"fpTime"]];
-    NSString *directionName = dict[@"dir"];
-
-    if (directionName.length) departure.directionName = directionName;
-    departure.arrivalName = dict[@"hafasname"];
     departure.arrivalDate = [self.formatter dateFromString:dateFormatted];
-    departure.departureType = [dict[@"class"] integerValue];
+    departure.line = line;
     [self.station.depatures addObject:departure];
     
 }

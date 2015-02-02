@@ -16,10 +16,7 @@
 }
 
 + (NSDictionary *)defaultPropertyValues {
-    return @{@"arrivalName": @"",
-             @"directionName": @"",
-             @"departureType": @"",
-             @"arrivalDate": [NSDate dateWithTimeIntervalSince1970:0]};
+    return @{ @"arrivalDate": [NSDate dateWithTimeIntervalSince1970:0]};
 }
 
 @end
