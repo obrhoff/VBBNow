@@ -53,6 +53,7 @@
         case 1:
             image = [NSImage imageNamed:@"sbahn"];
             color = [NSColor colorWithRed:0 green:0.6 blue:0.37 alpha:1];
+            break;
         case 2:
             image = [NSImage imageNamed:@"ubahn"];
             color = [NSColor colorWithRed:0 green:0.35 blue:0.58 alpha:1];
