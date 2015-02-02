@@ -50,6 +50,9 @@
     NSColor *color = [NSColor colorWithWhite:0.5 alpha:0.5];
     
     switch (nextDepature.line.departureType) {
+        case 1:
+            image = [NSImage imageNamed:@"sbahn"];
+            color = [NSColor colorWithRed:0 green:0.6 blue:0.37 alpha:1];
         case 2:
             image = [NSImage imageNamed:@"ubahn"];
             color = [NSColor colorWithRed:0 green:0.35 blue:0.58 alpha:1];
@@ -59,15 +62,19 @@
             color = [NSColor colorWithRed:0.88 green:0 blue:0 alpha:1];
             break;
         case 8: {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^Bus M\\d+"];
-            if ([predicate evaluateWithObject:nextDepature.line.lineName]) {
-                image = [NSImage imageNamed:@"metroBus"];
-                color = [NSColor colorWithRed:1 green:0.44 blue:0 alpha:1];
-            } else {
-                image = [NSImage imageNamed:@"bus"];
-                color = [NSColor colorWithRed:0.65 green:0 blue:0.42 alpha:1];
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^Bus M\\d+"];
+                if ([predicate evaluateWithObject:nextDepature.line.lineName]) {
+                    image = [NSImage imageNamed:@"metroBus"];
+                    color = [NSColor colorWithRed:1 green:0.44 blue:0 alpha:1];
+                } else {
+                    image = [NSImage imageNamed:@"bus"];
+                    color = [NSColor colorWithRed:0.65 green:0 blue:0.42 alpha:1];
+                }
             }
-        }
+            break;
+        case 32 :
+            image = [NSImage imageNamed:@"train"];
+            color = [NSColor colorWithRed:0.82 green:0 blue:0 alpha:1];
             break;
         default:
             break;
