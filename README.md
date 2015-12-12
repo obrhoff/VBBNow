@@ -11,4 +11,4 @@ It's not entirly done, so do not blame me if you don't catch the bus :-)
 - Reverse Geocoding as an title
 - probably an UI for the main application that ships the widget
 
-[Download Binary](https://dl.dropboxusercontent.com/u/1850177/VBB.app.zip)
+[Download Binary](http://cl.ly/dLi7)
