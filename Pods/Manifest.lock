@@ -1,0 +1,53 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - FormatterKit (1.8.0):
+    - FormatterKit/AddressFormatter (= 1.8.0)
+    - FormatterKit/ArrayFormatter (= 1.8.0)
+    - FormatterKit/ColorFormatter (= 1.8.0)
+    - FormatterKit/LocationFormatter (= 1.8.0)
+    - FormatterKit/NameFormatter (= 1.8.0)
+    - FormatterKit/OrdinalNumberFormatter (= 1.8.0)
+    - FormatterKit/TimeIntervalFormatter (= 1.8.0)
+    - FormatterKit/UnitOfInformationFormatter (= 1.8.0)
+    - FormatterKit/URLRequestFormatter (= 1.8.0)
+  - FormatterKit/AddressFormatter (1.8.0)
+  - FormatterKit/ArrayFormatter (1.8.0)
+  - FormatterKit/ColorFormatter (1.8.0)
+  - FormatterKit/LocationFormatter (1.8.0)
+  - FormatterKit/NameFormatter (1.8.0)
+  - FormatterKit/OrdinalNumberFormatter (1.8.0)
+  - FormatterKit/TimeIntervalFormatter (1.8.0)
+  - FormatterKit/UnitOfInformationFormatter (1.8.0)
+  - FormatterKit/URLRequestFormatter (1.8.0)
+  - Realm (0.98.2):
+    - Realm/Headers (= 0.98.2)
+  - Realm/Headers (0.98.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - FormatterKit (~> 1.8)
+  - Realm (~> 0.96)
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  Realm: 88a147fe04b8f07191a676b15c779b2b448991de
+
+COCOAPODS: 0.39.0

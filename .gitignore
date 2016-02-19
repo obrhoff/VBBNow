@@ -1,5 +1,4 @@
 .DS_Store
-Podfile.lock
 build/
 *.pbxuser
 !default.pbxuser
@@ -16,5 +15,4 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-Pods/
 
