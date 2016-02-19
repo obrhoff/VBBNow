@@ -24,8 +24,4 @@
     return NSStringFromSelector(@selector(lineId));
 }
 
-+(NSDictionary *)defaultPropertyValues {
-    return @{@"lineId": @"", @"lineName": @"",  @"lineEnd": @""};
-}
-
 @end

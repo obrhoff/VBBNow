@@ -15,8 +15,4 @@
     return [self linkingObjectsOfClass:NSStringFromClass([VBBStation class]) forProperty:NSStringFromSelector(@selector(depatures))].firstObject;
 }
 
-+ (NSDictionary *)defaultPropertyValues {
-    return @{ @"arrivalDate": [NSDate dateWithTimeIntervalSince1970:0]};
-}
-
 @end

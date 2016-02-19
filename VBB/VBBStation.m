@@ -63,10 +63,6 @@
     return [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
 }
 
-+ (NSDictionary *)defaultPropertyValues{
-    return @{ @"stationName": @"", @"stationId": @"", @"stationType": @""};
-}
-
 + (NSString *)primaryKey {
     return NSStringFromSelector(@selector(stationId));
 }

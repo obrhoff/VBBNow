@@ -71,6 +71,7 @@
 		E14CDF0A1A7EB911007B1C46 /* VBBLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBLine.h; sourceTree = "<group>"; };
 		E14CDF0B1A7EB911007B1C46 /* VBBLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBLine.m; sourceTree = "<group>"; };
 		E16440861A7AAB890008ECA3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
+		E17A6ABA1C770CF900506B8A /* VBB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VBB.entitlements; sourceTree = "<group>"; };
 		E17F97951A7C0E3C00623FB2 /* VBBListRowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBBListRowViewController.h; path = VBBNow/VBBListRowViewController.h; sourceTree = SOURCE_ROOT; };
 		E17F97961A7C0E3C00623FB2 /* VBBListRowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBBListRowViewController.m; path = VBBNow/VBBListRowViewController.m; sourceTree = SOURCE_ROOT; };
 		E17F97971A7C0E3C00623FB2 /* VBBListRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VBBListRowViewController.xib; path = VBBNow/VBBListRowViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -178,6 +179,7 @@
 		E19086CC1A79870300364EA2 /* VBB */ = {
 			isa = PBXGroup;
 			children = (
+				E17A6ABA1C770CF900506B8A /* VBB.entitlements */,
 				E1948A781A7A3D95005C9D97 /* vbb.entitlements */,
 				E1A5689C1A7990AE00C2EA16 /* Parser */,
 				E19086EE1A79885600364EA2 /* Model */,
@@ -320,14 +322,19 @@
 				TargetAttributes = {
 					E19086C91A79870300364EA2 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = YE33ZK7Z99;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
 							};
 						};
 					};
 					E1AEBBE61A7B701D00196F97 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = YE33ZK7Z99;
 					};
 				};
 			};
@@ -614,6 +621,8 @@
 			baseConfigurationReference = 3211C39C502DC762C4057730 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -627,6 +636,8 @@
 			baseConfigurationReference = 58C83EB7FC5BC1182C29CD33 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -641,6 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -648,7 +660,7 @@
 				);
 				INFOPLIST_FILE = VBBNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VBB.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -661,10 +673,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = VBBNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.VBB.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

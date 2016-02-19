@@ -33,11 +33,10 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [NSURLCache setSharedURLCache:nil];
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
     self.listViewController.preferredContentSize = CGSizeMake(320, 350);
-    [self performSelector:@selector(reloadDataForLocation:) withObject:[VBBPersistanceManager manager].storedLocation afterDelay:3.5];
+    self.listViewController.contents = [[VBBStation class] sortByRelevance:[VBBPersistanceManager manager].storedLocation andLimit:5];
 
 }
 
@@ -147,8 +146,6 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if (self.didUpdateLocationBlock) {
         CLLocation *newLocation = locations.firstObject;
-        CLLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
-        if (storedLocation && [newLocation distanceFromLocation:storedLocation] < 20) return;
         [[VBBPersistanceManager manager] storeLocation:newLocation];
         self.didUpdateLocationBlock(locations.firstObject);
         self.didUpdateLocationBlock = nil;
