@@ -19,11 +19,10 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [NSURLCache setSharedURLCache:nil];
+    [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:0  diskCapacity:0 diskPath:nil]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-
 }
 
 @end

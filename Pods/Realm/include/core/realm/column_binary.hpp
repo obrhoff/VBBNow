@@ -81,6 +81,13 @@ public:
     void update_from_parent(size_t) noexcept override;
     void refresh_accessor_tree(size_t, const Spec&) override;
 
+    /// In contrast to update_from_parent(), this function is able to handle
+    /// cases where the accessed payload data has changed. In particular, it
+    /// handles cases where the B+-tree switches from having one level (root is
+    /// a leaf node), to having multiple levels (root is an inner node). Note
+    /// that this is at the expense of loosing the `noexcept` guarantee.
+    void update_from_ref(ref_type ref);
+
 #ifdef REALM_DEBUG
     void verify() const override;
     void to_dot(std::ostream&, StringData title) const override;
@@ -163,11 +170,13 @@ inline void BinaryColumn::update_from_parent(size_t old_baseline) noexcept
         bool is_big = m_array->get_context_flag();
         if (!is_big) {
             // Small blobs root leaf
+            REALM_ASSERT(dynamic_cast<ArrayBinary*>(m_array.get()));
             ArrayBinary* leaf = static_cast<ArrayBinary*>(m_array.get());
             leaf->update_from_parent(old_baseline);
             return;
         }
         // Big blobs root leaf
+        REALM_ASSERT(dynamic_cast<ArrayBigBlobs*>(m_array.get()));
         ArrayBigBlobs* leaf = static_cast<ArrayBigBlobs*>(m_array.get());
         leaf->update_from_parent(old_baseline);
         return;
@@ -199,7 +208,7 @@ inline BinaryData BinaryColumn::get(size_t ndx) const noexcept
 
     // Non-leaf root
     std::pair<MemRef, size_t> p = m_array->get_bptree_leaf(ndx);
-    const char* leaf_header = p.first.m_addr;
+    const char* leaf_header = p.first.get_addr();
     size_t ndx_in_leaf = p.second;
     Allocator& alloc = m_array->get_alloc();
     bool is_big = Array::get_context_flag_from_header(leaf_header);
@@ -249,9 +258,9 @@ inline void BinaryColumn::insert(size_t row_ndx, BinaryData value)
     if (value.is_null() && !m_nullable)
         throw LogicError(LogicError::column_not_nullable);
 
-    size_t size = this->size(); // Slow
-    REALM_ASSERT_3(row_ndx, <=, size);
-    size_t row_ndx_2 = row_ndx == size ? realm::npos : row_ndx;
+    size_t column_size = this->size(); // Slow
+    REALM_ASSERT_3(row_ndx, <=, column_size);
+    size_t row_ndx_2 = row_ndx == column_size ? realm::npos : row_ndx;
     bool add_zero_term = false;
     size_t num_rows = 1;
     do_insert(row_ndx_2, value, add_zero_term, num_rows); // Throws
@@ -297,7 +306,6 @@ inline void BinaryColumn::insert_rows(size_t row_ndx, size_t num_rows_to_insert,
     REALM_ASSERT_DEBUG(prior_num_rows == size());
     REALM_ASSERT(row_ndx <= prior_num_rows);
     REALM_ASSERT(!insert_nulls || m_nullable);
-    static_cast<void>(insert_nulls);
 
     size_t row_ndx_2 = (row_ndx == prior_num_rows ? realm::npos : row_ndx);
     BinaryData value = m_nullable ? BinaryData() : BinaryData("", 0);
@@ -347,9 +355,9 @@ inline void BinaryColumn::add_string(StringData value)
 
 inline void BinaryColumn::insert_string(size_t row_ndx, StringData value)
 {
-    size_t size = this->size(); // Slow
-    REALM_ASSERT_3(row_ndx, <=, size);
-    size_t row_ndx_2 = row_ndx == size ? realm::npos : row_ndx;
+    size_t column_size = this->size(); // Slow
+    REALM_ASSERT_3(row_ndx, <=, column_size);
+    size_t row_ndx_2 = row_ndx == column_size ? realm::npos : row_ndx;
     BinaryData value_2(value.data(), value.size());
     bool add_zero_term = false;
     size_t num_rows = 1;

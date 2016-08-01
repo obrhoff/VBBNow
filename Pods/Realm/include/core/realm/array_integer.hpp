@@ -170,11 +170,11 @@ public:
     // Overwrite Array::bptree_leaf_insert to correctly split nodes.
     ref_type bptree_leaf_insert(size_t ndx, value_type value, TreeInsertBase& state);
 
-    MemRef slice(size_t offset, size_t size, Allocator& target_alloc) const;
+    MemRef slice(size_t offset, size_t slice_size, Allocator& target_alloc) const;
 
     /// Construct a deep copy of the specified slice of this array using the
     /// specified target allocator. Subarrays will be cloned.
-    MemRef slice_and_clone_children(size_t offset, size_t size,
+    MemRef slice_and_clone_children(size_t offset, size_t slice_size,
                                     Allocator& target_alloc) const;
 protected:
     void avoid_null_collision(int64_t value);
@@ -183,9 +183,9 @@ private:
     bool minmax_helper(int64_t& result, size_t start = 0, size_t end = npos,
                          size_t* return_ndx = nullptr) const;
 
-    int_fast64_t choose_random_null(int64_t incoming);
+    int_fast64_t choose_random_null(int64_t incoming) const;
     void replace_nulls_with(int64_t new_null);
-    bool can_use_as_null(int64_t value);
+    bool can_use_as_null(int64_t value) const;
 };
 
 
@@ -194,11 +194,13 @@ private:
 inline ArrayInteger::ArrayInteger(Array::no_prealloc_tag) noexcept:
     Array(Array::no_prealloc_tag())
 {
+    m_is_inner_bptree_node = false;
 }
 
-inline ArrayInteger::ArrayInteger(Allocator& alloc) noexcept:
-    Array(alloc)
+inline ArrayInteger::ArrayInteger(Allocator& allocator) noexcept:
+    Array(allocator)
 {
+    m_is_inner_bptree_node = false;
 }
 
 inline void ArrayInteger::add(int64_t value)
@@ -288,7 +290,7 @@ ArrayIntNull::ArrayIntNull(no_prealloc_tag tag) noexcept: Array(tag)
 }
 
 inline
-ArrayIntNull::ArrayIntNull(Allocator& alloc) noexcept: Array(alloc)
+ArrayIntNull::ArrayIntNull(Allocator& allocator) noexcept: Array(allocator)
 {
 }
 
@@ -300,7 +302,7 @@ ArrayIntNull::~ArrayIntNull() noexcept
 inline
 void ArrayIntNull::create(Type type, bool context_flag)
 {
-    MemRef r = create_array(type, context_flag, 0, 0, m_alloc);
+    MemRef r = create_array(type, context_flag, 0, util::none, m_alloc);
     init_from_mem(r);
 }
 
@@ -426,9 +428,9 @@ void ArrayIntNull::erase(size_t begin, size_t end)
 }
 
 inline
-void ArrayIntNull::truncate(size_t size)
+void ArrayIntNull::truncate(size_t to_size)
 {
-    Array::truncate(size + 1);
+    Array::truncate(to_size + 1);
 }
 
 inline
@@ -478,26 +480,26 @@ inline
 int64_t ArrayIntNull::sum(size_t start, size_t end) const
 {
     // FIXME: Optimize!
-    int64_t sum = 0;
+    int64_t sum_of_range = 0;
     if (end == npos)
         end = size();
     for (size_t i = start; i < end; ++i) {
         value_type x = get(i);
         if (x) {
-            sum += *x;
+            sum_of_range += *x;
         }
     }
-    return sum;
+    return sum_of_range;
 }
 
 inline
 size_t ArrayIntNull::count(int64_t value) const noexcept
 {
-    size_t count = Array::count(value);
+    size_t count_of_value = Array::count(value);
     if (value == null_value()) {
-        --count;
+        --count_of_value;
     }
-    return count;
+    return count_of_value;
 }
 
 // FIXME: Optimize!

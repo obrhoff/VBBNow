@@ -12,7 +12,7 @@
 @interface VBBDepature : RLMObject
 
 @property (nonatomic) NSDate *arrivalDate;
-@property (nonatomic, readonly) RLMObject *station;
+@property (readonly) RLMLinkingObjects<RLMObject *> *station;
 @property (nonatomic) VBBLine *line;
 
 @end

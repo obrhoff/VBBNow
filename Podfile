@@ -1,6 +1,17 @@
-platform :osx, '10.10'
 inhibit_all_warnings!
-link_with ['VBB', 'VBBNow']
-pod 'AFNetworking', '~> 2.5'
-pod 'Realm', '~> 0.96'
-pod 'FormatterKit', '~> 1.8'
+use_frameworks!
+
+def shared_pods
+	pod 'AFNetworking', '~> 2.5'
+	pod 'Realm', '~> 1.0'
+end
+
+target :VBB do
+	platform :osx, '10.10'
+	shared_pods
+end
+
+target :'VBBNow' do
+	platform :osx, '10.10'
+	shared_pods
+end

@@ -19,47 +19,27 @@
 #ifndef REALM_RESULTS_HPP
 #define REALM_RESULTS_HPP
 
+#include "collection_notifications.hpp"
 #include "shared_realm.hpp"
+#include "impl/collection_notifier.hpp"
 
 #include <realm/table_view.hpp>
-#include <realm/table.hpp>
 #include <realm/util/optional.hpp>
 
 namespace realm {
 template<typename T> class BasicRowExpr;
 using RowExpr = BasicRowExpr<Table>;
 class Mixed;
-class Results;
 
 namespace _impl {
-    class AsyncQuery;
+    class ResultsNotifier;
 }
 
-// A token which keeps an asynchronous query alive
-struct AsyncQueryCancelationToken {
-    AsyncQueryCancelationToken() = default;
-    AsyncQueryCancelationToken(std::shared_ptr<_impl::AsyncQuery> query, size_t token);
-    ~AsyncQueryCancelationToken();
-
-    AsyncQueryCancelationToken(AsyncQueryCancelationToken&&);
-    AsyncQueryCancelationToken& operator=(AsyncQueryCancelationToken&&);
-
-    AsyncQueryCancelationToken(AsyncQueryCancelationToken const&) = delete;
-    AsyncQueryCancelationToken& operator=(AsyncQueryCancelationToken const&) = delete;
-
-private:
-    std::shared_ptr<_impl::AsyncQuery> m_query;
-    size_t m_token;
-};
-
 struct SortOrder {
-    std::vector<size_t> columnIndices;
+    std::vector<size_t> column_indices;
     std::vector<bool> ascending;
 
-    explicit operator bool() const
-    {
-        return !columnIndices.empty();
-    }
+    explicit operator bool() const { return !column_indices.empty(); }
 };
 
 class Results {
@@ -67,17 +47,18 @@ public:
     // Results can be either be backed by nothing, a thin wrapper around a table,
     // or a wrapper around a query and a sort order which creates and updates
     // the tableview as needed
-    Results() = default;
+    Results();
     Results(SharedRealm r, SortOrder s, TableView tv);
     Results(SharedRealm r, Table& table);
     Results(SharedRealm r, Query q, SortOrder s = {});
+    Results(SharedRealm r, LinkViewRef lv, util::Optional<Query> q = {}, SortOrder s = {});
     ~Results();
 
     // Results is copyable and moveable
-    Results(Results const&) = default;
-    Results(Results&&) = default;
-    Results& operator=(Results const&) = default;
-    Results& operator=(Results&&) = default;
+    Results(Results const&);
+    Results(Results&&);
+    Results& operator=(Results const&);
+    Results& operator=(Results&&);
 
     // Get a query which will match the same rows as is contained in this Results
     // Returned query will not be valid if the current mode is Empty
@@ -91,6 +72,9 @@ public:
 
     // Get the object type which will be returned by get()
     StringData get_object_type() const noexcept;
+
+    // Get the LinkView this Results is derived from, if any
+    LinkViewRef get_linkview() const { return m_link_view; }
 
     // Get the size of this results
     // Can be either O(1) or O(N) depending on the state of things
@@ -123,7 +107,7 @@ public:
     // Get the min/max/average/sum of the given column
     // All but sum() returns none when there are zero matching rows
     // sum() returns 0, except for when it returns none
-    // Throws UnsupportedColumnTypeException for sum/average on datetime or non-numeric column
+    // Throws UnsupportedColumnTypeException for sum/average on timestamp or non-numeric column
     // Throws OutOfBoundsIndexException for an out-of-bounds column
     util::Optional<Mixed> max(size_t column);
     util::Optional<Mixed> min(size_t column);
@@ -134,55 +118,68 @@ public:
         Empty, // Backed by nothing (for missing tables)
         Table, // Backed directly by a Table
         Query, // Backed by a query that has not yet been turned into a TableView
+        LinkView, // Backed directly by a LinkView
         TableView // Backed by a TableView created from a Query
     };
     // Get the currrent mode of the Results
     // Ideally this would not be public but it's needed for some KVO stuff
     Mode get_mode() const { return m_mode; }
 
+    // Is this Results associated with a Realm that has not been invalidated?
+    bool is_valid() const;
+
     // The Results object has been invalidated (due to the Realm being invalidated)
     // All non-noexcept functions can throw this
-    struct InvalidatedException {};
+    struct InvalidatedException : public std::runtime_error {
+        InvalidatedException() : std::runtime_error("Access to invalidated Results objects") {}
+    };
 
     // The input index parameter was out of bounds
-    struct OutOfBoundsIndexException {
-        size_t requested;
-        size_t valid_count;
+    struct OutOfBoundsIndexException : public std::out_of_range {
+        OutOfBoundsIndexException(size_t r, size_t c);
+        const size_t requested;
+        const size_t valid_count;
     };
 
     // The input Row object is not attached
-    struct DetatchedAccessorException { };
+    struct DetatchedAccessorException : public std::runtime_error {
+        DetatchedAccessorException() : std::runtime_error("Atempting to access an invalid object") {}
+    };
 
     // The input Row object belongs to a different table
-    struct IncorrectTableException {
-        StringData expected;
-        StringData actual;
+    struct IncorrectTableException : public std::runtime_error {
+        IncorrectTableException(StringData e, StringData a, const std::string &error)
+        : std::runtime_error(error), expected(e), actual(a) {}
+        const StringData expected;
+        const StringData actual;
     };
 
     // The requested aggregate operation is not supported for the column type
-    struct UnsupportedColumnTypeException {
+    struct UnsupportedColumnTypeException : public std::runtime_error {
         size_t column_index;
         StringData column_name;
         DataType column_type;
 
-        UnsupportedColumnTypeException(size_t column, const Table* table);
+        UnsupportedColumnTypeException(size_t column, const Table* table, const char* operation);
     };
 
-    Realm& get_realm() const { return *m_realm; }
-
-    void update_tableview();
+    SharedRealm get_realm() const { return m_realm; }
 
     // Create an async query from this Results
     // The query will be run on a background thread and delivered to the callback,
     // and then rerun after each commit (if needed) and redelivered if it changed
-    AsyncQueryCancelationToken async(std::function<void (std::exception_ptr)> target);
+    NotificationToken async(std::function<void (std::exception_ptr)> target);
+    NotificationToken add_notification_callback(CollectionChangeCallback cb);
 
     bool wants_background_updates() const { return m_wants_background_updates; }
 
-    // Helper type to let AsyncQuery update the tableview without giving access
+    // Returns whether the rows are guaranteed to be in table order.
+    bool is_in_table_order() const;
+
+    // Helper type to let ResultsNotifier update the tableview without giving access
     // to any other privates or letting anyone else do so
     class Internal {
-        friend class _impl::AsyncQuery;
+        friend class _impl::ResultsNotifier;
         static void set_table_view(Results& results, TableView&& tv);
     };
 
@@ -190,22 +187,29 @@ private:
     SharedRealm m_realm;
     Query m_query;
     TableView m_table_view;
+    LinkViewRef m_link_view;
     Table* m_table = nullptr;
     SortOrder m_sort;
 
-    std::shared_ptr<_impl::AsyncQuery> m_background_query;
+    _impl::CollectionNotifier::Handle<_impl::ResultsNotifier> m_notifier;
 
     Mode m_mode = Mode::Empty;
     bool m_has_used_table_view = false;
     bool m_wants_background_updates = true;
 
+    void update_tableview();
+    bool update_linkview();
+
     void validate_read() const;
     void validate_write() const;
 
-    template<typename Int, typename Float, typename Double, typename DateTime>
+    void prepare_async();
+
+    template<typename Int, typename Float, typename Double, typename Timestamp>
     util::Optional<Mixed> aggregate(size_t column, bool return_none_for_empty,
+                                    const char* name,
                                     Int agg_int, Float agg_float,
-                                    Double agg_double, DateTime agg_datetime);
+                                    Double agg_double, Timestamp agg_timestamp);
 
     void set_table_view(TableView&& tv);
 };

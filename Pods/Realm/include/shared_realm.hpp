@@ -19,47 +19,72 @@
 #ifndef REALM_REALM_HPP
 #define REALM_REALM_HPP
 
-#include <realm/handover_defs.hpp>
-
 #include <memory>
-#include <mutex>
 #include <string>
 #include <thread>
 #include <vector>
 
 namespace realm {
+    class BinaryData;
     class BindingContext;
-    class ClientHistory;
     class Group;
     class Realm;
-    class RealmDelegate;
+    class Replication;
     class Schema;
     class SharedGroup;
+    class StringData;
     typedef std::shared_ptr<Realm> SharedRealm;
     typedef std::weak_ptr<Realm> WeakRealm;
 
     namespace _impl {
-        class AsyncQuery;
+        class CollectionNotifier;
+        class ListNotifier;
         class RealmCoordinator;
+        class ResultsNotifier;
+    }
+
+    namespace util {
+        template<typename T> class Optional;
     }
 
     class Realm : public std::enable_shared_from_this<Realm> {
       public:
         typedef std::function<void(SharedRealm old_realm, SharedRealm realm)> MigrationFunction;
 
-        struct Config
-        {
+        struct Config {
             std::string path;
-            bool read_only = false;
-            bool in_memory = false;
-            bool cache = true;
-            bool disable_format_upgrade = false;
+            // User-supplied encryption key. Must be either empty or 64 bytes.
             std::vector<char> encryption_key;
 
+            // Optional schema for the file. If nullptr, the existing schema
+            // from the file opened will be used. If present, the file will be
+            // migrated to the schema if needed.
             std::unique_ptr<Schema> schema;
             uint64_t schema_version;
 
             MigrationFunction migration_function;
+            bool delete_realm_if_migration_needed = false;
+
+            bool read_only = false;
+            bool in_memory = false;
+
+            // The following are intended for internal/testing purposes and
+            // should not be publicly exposed in binding APIs
+
+            // If false, always return a new Realm instance, and don't return
+            // that Realm instance for other requests for a cached Realm. Useful
+            // for dynamic Realms and for tests that need multiple instances on
+            // one thread
+            bool cache = true;
+            // Throw an exception rather than automatically upgrading the file
+            // format. Used by the browser to warn the user that it'll modify
+            // the file.
+            bool disable_format_upgrade = false;
+            // Disable the background worker thread for producing change
+            // notifications. Useful for tests for those notifications so that
+            // everything can be done deterministically on one thread, and
+            // speeds up tests that don't need notifications.
+            bool automatic_change_notifications = true;
 
             Config();
             Config(Config&&);
@@ -92,7 +117,7 @@ namespace realm {
         void begin_transaction();
         void commit_transaction();
         void cancel_transaction();
-        bool is_in_transaction() const { return m_in_transaction; }
+        bool is_in_transaction() const noexcept;
         bool is_in_read_transaction() const { return !!m_group; }
 
         bool refresh();
@@ -102,6 +127,7 @@ namespace realm {
 
         void invalidate();
         bool compact();
+        void write_copy(StringData path, BinaryData encryption_key);
 
         std::thread::id thread_id() const { return m_thread_id; }
         void verify_thread() const;
@@ -113,6 +139,11 @@ namespace realm {
         // Realm after closing it will produce undefined behavior.
         void close();
 
+        bool is_closed() { return !m_read_only_group && !m_shared_group; }
+
+        // returns the file format version upgraded from if an upgrade took place
+        util::Optional<int> file_format_upgraded_from_version() const;
+
         ~Realm();
 
         void init(std::shared_ptr<_impl::RealmCoordinator> coordinator);
@@ -121,38 +152,42 @@ namespace realm {
         // Expose some internal functionality to other parts of the ObjectStore
         // without making it public to everyone
         class Internal {
-            friend class _impl::AsyncQuery;
+            friend class _impl::CollectionNotifier;
+            friend class _impl::ListNotifier;
             friend class _impl::RealmCoordinator;
+            friend class _impl::ResultsNotifier;
 
-            // AsyncQuery needs access to the SharedGroup to be able to call the
-            // handover functions, which are not very wrappable
+            // ResultsNotifier and ListNotifier need access to the SharedGroup
+            // to be able to call the handover functions, which are not very wrappable
             static SharedGroup& get_shared_group(Realm& realm) { return *realm.m_shared_group; }
-            static ClientHistory& get_history(Realm& realm) { return *realm.m_history; }
 
-            // AsyncQuery needs to be able to access the owning coordinator to
-            // wake up the worker thread when a callback is added, and
-            // coordinators need to be able to get themselves from a Realm
+            // CollectionNotifier needs to be able to access the owning
+            // coordinator to wake up the worker thread when a callback is
+            // added, and coordinators need to be able to get themselves from a Realm
             static _impl::RealmCoordinator& get_coordinator(Realm& realm) { return *realm.m_coordinator; }
         };
 
         static void open_with_config(const Config& config,
-                                     std::unique_ptr<ClientHistory>& history,
+                                     std::unique_ptr<Replication>& history,
                                      std::unique_ptr<SharedGroup>& shared_group,
-                                     std::unique_ptr<Group>& read_only_group);
+                                     std::unique_ptr<Group>& read_only_group,
+                                     Realm *realm = nullptr);
 
       private:
         Config m_config;
         std::thread::id m_thread_id = std::this_thread::get_id();
-        bool m_in_transaction = false;
         bool m_auto_refresh = true;
 
-        std::unique_ptr<ClientHistory> m_history;
+        std::unique_ptr<Replication> m_history;
         std::unique_ptr<SharedGroup> m_shared_group;
         std::unique_ptr<Group> m_read_only_group;
 
         Group *m_group = nullptr;
 
         std::shared_ptr<_impl::RealmCoordinator> m_coordinator;
+
+        // File format versions populated when a file format upgrade takes place during realm opening
+        int upgrade_initial_version = 0, upgrade_final_version = 0;
 
       public:
         std::unique_ptr<BindingContext> m_binding_context;
@@ -180,24 +215,26 @@ namespace realm {
             /** Thrown if the file needs to be upgraded to a new format, but upgrades have been explicitly disabled. */
             FormatUpgradeRequired,
         };
-        RealmFileException(Kind kind, std::string path, std::string message) :
-            std::runtime_error(std::move(message)), m_kind(kind), m_path(std::move(path)) {}
+        RealmFileException(Kind kind, std::string path, std::string message, std::string underlying) :
+            std::runtime_error(std::move(message)), m_kind(kind), m_path(std::move(path)), m_underlying(std::move(underlying)) {}
         Kind kind() const { return m_kind; }
         const std::string& path() const { return m_path; }
+        const std::string& underlying() const { return m_underlying; }
 
     private:
         Kind m_kind;
         std::string m_path;
+        std::string m_underlying;
     };
 
     class MismatchedConfigException : public std::runtime_error {
     public:
-        MismatchedConfigException(std::string message) : std::runtime_error(message) {}
+        MismatchedConfigException(StringData message, StringData path);
     };
 
     class InvalidTransactionException : public std::runtime_error {
     public:
-        InvalidTransactionException(std::string message) : std::runtime_error(message) {}
+        InvalidTransactionException(std::string message) : std::runtime_error(move(message)) {}
     };
 
     class IncorrectThreadException : public std::runtime_error {
@@ -205,9 +242,14 @@ namespace realm {
         IncorrectThreadException() : std::runtime_error("Realm accessed from incorrect thread.") {}
     };
 
-    class UnitializedRealmException : public std::runtime_error {
+    class UninitializedRealmException : public std::runtime_error {
     public:
-        UnitializedRealmException(std::string message) : std::runtime_error(message) {}
+        UninitializedRealmException(std::string message) : std::runtime_error(move(message)) {}
+    };
+
+    class InvalidEncryptionKeyException : public std::runtime_error {
+    public:
+        InvalidEncryptionKeyException() : std::runtime_error("Encryption key must be 64 bytes.") {}
     };
 }
 

@@ -11,8 +11,9 @@
 
 @implementation VBBDepature
 
--(RLMObject *)station {
-    return [self linkingObjectsOfClass:NSStringFromClass([VBBStation class]) forProperty:NSStringFromSelector(@selector(depatures))].firstObject;
++(NSDictionary<NSString *,RLMPropertyDescriptor *> *)linkingObjectsProperties {
+    return [NSDictionary dictionaryWithObject:[RLMPropertyDescriptor descriptorWithClass:VBBStation.class propertyName:NSStringFromSelector(@selector(depatures))] forKey:NSStringFromSelector(@selector(station))];
 }
+
 
 @end

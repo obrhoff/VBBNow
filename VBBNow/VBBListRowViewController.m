@@ -9,8 +9,6 @@
 #import "VBBListRowViewController.h"
 #import "VBBStation.h"
 
-#import <FormatterKit/TTTTimeIntervalFormatter.h>
-
 @interface VBBListRowViewController ()
 
 @property (nonatomic, readwrite, strong) CALayer *seperatorLayer;
@@ -39,7 +37,7 @@
     NSTimeInterval left = [nextDepature.arrivalDate timeIntervalSinceDate:[NSDate date]];
     
     
-    NSArray *timeDescriptions = [[[self timeFormatter] stringForTimeInterval:left] componentsSeparatedByString:@" "];
+    NSArray *timeDescriptions = [[[self timeFormatter] stringFromTimeInterval:left] componentsSeparatedByString:@" "];
     self.stationLabel.stringValue = station.stationName;
     self.timeLabel.stringValue =  timeDescriptions.firstObject;
     self.timeDescLabel.stringValue =  timeDescriptions.lastObject;
@@ -94,14 +92,15 @@
     [self setInformations:representedObject];
 }
 
--(TTTTimeIntervalFormatter*)timeFormatter {
+-(NSDateComponentsFormatter*)timeFormatter {
     static dispatch_once_t onceToken;
-    static TTTTimeIntervalFormatter *timeFormatter;
+    static NSDateComponentsFormatter *timeFormatter;
     dispatch_once(&onceToken, ^{
-        timeFormatter = [TTTTimeIntervalFormatter new];
-        timeFormatter.leastSignificantUnit = NSCalendarUnitMinute;
-        timeFormatter.usesAbbreviatedCalendarUnits = YES;
-        timeFormatter.futureDeicticExpression = nil;
+        timeFormatter = [NSDateComponentsFormatter new];
+        timeFormatter.allowedUnits = NSCalendarUnitMinute | NSCalendarUnitMinute | NSCalendarUnitDay;
+        timeFormatter.unitsStyle = NSDateComponentsFormatterUnitsStyleShort;
+        timeFormatter.includesApproximationPhrase = NO;
+        timeFormatter.includesTimeRemainingPhrase = NO;
     });
     return timeFormatter;
 }

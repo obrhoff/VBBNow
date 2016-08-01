@@ -19,17 +19,20 @@
 #ifndef REALM_OBJECT_STORE_HPP
 #define REALM_OBJECT_STORE_HPP
 
-#include "object_schema.hpp"
 #include "property.hpp"
 
-#include <functional>
+#include <realm/table_ref.hpp>
 
-#include <realm/group.hpp>
-#include <realm/link_view.hpp>
+#include <functional>
+#include <string>
+#include <vector>
 
 namespace realm {
+    class Group;
+    class ObjectSchema;
     class ObjectSchemaValidationException;
     class Schema;
+    class StringData;
 
     class ObjectStore {
       public:
@@ -50,7 +53,7 @@ namespace realm {
         // determines if a realm with the given old schema needs non-migration
         // changes to make it compatible with the given target schema
         static bool needs_update(Schema const& old_schema, Schema const& schema);
-        
+
         // updates a Realm from old_schema to the given target schema, creating and updating tables as needed
         // passed in target schema is updated with the correct column mapping
         // optionally runs migration function if schema is out of date
@@ -68,6 +71,9 @@ namespace realm {
 
         // deletes the table for the given type
         static void delete_data_for_object(Group *group, StringData object_type);
+
+        // renames the object_type's column of the old_name to the new name
+        static void rename_property(Group *group, Schema& passed_schema, StringData object_type, StringData old_name, StringData new_name);
 
         // indicates if this group contains any objects
         static bool is_empty(const Group *group);
@@ -89,7 +95,14 @@ namespace realm {
 
         // set references to tables on targetSchema and create/update any missing or out-of-date tables
         // if update existing is true, updates existing tables, otherwise only adds and initializes new tables
-        static void create_tables(realm::Group *group, Schema &target_schema, bool update_existing);
+        // returns pairs of object names & properties that should be deleted after the migration process
+        static std::vector<std::pair<std::string, Property>> create_tables(realm::Group *group, Schema &target_schema, bool update_existing);
+
+        // verify to see if there are any renamed properties that don't align with the target schema 
+        static void verify_missing_renamed_properties(Schema const& actual_schema, Schema& target_schema);
+
+        // remove properties marked for deletion by create_tables
+        static void remove_properties(Group *group, Schema &target_schema, std::vector<std::pair<std::string, Property>> to_delete);
 
         // verify a target schema against an expected schema, setting the table_column property on each schema object
         // updates the column mapping on the target_schema
@@ -128,6 +141,60 @@ namespace realm {
     // Migration exceptions
     class MigrationException : public ObjectStoreException {};
 
+    class PropertyRenameMissingObjectTypeException : public MigrationException {
+      public:
+        PropertyRenameMissingObjectTypeException(std::string object_type);
+        std::string object_type() const { return m_object_type; }
+      private:
+        std::string m_object_type;
+    };
+
+    class PropertyRenameMissingOldObjectTypeException : public PropertyRenameMissingObjectTypeException {
+      public:
+        PropertyRenameMissingOldObjectTypeException(std::string object_type);
+    };
+
+    class PropertyRenameMissingNewObjectTypeException : public PropertyRenameMissingObjectTypeException {
+      public:
+        PropertyRenameMissingNewObjectTypeException(std::string object_type);
+    };
+
+    class PropertyRenameException : public MigrationException {
+      public:
+        PropertyRenameException(std::string old_property_name, std::string new_property_name);
+        std::string old_property_name() const { return m_old_property_name; }
+        std::string new_property_name() const { return m_new_property_name; }
+      private:
+        std::string m_old_property_name, m_new_property_name;
+    };
+
+    class PropertyRenameMissingOldPropertyException : public PropertyRenameException {
+      public:
+        PropertyRenameMissingOldPropertyException(std::string old_property_name, std::string new_property_name);
+    };
+
+    class PropertyRenameMissingNewPropertyException : public MigrationException {
+    public:
+        std::string new_property_name() const { return m_new_property_name; }
+        PropertyRenameMissingNewPropertyException(std::string new_property_name);
+    private:
+        std::string m_new_property_name;
+    };
+
+    class PropertyRenameOldStillExistsException : public PropertyRenameException {
+      public:
+        PropertyRenameOldStillExistsException(std::string old_property_name, std::string new_property_name);
+    };
+
+    class PropertyRenameTypeMismatchException : public MigrationException {
+      public:
+        PropertyRenameTypeMismatchException(Property const& old_property, Property const& new_property);
+        Property const& old_property() const { return m_old_property; }
+        Property const& new_property() const { return m_new_property; }
+      private:
+        Property m_old_property, m_new_property;
+    };
+
     class InvalidSchemaVersionException : public MigrationException {
       public:
         InvalidSchemaVersionException(uint64_t old_version, uint64_t new_version);
@@ -140,6 +207,8 @@ namespace realm {
     class DuplicatePrimaryKeyValueException : public MigrationException {
       public:
         DuplicatePrimaryKeyValueException(std::string const& object_type, Property const& property);
+        DuplicatePrimaryKeyValueException(std::string const& object_type, Property const& property, const std::string message);
+
         std::string object_type() const { return m_object_type; }
         Property const& property() const { return m_property; }
       private:
@@ -153,6 +222,14 @@ namespace realm {
         SchemaValidationException(std::vector<ObjectSchemaValidationException> const& errors);
         std::vector<ObjectSchemaValidationException> const& validation_errors() const { return m_validation_errors; }
       private:
+        std::vector<ObjectSchemaValidationException> m_validation_errors;
+    };
+
+    class SchemaMismatchException : public ObjectStoreException {
+    public:
+        SchemaMismatchException(std::vector<ObjectSchemaValidationException> const& errors);
+        std::vector<ObjectSchemaValidationException> const& validation_errors() const { return m_validation_errors; }
+    private:
         std::vector<ObjectSchemaValidationException> m_validation_errors;
     };
 
@@ -229,6 +306,16 @@ namespace realm {
         std::string primary_key() const { return m_primary_key; }
       private:
         std::string m_primary_key;
+    };
+
+    class InvalidLinkingObjectsPropertyException : public ObjectSchemaPropertyException {
+    public:
+        enum class Type {
+            OriginPropertyDoesNotExist,
+            OriginPropertyIsNotALink,
+            OriginPropertyInvalidLinkTarget,
+        };
+        InvalidLinkingObjectsPropertyException(Type error_type, std::string const& object_type, Property const& property);
     };
 }
 

@@ -106,7 +106,7 @@ public:
     BpTree();
     explicit BpTree(BpTreeBase::unattached_tag);
     explicit BpTree(Allocator& alloc);
-    explicit BpTree(std::unique_ptr<Array> root) : BpTreeBase(std::move(root)) {}
+    explicit BpTree(std::unique_ptr<Array> init_root) : BpTreeBase(std::move(init_root)) {}
     BpTree(BpTree&&) = default;
     BpTree& operator=(BpTree&&) = default;
     void init_from_ref(Allocator& alloc, ref_type ref);
@@ -184,7 +184,7 @@ private:
 
 /// Implementation:
 
-inline BpTreeBase::BpTreeBase(std::unique_ptr<Array> root) : m_root(std::move(root))
+inline BpTreeBase::BpTreeBase(std::unique_ptr<Array> init_root) : m_root(std::move(init_root))
 {
 }
 
@@ -279,9 +279,25 @@ BpTree<T>::BpTree(BpTreeBase::unattached_tag) : BpTreeBase(nullptr)
 template<class T>
 std::unique_ptr<Array> BpTree<T>::create_root_from_mem(Allocator& alloc, MemRef mem)
 {
-    const char* header = mem.m_addr;
+    const char* header = mem.get_addr();
     std::unique_ptr<Array> new_root;
-    if (Array::get_is_inner_bptree_node_from_header(header)) {
+    bool is_inner_bptree_node = Array::get_is_inner_bptree_node_from_header(header);
+
+    bool can_reuse_root_accessor = m_root &&
+                                   &m_root->get_alloc() == &alloc &&
+                                   m_root->is_inner_bptree_node() == is_inner_bptree_node;
+    if (can_reuse_root_accessor) {
+        if (is_inner_bptree_node) {
+            m_root->init_from_mem(mem);
+        }
+        else {
+            static_cast<LeafType&>(*m_root).init_from_mem(mem);
+        }
+        return std::move(m_root); // Same root will be reinstalled.
+    }
+
+    // Not reusing root note, allocating a new one.
+    if (is_inner_bptree_node) {
         new_root.reset(new Array{alloc});
         new_root->init_from_mem(mem);
     }
@@ -296,18 +312,8 @@ std::unique_ptr<Array> BpTree<T>::create_root_from_mem(Allocator& alloc, MemRef 
 template<class T>
 std::unique_ptr<Array> BpTree<T>::create_root_from_ref(Allocator& alloc, ref_type ref)
 {
-    const char* header = alloc.translate(ref);
-    std::unique_ptr<Array> new_root;
-    if (Array::get_is_inner_bptree_node_from_header(header)) {
-        new_root.reset(new Array{alloc});
-        new_root->init_from_ref(ref);
-    }
-    else {
-        std::unique_ptr<LeafType> leaf { new LeafType{alloc} };
-        leaf->init_from_ref(ref);
-        new_root = std::move(leaf);
-    }
-    return new_root;
+    MemRef mem = MemRef{alloc.translate(ref), ref, alloc};
+    return create_root_from_mem(alloc, mem);
 }
 
 template<class T>
@@ -328,8 +334,10 @@ template<class T>
 void BpTree<T>::init_from_parent()
 {
     ref_type ref = root().get_ref_from_parent();
+    ArrayParent* parent = m_root->get_parent();
+    size_t ndx_in_parent = m_root->get_ndx_in_parent();
     auto new_root = create_root_from_ref(get_alloc(), ref);
-    new_root->set_parent(m_root->get_parent(), m_root->get_ndx_in_parent());
+    new_root->set_parent(parent, ndx_in_parent);
     m_root = std::move(new_root);
 }
 
@@ -416,14 +424,14 @@ bool BpTree<T>::is_null(size_t ndx) const noexcept
 template<class T>
 T BpTree<T>::get(size_t ndx) const noexcept
 {
-    REALM_ASSERT_DEBUG(ndx < size());
+    REALM_ASSERT_DEBUG_EX(ndx < size(), ndx, size());
     if (root_is_leaf()) {
         return root_as_leaf().get(ndx);
     }
 
     // Use direct getter to avoid initializing leaf array:
     std::pair<MemRef, size_t> p = root().get_bptree_leaf(ndx);
-    const char* leaf_header = p.first.m_addr;
+    const char* leaf_header = p.first.get_addr();
     size_t ndx_in_leaf = p.second;
     return LeafType::get(leaf_header, ndx_in_leaf);
 }
@@ -606,7 +614,7 @@ struct BpTree<T>::EraseHandler : Array::EraseHandler {
 template<class T>
 void BpTree<T>::erase(size_t ndx, bool is_last)
 {
-    REALM_ASSERT_DEBUG(ndx < size());
+    REALM_ASSERT_DEBUG_EX(ndx < size(), ndx, size());
     REALM_ASSERT_DEBUG(is_last == (ndx == size()-1));
     if (root_is_leaf()) {
         root_as_leaf().erase(ndx);

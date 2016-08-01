@@ -45,6 +45,10 @@
 #    define REALM_ENABLE_ASSERTIONS     0
 #  endif
 
+#  ifndef REALM_ENABLE_MEMDEBUG
+#    define REALM_ENABLE_MEMDEBUG       0
+#  endif
+
 #  ifndef _WIN32
 #    define REALM_INSTALL_PREFIX      "/usr/local"
 #    define REALM_INSTALL_EXEC_PREFIX REALM_INSTALL_PREFIX
@@ -63,6 +67,9 @@
 #endif
 
 
+#define REALM_QUOTE_2(x) #x
+#define REALM_QUOTE(x) REALM_QUOTE_2(x)
+
 /* See these links for information about feature check macroes in GCC,
  * Clang, and MSVC:
  *
@@ -78,20 +85,55 @@
 #define REALM_HAVE_AT_LEAST_GCC(maj, min) \
     (__GNUC__ > (maj) || __GNUC__ == (maj) && __GNUC_MINOR__ >= (min))
 
-#if __clang__
+#if defined(__clang__)
 #  define REALM_HAVE_CLANG_FEATURE(feature) __has_feature(feature)
+#  define REALM_HAVE_CLANG_WARNING(warning) __has_warning(warning)
 #else
 #  define REALM_HAVE_CLANG_FEATURE(feature) 0
+#  define REALM_HAVE_CLANG_WARNING(warning) 0
+#endif
+
+#if defined(__GNUC__) // clang or GCC
+#  define REALM_PRAGMA(v) _Pragma(REALM_QUOTE_2(v))
+#elif defined(_MSC_VER) // VS
+#  define REALM_PRAGMA(v) __pragma(v)
+#else
+#  define REALM_PRAGMA(v)
+#endif
+
+#if defined(__clang__)
+#  define  REALM_DIAG(v) REALM_PRAGMA(clang diagnostic v)
+#elif defined(__GNUC__)
+#  define REALM_DIAG(v) REALM_PRAGMA(GCC diagnostic v)
+#else
+#  define REALM_DIAG(v)
+#endif
+
+#define REALM_DIAG_PUSH() REALM_DIAG(push)
+#define REALM_DIAG_POP() REALM_DIAG(pop)
+
+#if REALM_HAVE_CLANG_WARNING("-Wtautological-compare") \
+    || REALM_HAVE_AT_LEAST_GCC(6, 0)
+#  define REALM_DIAG_IGNORE_TAUTOLOGICAL_COMPARE() \
+    REALM_DIAG(ignored "-Wtautological-compare")
+#else
+#  define REALM_DIAG_IGNORE_TAUTOLOGICAL_COMPARE()
+#endif
+
+#ifdef _MSC_VER
+#  define REALM_DIAG_IGNORE_UNSIGNED_MINUS() REALM_PRAGMA(warning(disable:4146)) 
+#else
+#  define REALM_DIAG_IGNORE_UNSIGNED_MINUS() 
 #endif
 
 /* Compiler is MSVC (Microsoft Visual C++) */
-#if _MSC_VER >= 1600
+#if defined(_MSC_VER) && _MSC_VER >= 1600
 #  define REALM_HAVE_AT_LEAST_MSVC_10_2010 1
 #endif
-#if _MSC_VER >= 1700
+#if defined(_MSC_VER) && _MSC_VER >= 1700
 #  define REALM_HAVE_AT_LEAST_MSVC_11_2012 1
 #endif
-#if _MSC_VER >= 1800
+#if defined(_MSC_VER) && _MSC_VER >= 1800
 #  define REALM_HAVE_AT_LEAST_MSVC_12_2013 1
 #endif
 
@@ -101,7 +143,7 @@
 #  define REALM_NORETURN [[noreturn]]
 #elif __GNUC__
 #  define REALM_NORETURN __attribute__((noreturn))
-#elif _MSC_VER
+#elif defined(_MSC_VER)
 #  define REALM_NORETURN __declspec(noreturn)
 #else
 #  define REALM_NORETURN
@@ -154,6 +196,8 @@
 
 #if defined __ANDROID__
 #  define REALM_ANDROID 1
+#else
+#  define REALM_ANDROID 0
 #endif
 
 // Some documentation of the defines provided by Apple:
@@ -165,6 +209,8 @@
 #  if TARGET_OS_IPHONE == 1
 /* Device (iPhone or iPad) or simulator. */
 #    define REALM_IOS 1
+#  else
+#    define REALM_IOS 0
 #  endif
 #  if TARGET_OS_WATCH == 1
 /* Device (Apple Watch) or simulator. */
@@ -172,13 +218,20 @@
 /* The necessary signal handling / mach exception APIs are all unavailable */
 #    undef  REALM_ENABLE_ENCRYPTION
 #    define REALM_ENABLE_ENCRYPTION 0
+#  else
+#    define REALM_WATCHOS 0
 #  endif
 #  if TARGET_OS_TV
 /* Device (Apple TV) or simulator. */
 #    define REALM_TVOS 1
+#  else
+#    define REALM_TVOS 0
 #  endif
 #else
 #  define REALM_PLATFORM_APPLE 0
+#  define REALM_IOS 0
+#  define REALM_WATCHOS 0
+#  define REALM_TVOS 0
 #endif
 
 

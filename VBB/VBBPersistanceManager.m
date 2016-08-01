@@ -59,7 +59,9 @@
         [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
-    RLMRealm *realm = [RLMRealm realmWithPath:realmFileName];
+    NSURL *url = [NSURL URLWithString:realmFileName];
+    
+    RLMRealm *realm = [RLMRealm realmWithURL:url];
     return realm;
 }
 

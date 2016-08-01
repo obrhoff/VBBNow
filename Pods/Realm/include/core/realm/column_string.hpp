@@ -44,8 +44,6 @@ class StringIndex;
 /// it is, then the root ref of the index is stored in
 /// Table::m_columns immediately after the root ref of the string
 /// column.
-///
-/// FIXME: Rename StringColumn to StringColumn
 class StringColumn: public ColumnBaseSimple, public ColumnTemplate<StringData> {
 public:
     typedef StringData value_type;
@@ -101,13 +99,13 @@ public:
     StringIndex* get_search_index() noexcept override;
     const StringIndex* get_search_index() const noexcept override;
     std::unique_ptr<StringIndex> release_search_index() noexcept;
+    bool supports_search_index() const noexcept final { return true; }
     StringIndex* create_search_index() override;
 
     // Simply inserts all column values in the index in a loop
     void populate_search_index();
     void destroy_search_index() noexcept override;
 
-    // Optimizing data layout
     // Optimizing data layout. enforce == true will enforce enumeration;
     // enforce == false will auto-evaluate if it should be enumerated or not
     bool auto_enumerate(ref_type& keys, ref_type& values, bool enforce = false) const;
@@ -136,6 +134,7 @@ public:
     void erase_rows(size_t, size_t, size_t, bool) override;
     void move_last_row_over(size_t, size_t, bool) override;
     void clear(size_t, bool) override;
+    void set_ndx_in_parent(size_t ndx_in_parent) noexcept override;
     void update_from_parent(size_t old_baseline) noexcept override;
     void refresh_accessor_tree(size_t, const Spec&) override;
 
@@ -249,10 +248,10 @@ inline void StringColumn::add()
 inline void StringColumn::insert(size_t row_ndx, StringData value)
 {
     REALM_ASSERT(!(value.is_null() && !m_nullable));
-    size_t size = this->size();
-    REALM_ASSERT_3(row_ndx, <=, size);
+    size_t column_size = this->size();
+    REALM_ASSERT_3(row_ndx, <=, column_size);
     size_t num_rows = 1;
-    bool is_append = row_ndx == size;
+    bool is_append = row_ndx == column_size;
     do_insert(row_ndx, value, num_rows, is_append); // Throws
 }
 
@@ -351,7 +350,6 @@ inline void StringColumn::insert_rows(size_t row_ndx, size_t num_rows_to_insert,
     REALM_ASSERT_DEBUG(prior_num_rows == size());
     REALM_ASSERT(row_ndx <= prior_num_rows);
     REALM_ASSERT(!insert_nulls || m_nullable);
-    static_cast<void>(insert_nulls);
 
     StringData value = m_nullable ? realm::null() : StringData("");
     bool is_append = (row_ndx == prior_num_rows);

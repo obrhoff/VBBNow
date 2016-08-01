@@ -66,23 +66,21 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
 -(void)fetchNearby: (void (^)(NCUpdateResult result))completionHandler {
  
-    __block typeof(self) blockSelf = self;
+    __weak typeof(self) weakSelf = self;
     void (^responseBlock)(CLLocation *location) = ^void(CLLocation *location) {
-        if (location) [[VBBPersistanceManager manager]  storeLocation:location];
-        else location = [[VBBPersistanceManager manager]  storedLocation];
         if (!location) {
             completionHandler(NCUpdateResultFailed);
             return;
         }
         [[VBBNetworkManager manager] fetchNearedStations:location andCompletionHandler:^(NSArray *stations) {
-            [NSObject cancelPreviousPerformRequestsWithTarget:blockSelf];
-            [blockSelf reloadDataForLocation:location];
+            [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf];
+            [weakSelf reloadDataForLocation:location];
             completionHandler(NCUpdateResultNewData);
         }];
     };
     
     if ([[CLLocationManager class] authorizationStatus] != kCLAuthorizationStatusAuthorized) {
-        responseBlock([[VBBPersistanceManager manager]  storedLocation]);
+        responseBlock([[VBBPersistanceManager manager] storedLocation]);
     }
     
     [self setDidUpdateLocationBlock:responseBlock];
@@ -150,6 +148,11 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
         self.didUpdateLocationBlock(locations.firstObject);
         self.didUpdateLocationBlock = nil;
     }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    if (self.didUpdateLocationBlock) self.didUpdateLocationBlock([[VBBPersistanceManager manager]  storedLocation]);
+    self.didUpdateLocationBlock = nil;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
