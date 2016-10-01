@@ -8,6 +8,7 @@
 
 @import Foundation;
 @import CoreLocation;
+#import "VBBLocation.h"
 
 #import <Realm/Realm.h>
 
@@ -16,8 +17,8 @@
 @property (nonatomic, readonly) NSOperationQueue *operationQueue;
 
 -(void)trim;
--(CLLocation*)storedLocation;
--(void)storeLocation:(CLLocation*)location;
+-(VBBLocation*)storedLocation;
+-(void)storeLocation:(VBBLocation*)location;
 +(VBBPersistanceManager *)manager;
 +(RLMRealm*)createRealm;
 

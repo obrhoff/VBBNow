@@ -38,6 +38,8 @@
 		E1AEBC071A7B72F700196F97 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
 		E1AEBC081A7B72F700196F97 /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
 		E1F6153B1A7D407F00EEA639 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A21A7C0E4800623FB2 /* Icons.xcassets */; };
+		E1FA45AB1D4F7F1800D6F33D /* VBBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */; };
+		E1FA45AC1D4F7F1800D6F33D /* VBBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		E1A568A01A7991CE00C2EA16 /* VBBStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBStation.h; sourceTree = "<group>"; };
 		E1A568A11A7991CE00C2EA16 /* VBBStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBStation.m; sourceTree = "<group>"; };
 		E1AEBBE71A7B701D00196F97 /* VBBNow.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VBBNow.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FA45A91D4F7F1800D6F33D /* VBBLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBLocation.h; sourceTree = "<group>"; };
+		E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +233,8 @@
 				E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */,
 				E14CDF0A1A7EB911007B1C46 /* VBBLine.h */,
 				E14CDF0B1A7EB911007B1C46 /* VBBLine.m */,
+				E1FA45A91D4F7F1800D6F33D /* VBBLocation.h */,
+				E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 					E19086C91A79870300364EA2 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 0;
@@ -474,6 +481,7 @@
 				E19086D31A79870300364EA2 /* main.m in Sources */,
 				E1948A9F1A7A46F1005C9D97 /* VBBDepature.m in Sources */,
 				E1A5689B1A79893100C2EA16 /* VBBPersistanceManager.m in Sources */,
+				E1FA45AB1D4F7F1800D6F33D /* VBBLocation.m in Sources */,
 				E1948A9C1A7A46DB005C9D97 /* VBBDepatureParser.m in Sources */,
 				E19086D11A79870300364EA2 /* AppDelegate.m in Sources */,
 				E1A568A21A7991CE00C2EA16 /* VBBStation.m in Sources */,
@@ -491,6 +499,7 @@
 				E1AEBC041A7B72F700196F97 /* VBBDepatureParser.m in Sources */,
 				E1AEBC081A7B72F700196F97 /* VBBPersistanceManager.m in Sources */,
 				E17F979D1A7C0E3C00623FB2 /* VBBTodayViewController.m in Sources */,
+				E1FA45AC1D4F7F1800D6F33D /* VBBLocation.m in Sources */,
 				E1AEBC021A7B72F700196F97 /* VBBaseParser.m in Sources */,
 				E1AEBC051A7B72F700196F97 /* VBBStation.m in Sources */,
 				E17F979B1A7C0E3C00623FB2 /* VBBListRowViewController.m in Sources */,
@@ -542,8 +551,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -585,8 +596,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -616,6 +629,7 @@
 				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";
@@ -631,6 +645,7 @@
 				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";

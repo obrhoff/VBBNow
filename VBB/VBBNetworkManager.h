@@ -9,10 +9,10 @@
 @import CoreLocation;
 #import "VBBStationParser.h"
 #import "VBBDepatureParser.h"
+#import "VBBLocation.h"
 
 @interface VBBNetworkManager : NSObject
 
--(void)fetchNearedStations:(CLLocation*)location andCompletionHandler:(void (^)(NSArray *stations))completionHandler;
-+(VBBNetworkManager *)manager;
+-(void)fetchNearedStations:(CLLocation*)location andCompletionHandler:(void (^)(NSArray *stations, VBBLocation *location))completionHandler;
 
 @end

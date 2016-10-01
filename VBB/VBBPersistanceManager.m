@@ -18,37 +18,35 @@
 
 @implementation VBBPersistanceManager
 
--(void)trim{
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        RLMRealm *realm = [[self class] createRealm];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate < %@", [NSDate date]];
-        RLMResults *oldDates = [VBBDepature objectsInRealm:realm withPredicate:predicate];
-        [realm beginWriteTransaction];
-        [realm deleteObjects:oldDates];
-        [realm commitWriteTransaction];
-    }];
-    [self.operationQueue addOperation:operation];
+- (void)trim {
+    RLMRealm *realm = [[self class] createRealm];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate < %@", [NSDate date]];
+    RLMResults *oldDates = [VBBDepature objectsInRealm:realm withPredicate:predicate];
+    
+    [realm beginWriteTransaction];
+    [realm deleteObjects:oldDates];
+    [realm commitWriteTransaction];
 }
 
--(void)storeLocation:(CLLocation*)location {
+- (void)storeLocation:(VBBLocation *)location {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setDouble:location.coordinate.latitude forKey:@"latitude"];
-    [defaults setDouble:location.coordinate.longitude forKey:@"longitude"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:location];
+    
+    [defaults setObject:data forKey:@"savedLocation"];
     [defaults synchronize];
 }
 
--(CLLocation*)storedLocation {
+- (VBBLocation *)storedLocation {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    double latitude = [[defaults objectForKey:@"latitude"] doubleValue];
-    double longitude = [[defaults objectForKey:@"longitude"] doubleValue];
-    CLLocation *location;
-    if (latitude && longitude) location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    NSData *data = [defaults dataForKey:@"savedLocation"];
+    VBBLocation *location = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
     return location;
 }
 
-+(RLMRealm*)createRealm {
-    
++ (RLMRealm *)createRealm {
     NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+    
     documentPath = [documentPath stringByAppendingPathComponent:[NSBundle mainBundle].bundleIdentifier];
     NSString *realmFileName = [documentPath stringByAppendingPathComponent:@"stations.realm"];
     
@@ -65,9 +63,10 @@
     return realm;
 }
 
--(NSOperationQueue *)operationQueue{
+- (NSOperationQueue *)operationQueue {
     static dispatch_once_t onceToken;
     static NSOperationQueue *operationQueue;
+    
     dispatch_once(&onceToken, ^{
         operationQueue = [NSOperationQueue new];
         operationQueue.maxConcurrentOperationCount = 1;
@@ -80,6 +79,7 @@
 - (dispatch_queue_t)backgroundQueue {
     static dispatch_once_t queueCreationGuard;
     static dispatch_queue_t backgroundQueue;
+    
     dispatch_once(&queueCreationGuard, ^{
         backgroundQueue = dispatch_queue_create("com.obrhoff.background", DISPATCH_QUEUE_CONCURRENT);
     });
@@ -89,6 +89,7 @@
 + (VBBPersistanceManager *)manager {
     static dispatch_once_t pred;
     static VBBPersistanceManager *manager;
+    
     dispatch_once(&pred, ^{
         manager = [self new];
     });

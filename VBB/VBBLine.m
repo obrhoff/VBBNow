@@ -10,14 +10,9 @@
 
 @implementation VBBLine
 
--(BOOL)isEqual:(id)object {
-
-    #warning this seems be necessary since directionIds are not unique
-    if (![object isKindOfClass:[self class]]) return [super isEqual:object];
-    VBBLine *compareDirection = object;
-    return ([self.lineEnd isEqualToString:compareDirection.lineEnd] &&
-            [self.lineName isEqualToString:compareDirection.lineName]);
-
+-(BOOL)isEqual:(VBBLine*)object {
+    return ([object isKindOfClass:[self class]]) ? ([self.lineEnd isEqualToString:object.lineEnd] &&
+                                                    [self.lineName isEqualToString:object.lineName]) : [super isEqual:object];
 }
 
 +(NSString *)primaryKey {

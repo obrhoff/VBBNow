@@ -19,7 +19,10 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:0  diskCapacity:0 diskPath:nil]];
+    [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil]];
+    self.locationManager = [CLLocationManager new];
+    [self.locationManager startUpdatingLocation];
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

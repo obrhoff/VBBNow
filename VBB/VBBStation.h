@@ -9,6 +9,7 @@
 #import <Realm/Realm.h>
 #import "VBBDepature.h"
 #import "VBBLine.h"
+#import "VBBLocation.h"
 
 @import CoreLocation;
 
@@ -26,7 +27,7 @@
 
 -(void)setLocation:(CLLocation*)location;
 -(CLLocation*)location;
-+(NSArray *)sortByRelevance:(CLLocation*)userLocation andLimit:(NSUInteger)limit;
++ (NSArray *)sortByRelevance:(VBBLocation*)userLocation andLimit:(NSUInteger)limit;
 
 @end
 

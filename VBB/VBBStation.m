@@ -18,7 +18,7 @@
 
 @implementation VBBStation
 
-+ (NSArray *)sortByRelevance:(CLLocation*)userLocation andLimit:(NSUInteger)limit {
++ (NSArray *)sortByRelevance:(VBBLocation*)userLocation andLimit:(NSUInteger)limit {
     
     RLMRealm *realm = [[VBBPersistanceManager class] createRealm];
     RLMResults *stations = [VBBStation allObjectsInRealm:realm];
@@ -27,7 +27,7 @@
     NSMutableArray *unsorted = [NSMutableArray arrayWithCapacity:stations.count];
     for (VBBStation *station in stations) {
         if (!station.depatures.count) continue;
-        CLLocationDistance distance = [userLocation distanceFromLocation:station.location];
+        CLLocationDistance distance = [userLocation.location distanceFromLocation:station.location];
         NSDictionary *dict = @{@"station": station, @"distance": @(distance)};
         [unsorted addObject:dict];
     }

@@ -13,12 +13,15 @@
 #import "VBBTodayViewController.h"
 #import "VBBListRowViewController.h"
 #import "VBBNetworkManager.h"
+#import "VBBLocation.h"
 
 typedef void (^didUpdateLocationBlock)(CLLocation *location);
 typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
-@interface VBBTodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, CLLocationManagerDelegate>
+@interface VBBTodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, CLLocationManagerDelegate, CAAnimationDelegate>
 
+@property (nonatomic, readwrite, strong) VBBNetworkManager *networkManager;
+@property (nonatomic, readwrite, strong) IBOutlet NSTextField *locationLabel;
 @property (nonatomic, readwrite, strong) IBOutlet NCWidgetListViewController *listViewController;
 @property (nonatomic, readwrite, strong) CLLocationManager *locationManager;
 @property (nonatomic, readwrite, copy) didUpdateLocationBlock didUpdateLocationBlock;
@@ -31,34 +34,36 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 #pragma mark - NSViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    self.networkManager = [VBBNetworkManager new];
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
+    
+    VBBLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
+    if (storedLocation.address) [self.locationLabel setStringValue:storedLocation.address];
     self.listViewController.preferredContentSize = CGSizeMake(320, 350);
-    self.listViewController.contents = [[VBBStation class] sortByRelevance:[VBBPersistanceManager manager].storedLocation andLimit:5];
-
+    self.listViewController.contents = [[VBBStation class] sortByRelevance:storedLocation andLimit:5];
 }
 
--(void)reloadDataForLocation:(CLLocation*)location {
+-(void)reloadDataForLocation:(VBBLocation*)location {
     
-    if (!location) return;
-    
-    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacity.toValue = @(0.0);
-    opacity.duration = 0.35;
-    opacity.removedOnCompletion = NO;
-    opacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    opacity.fillMode = kCAFillModeBoth;
-    opacity.delegate = self;
-    [opacity setValue:@"opacity" forKey:@"identifier"];
-    [opacity setValue:location forKey:@"location"];
-    [self.listViewController.view.layer addAnimation:opacity forKey:@"opacity"];
-    
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
-    NSTimeInterval refreshInterval = 60 - components.second;
-    [self performSelector:@selector(reloadDataForLocation:) withObject:[VBBPersistanceManager manager].storedLocation afterDelay:refreshInterval];
-    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if (location) {
+        CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        opacity.toValue = @(0.0);
+        opacity.duration = 0.35;
+        opacity.removedOnCompletion = NO;
+        opacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+        opacity.fillMode = kCAFillModeBoth;
+        opacity.delegate = self;
+        [opacity setValue:@"opacity" forKey:@"identifier"];
+        [opacity setValue:location forKey:@"location"];
+        [self.view.layer addAnimation:opacity forKey:@"opacity"];
+        
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
+        NSTimeInterval refreshInterval = 60 - components.second;
+        [self performSelector:@selector(reloadDataForLocation:) withObject:location afterDelay:refreshInterval];
+    }
 }
 
 
@@ -68,20 +73,13 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
  
     __weak typeof(self) weakSelf = self;
     void (^responseBlock)(CLLocation *location) = ^void(CLLocation *location) {
-        if (!location) {
-            completionHandler(NCUpdateResultFailed);
-            return;
-        }
-        [[VBBNetworkManager manager] fetchNearedStations:location andCompletionHandler:^(NSArray *stations) {
-            [NSObject cancelPreviousPerformRequestsWithTarget:weakSelf];
-            [weakSelf reloadDataForLocation:location];
-            completionHandler(NCUpdateResultNewData);
+        [self.networkManager fetchNearedStations:location andCompletionHandler:^(NSArray *stations, VBBLocation *location) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (location) [weakSelf reloadDataForLocation:location];
+                completionHandler(stations.count ? NCUpdateResultNewData : NCUpdateResultFailed);
+            });
         }];
     };
-    
-    if ([[CLLocationManager class] authorizationStatus] != kCLAuthorizationStatusAuthorized) {
-        responseBlock([[VBBPersistanceManager manager] storedLocation]);
-    }
     
     [self setDidUpdateLocationBlock:responseBlock];
     [self.locationManager startUpdatingLocation];
@@ -121,20 +119,21 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     
     NSString *key = [anim valueForKey:@"identifier"];
     if ([key isEqualTo:@"opacity"]) {
-        CLLocation *location = [anim valueForKey:@"location"];
+        VBBLocation *location = [anim valueForKey:@"location"];
         CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
         opacity.duration = 0.35;
         opacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
         opacity.toValue = @(1.0);
         opacity.removedOnCompletion = NO;
         opacity.fillMode = kCAFillModeForwards;
-        opacity.fromValue = [self.listViewController.view.layer.presentationLayer ?: self.listViewController.view.layer valueForKeyPath:opacity.keyPath];
+        opacity.fromValue = [self.view.layer.presentationLayer ?: self.view.layer valueForKeyPath:opacity.keyPath];
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
         self.listViewController.contents = [[VBBStation class] sortByRelevance:location andLimit:5];
-        [self.listViewController.view.layer setValue:opacity.toValue forKeyPath:opacity.keyPath];
+        [self.view.layer setValue:opacity.toValue forKeyPath:opacity.keyPath];
+        if (location.address) [self.locationLabel setStringValue:location.address];
         [CATransaction commit];
-        [self.listViewController.view.layer addAnimation:opacity forKey:@"opacity"];
+        [self.view.layer addAnimation:opacity forKey:@"opacity"];
     }
     
 }
@@ -142,16 +141,12 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 #pragma mark CLLocationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    if (self.didUpdateLocationBlock) {
-        CLLocation *newLocation = locations.firstObject;
-        [[VBBPersistanceManager manager] storeLocation:newLocation];
-        self.didUpdateLocationBlock(locations.firstObject);
-        self.didUpdateLocationBlock = nil;
-    }
+    if (self.didUpdateLocationBlock) self.didUpdateLocationBlock(locations.firstObject);
+    self.didUpdateLocationBlock = nil;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    if (self.didUpdateLocationBlock) self.didUpdateLocationBlock([[VBBPersistanceManager manager]  storedLocation]);
+    if (self.didUpdateLocationBlock) self.didUpdateLocationBlock(nil);
     self.didUpdateLocationBlock = nil;
 }
 

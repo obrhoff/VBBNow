@@ -2,8 +2,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 def shared_pods
-	pod 'AFNetworking', '~> 2.5'
-	pod 'Realm', '~> 1.0'
+	pod 'Realm', '~> 2.0'
 end
 
 target :VBB do

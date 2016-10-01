@@ -6,18 +6,30 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
+@import CoreLocation;
+@import Contacts;
+@import MapKit;
+
 #import "VBBNetworkManager.h"
-#import <AFNetworking/AFNetworking.h>
 
 @interface VBBNetworkManager ()
 
-@property (nonatomic, readonly, strong) AFHTTPSessionManager *manager;
+@property (nonatomic, readwrite, strong) NSURLSession *session;
 
 @end
 
 @implementation VBBNetworkManager
 
--(void)fetchNearedStations:(CLLocation*)location andCompletionHandler:(void (^)(NSArray *stations))completionHandler{
+-(instancetype)init {
+    self = [super init];
+    if (self) {
+        self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+        self.session.delegateQueue.underlyingQueue = [VBBPersistanceManager manager].operationQueue.underlyingQueue;
+    }
+    return self;
+}
+
+-(void)fetchNearedStations:(CLLocation*)location andCompletionHandler:(void (^)(NSArray *stations, VBBLocation *location))completionHandler{
     
     [[VBBPersistanceManager manager] trim];
 
@@ -38,30 +50,48 @@
     components.path = @"/bin/query.exe/dol";
     components.queryItems = query.copy;
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:components.URL];
-    
-    NSURLSessionDataTask *task = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, NSXMLParser *parser, NSError *error) {
-        if (error) {
-            NSLog(@"%@: %@", NSStringFromClass([self class]), error.localizedDescription);
-            return;
-        }
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+    void (^ requestBlock)(VBBLocation *stationLocation) = ^void (VBBLocation *stationLocation) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:components.URL];
+        NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError * error) {
+            if (error) {
+                NSLog(@"%@: %@", NSStringFromClass([self class]), error.localizedDescription);
+                if (completionHandler) completionHandler(nil, stationLocation);
+                return;
+            }
+            NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
             VBBStationParser *stationParser = [VBBStationParser new];
             parser.delegate = stationParser;
             [parser parse];
-            [self fetchDeparturesFromStations:stationParser.stations andCompletionHandler:completionHandler];
+            [self fetchDeparturesFromStations:stationParser.stations andCompletionHandler:^(NSArray *stations) {
+                if (completionHandler) completionHandler(stations, stationLocation);
+            }];
         }];
-        [[VBBPersistanceManager manager].operationQueue addOperation:operation];
-    }];
+        [task resume];
+    };
 
-    [task resume];
-    
+    VBBLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
+    if (storedLocation && !location) {
+        requestBlock(storedLocation);
+    } else if (location) {
+        CLGeocoder *geocoder = [CLGeocoder new];
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            CLPlacemark *placemark = placemarks.firstObject;
+            VBBLocation *stationLocation = [VBBLocation new];
+            stationLocation.location = location;
+            stationLocation.address = [placemark.addressDictionary[@"FormattedAddressLines"] componentsJoinedByString:@", "];
+            stationLocation.date = [NSDate new];
+            [[VBBPersistanceManager manager] storeLocation:stationLocation];
+            requestBlock(stationLocation);
+        }];
+    } else {
+        if (completionHandler) completionHandler(nil, nil);
+    }
 }
 
 -(void)fetchDeparturesFromStations:(NSArray*)stations andCompletionHandler:(void (^)(NSArray *stations))completionHandler {
     
     __block NSUInteger count = stations.count;
-    void (^responseBlock)(VBBStation *station, BOOL completed) = ^void(VBBStation *station, BOOL completed) {
+    void (^responseBlock)(VBBStation *station) = ^void(VBBStation *station) {
         if (--count) return;
         dispatch_async(dispatch_get_main_queue(), ^{
             if (completionHandler) completionHandler(stations);
@@ -71,7 +101,7 @@
     
 }
 
--(void)fetchDepature:(VBBStation *)station andCompletionHandler:(void (^)(VBBStation *station, BOOL completed))completionHandler{
+-(void)fetchDepature:(VBBStation *)station andCompletionHandler:(void (^)(VBBStation *station))completionHandler{
     
     NSString *stationId = station.stationId.copy;
     
@@ -90,46 +120,19 @@
     components.queryItems = query.copy;
     NSURLRequest *request = [NSURLRequest requestWithURL:components.URL];
     
-    NSURLSessionDataTask *task = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, NSXMLParser *parser, NSError *error) {
+    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
         if (error) {
             NSLog(@"%@: %@", NSStringFromClass([self class]), error.localizedDescription);
-            if (completionHandler) completionHandler(station, YES);
+            if (completionHandler) completionHandler(nil);
             return;
         }
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            VBBDepatureParser *departureParser = [[VBBDepatureParser alloc] initWithStationId:stationId];
-            parser.delegate = departureParser;
-            [parser parse];
-            if (completionHandler) completionHandler(station, YES);
-        }];
-        [[VBBPersistanceManager manager].operationQueue addOperation:operation];
-
+        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+        VBBDepatureParser *departureParser = [[VBBDepatureParser alloc] initWithStationId:stationId];
+        parser.delegate = departureParser;
+        [parser parse];
+        if (completionHandler) completionHandler(station);
     }];
-    
     [task resume];
-    
-}
-
--(AFHTTPSessionManager*)manager {
-    static dispatch_once_t onceToken;
-    static AFHTTPSessionManager *manager;
-    dispatch_once(&onceToken, ^{
-        manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/xml", nil];
-        manager.completionQueue = [VBBPersistanceManager manager].operationQueue.underlyingQueue;
-    });
-    return manager;
-}
-
-+ (VBBNetworkManager *)manager {
-    static dispatch_once_t pred;
-    static VBBNetworkManager *manager;
-    dispatch_once(&pred, ^{
-        manager = [self new];
-    });
-    return manager;
 }
 
 @end
