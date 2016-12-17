@@ -19,21 +19,21 @@
 #ifndef REALM_OS_KEYCHAIN_HELPER_HPP
 #define REALM_OS_KEYCHAIN_HELPER_HPP
 
+#include <cstdint>
+#include <stdexcept>
 #include <vector>
 
 namespace realm {
-
 namespace keychain {
 
 std::vector<char> metadata_realm_encryption_key();
 
 class KeychainAccessException : public std::runtime_error {
 public:
-    KeychainAccessException(size_t error_code);
+    KeychainAccessException(int32_t error_code);
 };
 
 }
 }
-
 
 #endif // REALM_OS_KEYCHAIN_HELPER_HPP

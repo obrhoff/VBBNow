@@ -25,6 +25,7 @@
 
 #include <realm/group_shared.hpp>
 #include <realm/lang_bind_helper.hpp>
+
 #include <algorithm>
 
 using namespace realm;
@@ -32,7 +33,6 @@ using namespace realm;
 namespace {
 template<typename Derived>
 struct MarkDirtyMixin  {
-#if REALM_VER_MAJOR >= 2
     bool mark_dirty(size_t row, size_t col, _impl::Instruction instr=_impl::instr_Set)
     {
         // Ignore SetDefault and SetUnique as those conceptually cannot be
@@ -54,28 +54,8 @@ struct MarkDirtyMixin  {
     bool set_mixed(size_t c, size_t r, const Mixed&, _impl::Instruction i) { return mark_dirty(r, c, i); }
     bool set_link(size_t c, size_t r, size_t, size_t, _impl::Instruction i) { return mark_dirty(r, c, i); }
     bool set_null(size_t c, size_t r, _impl::Instruction i, size_t) { return mark_dirty(r, c, i); }
-#else
-    bool mark_dirty(size_t row, size_t col)
-    {
-        static_cast<Derived *>(this)->mark_dirty(row, col);
-        return true;
-    }
 
-    bool set_int(size_t col, size_t row, int_fast64_t) { return mark_dirty(row, col); }
-    bool set_bool(size_t col, size_t row, bool) { return mark_dirty(row, col); }
-    bool set_float(size_t col, size_t row, float) { return mark_dirty(row, col); }
-    bool set_double(size_t col, size_t row, double) { return mark_dirty(row, col); }
-    bool set_string(size_t col, size_t row, StringData) { return mark_dirty(row, col); }
-    bool set_binary(size_t col, size_t row, BinaryData) { return mark_dirty(row, col); }
-    bool set_olddatetime(size_t col, size_t row, OldDateTime) { return mark_dirty(row, col); }
-    bool set_timestamp(size_t col, size_t row, Timestamp) { return mark_dirty(row, col); }
-    bool set_table(size_t col, size_t row) { return mark_dirty(row, col); }
-    bool set_mixed(size_t col, size_t row, const Mixed&) { return mark_dirty(row, col); }
-    bool set_link(size_t col, size_t row, size_t, size_t) { return mark_dirty(row, col); }
-    bool set_null(size_t col, size_t row) { return mark_dirty(row, col); }
-#endif
-
-    bool add_int(size_t col, size_t row, size_t) { return mark_dirty(row, col); }
+    bool add_int(size_t col, size_t row, int_fast64_t) { return mark_dirty(row, col); }
     bool nullify_link(size_t col, size_t row, size_t) { return mark_dirty(row, col); }
     bool insert_substring(size_t col, size_t row, size_t, StringData) { return mark_dirty(row, col); }
     bool erase_substring(size_t col, size_t row, size_t, size_t) { return mark_dirty(row, col); }
@@ -177,17 +157,9 @@ public:
     bool link_list_clear(size_t) { return true; }
     bool link_list_move(size_t, size_t) { return true; }
     bool link_list_swap(size_t, size_t) { return true; }
-    bool change_link_targets(size_t, size_t) { return true; }
+    bool merge_rows(size_t, size_t) { return true; }
     bool optimize_table() { return true; }
 
-#if REALM_VER_MAJOR < 2
-    // Translate calls into their modern equivalents, relying on the fact that we do not
-    // care about the value of the new `prior_size` argument.
-    bool link_list_set(size_t index, size_t value) { return link_list_set(index, value, npos); }
-    bool link_list_insert(size_t index, size_t value) {  return link_list_insert(index, value, npos); }
-    bool link_list_erase(size_t index) { return link_list_erase(index, npos); }
-    bool link_list_nullify(size_t index) { return link_list_nullify(index, npos); }
-#endif
 };
 
 
@@ -249,6 +221,9 @@ class TransactLogObserver : public TransactLogValidationMixin, public MarkDirtyM
     // Change information for the currently selected LinkList, if any
     ColumnInfo* m_active_linklist = nullptr;
 
+    _impl::NotifierPackage& m_notifiers;
+    SharedGroup& m_sg;
+
     // Get the change info for the given column, creating it if needed
     static ColumnInfo& get_change(ObserverState& state, size_t i)
     {
@@ -278,14 +253,23 @@ class TransactLogObserver : public TransactLogValidationMixin, public MarkDirtyM
 
 public:
     template<typename Func>
-    TransactLogObserver(BindingContext* context, SharedGroup& sg, Func&& func, util::Optional<SchemaMode> schema_mode)
+    TransactLogObserver(BindingContext* context, SharedGroup& sg, Func&& func,
+                        util::Optional<SchemaMode> schema_mode,
+                        _impl::NotifierPackage& notifiers)
     : m_context(context)
+    , m_notifiers(notifiers)
+    , m_sg(sg)
     {
         auto old_version = sg.get_version_of_current_transaction();
         if (context) {
             m_observers = context->get_observed_rows();
         }
-        if (m_observers.empty()) {
+
+        // If we have collection notifiers we have to use the transaction log
+        // observer to send will_change notifications once we know what the
+        // target version is, despite not otherwise needing to observe anything
+        if (m_observers.empty() && (!m_notifiers || m_notifiers.version())) {
+            m_notifiers.before_advance();
             if (schema_mode) {
                 func(TransactLogValidator(*schema_mode));
             }
@@ -295,12 +279,18 @@ public:
             if (context && old_version != sg.get_version_of_current_transaction()) {
                 context->did_change({}, {});
             }
+            m_notifiers.deliver(sg);
+            m_notifiers.after_advance();
             return;
         }
 
         std::sort(begin(m_observers), end(m_observers));
         func(*this);
-        context->did_change(m_observers, invalidated);
+        if (context)
+            context->did_change(m_observers, invalidated, old_version != sg.get_version_of_current_transaction());
+        m_notifiers.package_and_wait(sg.get_version_of_current_transaction().version); // is a no-op if parse_complete() was called
+        m_notifiers.deliver(sg); // only will ever deliver errors
+        m_notifiers.after_advance();
     }
 
     // Mark the given row/col as needing notifications sent
@@ -316,7 +306,11 @@ public:
     // is advanced
     void parse_complete()
     {
-        m_context->will_change(m_observers, invalidated);
+        if (m_context)
+            m_context->will_change(m_observers, invalidated);
+        using sgf = _impl::SharedGroupFriend;
+        m_notifiers.package_and_wait(sgf::get_version_of_latest_snapshot(m_sg));
+        m_notifiers.before_advance();
     }
 
     bool insert_group_level_table(size_t table_ndx, size_t prior_size, StringData name)
@@ -409,7 +403,7 @@ public:
         return true;
     }
 
-    bool change_link_targets(size_t from, size_t to)
+    bool merge_rows(size_t from, size_t to)
     {
         REALM_ASSERT(from != to);
 
@@ -592,14 +586,6 @@ public:
 
     bool insert_link_column(size_t ndx, DataType type, StringData name, size_t, size_t) { return insert_column(ndx, type, name, false); }
 
-#if REALM_VER_MAJOR < 2
-    // Translate calls into their modern equivalents, relying on the fact that we do not
-    // care about the value of the new `prior_size` argument.
-    bool link_list_set(size_t index, size_t value) { return link_list_set(index, value, npos); }
-    bool link_list_insert(size_t index, size_t value) {  return link_list_insert(index, value, npos); }
-    bool link_list_erase(size_t index) { return link_list_erase(index, npos); }
-    bool link_list_nullify(size_t index) { return link_list_nullify(index, npos); }
-#endif
 };
 
 // Extends TransactLogValidator to track changes made to LinkViews
@@ -610,7 +596,7 @@ class LinkViewObserver : public TransactLogValidationMixin, public MarkDirtyMixi
     _impl::CollectionChangeBuilder* get_change()
     {
         auto tbl_ndx = current_table();
-        if (tbl_ndx >= m_info.table_modifications_needed.size() || !m_info.table_modifications_needed[tbl_ndx])
+        if (!m_info.track_all && (tbl_ndx >= m_info.table_modifications_needed.size() || !m_info.table_modifications_needed[tbl_ndx]))
             return nullptr;
         if (m_info.tables.size() <= tbl_ndx) {
             m_info.tables.resize(std::max(m_info.tables.size() * 2, tbl_ndx + 1));
@@ -621,7 +607,7 @@ class LinkViewObserver : public TransactLogValidationMixin, public MarkDirtyMixi
     bool need_move_info() const
     {
         auto tbl_ndx = current_table();
-        return tbl_ndx < m_info.table_moves_needed.size() && m_info.table_moves_needed[tbl_ndx];
+        return m_info.track_all || (tbl_ndx < m_info.table_moves_needed.size() && m_info.table_moves_needed[tbl_ndx]);
     }
 
 public:
@@ -759,7 +745,7 @@ public:
         return true;
     }
 
-    bool change_link_targets(size_t from, size_t to)
+    bool merge_rows(size_t from, size_t to)
     {
         for (auto& list : m_info.lists) {
             if (list.table_ndx == current_table() && list.row_ndx == from)
@@ -823,25 +809,26 @@ public:
 
     bool insert_link_column(size_t ndx, DataType type, StringData name, size_t, size_t) { return insert_column(ndx, type, name, false); }
 
-#if REALM_VER_MAJOR < 2
-    // Translate calls into their modern equivalents, relying on the fact that we do not
-    // care about the value of the new `prior_size` argument.
-    bool link_list_set(size_t index, size_t value) { return link_list_set(index, value, npos); }
-    bool link_list_insert(size_t index, size_t value) {  return link_list_insert(index, value, npos); }
-    bool link_list_erase(size_t index) { return link_list_erase(index, npos); }
-    bool link_list_nullify(size_t index) { return link_list_nullify(index, npos); }
-#endif
 };
 } // anonymous namespace
 
 namespace realm {
 namespace _impl {
+
 namespace transaction {
-void advance(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode, SharedGroup::VersionID version)
+void advance(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode, VersionID version)
 {
+    _impl::NotifierPackage notifiers;
     TransactLogObserver(context, sg, [&](auto&&... args) {
         LangBindHelper::advance_read(sg, std::move(args)..., version);
-    }, schema_mode);
+    }, schema_mode, notifiers);
+}
+
+void advance(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode, NotifierPackage& notifiers)
+{
+    TransactLogObserver(context, sg, [&](auto&&... args) {
+        LangBindHelper::advance_read(sg, std::move(args)..., notifiers.version().value_or(VersionID{}));
+    }, schema_mode, notifiers);
 }
 
 void begin_without_validation(SharedGroup& sg)
@@ -849,34 +836,32 @@ void begin_without_validation(SharedGroup& sg)
     LangBindHelper::promote_to_write(sg);
 }
 
-void begin(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode)
+void begin(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode,
+           NotifierPackage& notifiers)
 {
     TransactLogObserver(context, sg, [&](auto&&... args) {
         LangBindHelper::promote_to_write(sg, std::move(args)...);
-    }, schema_mode);
+    }, schema_mode, notifiers);
 }
 
-void commit(SharedGroup& sg, BindingContext* context)
+void commit(SharedGroup& sg)
 {
     LangBindHelper::commit_and_continue_as_read(sg);
-
-    if (context) {
-        context->did_change({}, {});
-    }
 }
 
 void cancel(SharedGroup& sg, BindingContext* context)
 {
+    _impl::NotifierPackage notifiers;
     TransactLogObserver(context, sg, [&](auto&&... args) {
         LangBindHelper::rollback_and_continue_as_read(sg, std::move(args)...);
-    }, util::none);
+    }, util::none, notifiers);
 }
 
 void advance(SharedGroup& sg,
              TransactionChangeInfo& info,
-             SharedGroup::VersionID version)
+             VersionID version)
 {
-    if (info.table_modifications_needed.empty() && info.lists.empty()) {
+    if (!info.track_all && info.table_modifications_needed.empty() && info.lists.empty()) {
         LangBindHelper::advance_read(sg, version);
     }
     else {

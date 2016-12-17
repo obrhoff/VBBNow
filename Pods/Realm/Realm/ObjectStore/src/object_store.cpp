@@ -93,6 +93,10 @@ void add_index(Table& table, size_t col)
 
 void insert_column(Group& group, Table& table, Property const& property, size_t col_ndx)
 {
+    // Cannot directly insert a LinkingObjects column (a computed property).
+    // LinkingObjects must be an artifact of an existing link column.
+    REALM_ASSERT(property.type != PropertyType::LinkingObjects);
+
     if (property.type == PropertyType::Object || property.type == PropertyType::Array) {
         auto target_name = ObjectStore::table_name_for_object_type(property.object_type);
         TableRef link_table = group.get_or_add_table(target_name);
@@ -137,13 +141,9 @@ void copy_property_values(Property const& prop, Table& table)
 {
     auto copy_property_values = [&](auto getter, auto setter) {
         for (size_t i = 0, count = table.size(); i < count; i++) {
-#if REALM_VER_MAJOR >= 2
             bool is_default = false;
             (table.*setter)(prop.table_column, i, (table.*getter)(prop.table_column + 1, i),
                             is_default);
-#else
-            (table.*setter)(prop.table_column, i, (table.*getter)(prop.table_column + 1, i));
-#endif
         }
     };
 
@@ -235,11 +235,7 @@ void ObjectStore::set_primary_key_for_object(Group& group, StringData object_typ
     size_t row = table->find_first_string(c_primaryKeyObjectClassColumnIndex, object_type);
     if (row == not_found && primary_key.size()) {
         row = table->add_empty_row();
-#if REALM_VER_MAJOR >= 2
         row = table->set_string_unique(c_primaryKeyObjectClassColumnIndex, row, object_type);
-#else
-        table->set_string(c_primaryKeyObjectClassColumnIndex, row, object_type);
-#endif
     }
 
     // set if changing, or remove if setting to nil
@@ -468,8 +464,7 @@ static void create_initial_tables(Group& group, std::vector<SchemaChange> const&
 
         void operator()(ChangePropertyType op)
         {
-            insert_column(group, table(op.object), *op.new_property, op.old_property->table_column);
-            table(op.object).remove_column(op.old_property->table_column + 1);
+            replace_column(group, table(op.object), *op.old_property, *op.new_property);
         }
     } applier{group};
 

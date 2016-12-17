@@ -95,7 +95,6 @@
 		E19086D71A79870300364EA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E19086EF1A79886400364EA2 /* VBBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBNetworkManager.h; sourceTree = "<group>"; };
 		E19086F01A79886400364EA2 /* VBBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBNetworkManager.m; sourceTree = "<group>"; };
-		E1948A781A7A3D95005C9D97 /* vbb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = vbb.entitlements; sourceTree = "<group>"; };
 		E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E1948A951A7A3EB0005C9D97 /* VBBaseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBaseParser.h; sourceTree = "<group>"; };
 		E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBaseParser.m; sourceTree = "<group>"; };
@@ -190,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				E17A6ABA1C770CF900506B8A /* VBB.entitlements */,
-				E1948A781A7A3D95005C9D97 /* vbb.entitlements */,
 				E1A5689C1A7990AE00C2EA16 /* Parser */,
 				E19086EE1A79885600364EA2 /* Model */,
 				E19086ED1A79885100364EA2 /* Manager */,
@@ -661,6 +659,7 @@
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -682,6 +681,7 @@
 				CODE_SIGN_ENTITLEMENTS = VBBNow/vbbnow.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
 				INFOPLIST_FILE = VBBNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

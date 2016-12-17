@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#include "sync_metadata.hpp"
+#include "sync/impl/sync_metadata.hpp"
 
 #include "object_schema.hpp"
 #include "object_store.hpp"
@@ -44,30 +44,28 @@ SyncMetadataManager::SyncMetadataManager(std::string path,
 {
     std::lock_guard<std::mutex> lock(m_metadata_lock);
 
-    auto nullable_string_property = [](std::string name)->Property {
-        Property p = { name, PropertyType::String };
+    auto nullable_string_property = [](const char *name) -> Property {
+        Property p = {name, PropertyType::String};
         p.is_nullable = true;
         return p;
     };
 
-    Property primary_key = { c_sync_identity, PropertyType::String };
+    Property primary_key = {c_sync_identity, PropertyType::String};
     primary_key.is_indexed = true;
     primary_key.is_primary = true;
 
     Realm::Config config;
     config.path = std::move(path);
-    Schema schema = {
-        { c_sync_userMetadata,
-            {
-                primary_key,
-                { c_sync_marked_for_removal, PropertyType::Bool },
-                nullable_string_property(c_sync_auth_server_url),
-                nullable_string_property(c_sync_user_token),
-            }
-        }
+    config.schema = Schema{
+        {c_sync_userMetadata, {
+            primary_key,
+            {c_sync_marked_for_removal, PropertyType::Bool},
+            nullable_string_property(c_sync_auth_server_url),
+            nullable_string_property(c_sync_user_token),
+        }}
     };
-    config.schema = std::move(schema);
     config.schema_mode = SchemaMode::Additive;
+    config.schema_version = 0;
 #if REALM_PLATFORM_APPLE
     if (should_encrypt && !encryption_key) {
         encryption_key = keychain::metadata_realm_encryption_key();
@@ -131,7 +129,7 @@ SyncUserMetadata::SyncUserMetadata(Schema schema, SharedRealm realm, RowExpr row
 , m_row(row)
 { }
 
-SyncUserMetadata::SyncUserMetadata(SyncMetadataManager& manager, std::string identity, bool make_if_absent)
+SyncUserMetadata::SyncUserMetadata(const SyncMetadataManager& manager, std::string identity, bool make_if_absent)
 : m_schema(manager.m_schema)
 {
     // Open the Realm.
