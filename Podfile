@@ -7,12 +7,7 @@ use_frameworks!
 
 abstract_target :VBBPods do
 	pod 'Realm', '~> 3.0'
-
-	target "VBBFramework" do
-	end
-	target "VBBNow" do
-	end
-	target "VBB" do
-	end
-
+	target "VBBFramework" 
+	target "VBBNow" 
+	target "VBB"
 end
