@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
+@import Realm;
+@import VBBFramework;
+#import <VBBFramework/VBBFramework.h>
+
 #import "VBBListRowViewController.h"
-#import "VBBStation.h"
 
 @interface VBBListRowViewController ()
 

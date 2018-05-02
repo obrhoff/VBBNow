@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
-#import <Realm/Realm.h>
+@import Realm;
+
 #import "VBBDepature.h"
 #import "VBBLine.h"
 #import "VBBLocation.h"

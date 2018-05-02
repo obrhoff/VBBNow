@@ -8,9 +8,9 @@
 
 @import Foundation;
 @import CoreLocation;
-#import "VBBLocation.h"
+@import Realm;
 
-#import <Realm/Realm.h>
+#import "VBBLocation.h"
 
 @interface VBBPersistanceManager : NSObject
 

@@ -6,14 +6,13 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
+@import VBBFramework;
 @import CoreLocation;
 @import NotificationCenter;
 @import QuartzCore;
 
 #import "VBBTodayViewController.h"
 #import "VBBListRowViewController.h"
-#import "VBBNetworkManager.h"
-#import "VBBLocation.h"
 
 typedef void (^didUpdateLocationBlock)(CLLocation *location);
 typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);

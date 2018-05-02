@@ -11,6 +11,8 @@
 @import MapKit;
 
 #import "VBBNetworkManager.h"
+#import "VBBStationParser.h"
+#import "VBBDepatureParser.h"
 
 @interface VBBNetworkManager ()
 

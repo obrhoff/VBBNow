@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Dennis Oberhoff. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
-#import "VBBPersistanceManager.h"
+@import Cocoa;
+@import VBBFramework;
 
 @interface VBBListRowViewController : NSViewController
 

@@ -1,16 +1,18 @@
+
+inhibit_all_warnings!
+use_frameworks!
+platform :osx, '10.10'
 inhibit_all_warnings!
 use_frameworks!
 
-def shared_pods
+abstract_target :VBBPods do
 	pod 'Realm', '~> 3.0'
-end
 
-target :VBB do
-	platform :osx, '10.10'
-	shared_pods
-end
+	target "VBBFramework" do
+	end
+	target "VBBNow" do
+	end
+	target "VBB" do
+	end
 
-target :'VBBNow' do
-	platform :osx, '10.10'
-	shared_pods
 end

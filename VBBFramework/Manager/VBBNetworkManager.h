@@ -7,8 +7,6 @@
 //
 
 @import CoreLocation;
-#import "VBBStationParser.h"
-#import "VBBDepatureParser.h"
 #import "VBBLocation.h"
 
 @interface VBBNetworkManager : NSObject
