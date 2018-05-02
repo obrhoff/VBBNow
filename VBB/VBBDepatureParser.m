@@ -20,8 +20,7 @@
 -(instancetype)initWithStationId:(NSString*)stationId {
     self = [super init];
     if (self) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stationId == %@", stationId];
-        self.station = [VBBStation objectsInRealm:self.realm withPredicate:predicate].firstObject;
+        self.station = [VBBStation objectInRealm:self.realm forPrimaryKey:stationId];
     }
     return self;
 }
@@ -35,8 +34,7 @@
     
     VBBDepature *departure = [VBBDepature new];
     NSString *lineId = dict[@"dirnr"];
-    NSPredicate *directionPredicate = [NSPredicate predicateWithFormat:@"lineId == %@", lineId];
-    VBBLine *line = [VBBLine objectsInRealm:self.realm withPredicate:directionPredicate].firstObject;
+    VBBLine *line = [VBBLine objectInRealm:self.realm forPrimaryKey:lineId];
     if (!line) {
         line = [VBBLine new];
         line.lineId = lineId;

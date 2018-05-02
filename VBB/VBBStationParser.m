@@ -22,10 +22,8 @@
 }
 
 -(void)parseStations:(NSDictionary*)dict {
-    
     NSString *stationId = dict[@"externalId"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"stationId == %@", stationId];
-    VBBStation *station = [VBBStation objectsInRealm:self.realm withPredicate:predicate].firstObject;
+    VBBStation *station =  [VBBStation objectInRealm:self.realm forPrimaryKey:stationId];
     if (!station) {
         NSNumber *latitude = @([dict[@"y"] doubleValue] / 1000000);
         NSNumber *longitude = @([dict[@"x"] doubleValue] / 1000000);

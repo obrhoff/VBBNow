@@ -58,8 +58,15 @@
     }
     
     NSURL *url = [NSURL URLWithString:realmFileName];
-    
-    RLMRealm *realm = [RLMRealm realmWithURL:url];
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    config.fileURL = url;
+    config.shouldCompactOnLaunch = ^BOOL(NSUInteger totalBytes, NSUInteger usedBytes){
+        NSUInteger oneHundredMB = 10 * 1024 * 1024;
+        BOOL needsCompact = (totalBytes > oneHundredMB) && (usedBytes / totalBytes) < 0.5;
+        return needsCompact;
+    };
+    NSError *error = nil;
+    RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:&error];
     return realm;
 }
 

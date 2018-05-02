@@ -32,8 +32,7 @@
         [unsorted addObject:dict];
     }
     
-    NSSortOptions sortOptions;
-    if (unsorted.count > 100) sortOptions = NSSortConcurrent;
+    NSSortOptions sortOptions = NSSortStable;
     [unsorted sortWithOptions:sortOptions usingComparator:^NSComparisonResult(NSDictionary *dictOne, NSDictionary *dictTwo) {
         return [dictOne[@"distance"] doubleValue] > [dictTwo[@"distance"] doubleValue];
     }];
