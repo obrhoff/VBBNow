@@ -20,6 +20,6 @@
 -(VBBLocation*)storedLocation;
 -(void)storeLocation:(VBBLocation*)location;
 +(VBBPersistanceManager *)manager;
-+(RLMRealm*)createRealm;
++(RLMRealm*)realm;
 
 @end

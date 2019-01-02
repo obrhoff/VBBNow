@@ -19,7 +19,7 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
-        self.realm = [[VBBPersistanceManager class] createRealm];
+        self.realm = [[VBBPersistanceManager class] realm];
     }
     return self;
 }

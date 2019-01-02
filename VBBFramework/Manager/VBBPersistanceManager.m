@@ -19,7 +19,7 @@
 @implementation VBBPersistanceManager
 
 - (void)trim {
-    RLMRealm *realm = [[self class] createRealm];
+    RLMRealm *realm = [[self class] realm];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate < %@", [NSDate date]];
     RLMResults *oldDates = [VBBDepature objectsInRealm:realm withPredicate:predicate];
     
@@ -44,30 +44,31 @@
     return location;
 }
 
-+ (RLMRealm *)createRealm {
-    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
-    
-    documentPath = [documentPath stringByAppendingPathComponent:[NSBundle mainBundle].bundleIdentifier];
-    NSString *realmFileName = [documentPath stringByAppendingPathComponent:@"stations.realm"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    BOOL isDirectory;
-    if (![fileManager fileExistsAtPath:documentPath isDirectory:&isDirectory]) {
-        [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    NSURL *url = [NSURL URLWithString:realmFileName];
-    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
-    config.fileURL = url;
-    config.shouldCompactOnLaunch = ^BOOL(NSUInteger totalBytes, NSUInteger usedBytes){
-        NSUInteger oneHundredMB = 10 * 1024 * 1024;
-        BOOL needsCompact = (totalBytes > oneHundredMB) && (usedBytes / totalBytes) < 0.5;
-        return needsCompact;
-    };
-    NSError *error = nil;
-    RLMRealm *realm = [RLMRealm realmWithConfiguration:config error:&error];
-    return realm;
++ (RLMRealm *)realm {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
+        documentPath = [documentPath stringByAppendingPathComponent:[NSBundle mainBundle].bundleIdentifier];
+        NSString *realmFileName = [documentPath stringByAppendingPathComponent:@"stations.realm"];
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        BOOL isDirectory;
+        if (![fileManager fileExistsAtPath:documentPath isDirectory:&isDirectory]) {
+            [fileManager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+        NSURL *url = [NSURL URLWithString:realmFileName];
+        RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+        config.fileURL = url;
+        config.shouldCompactOnLaunch = ^BOOL(NSUInteger totalBytes, NSUInteger usedBytes){
+            NSUInteger oneHundredMB = 10 * 1024 * 1024;
+            BOOL needsCompact = (totalBytes > oneHundredMB) && (usedBytes / totalBytes) < 0.5;
+            return needsCompact;
+        };
+        [RLMRealmConfiguration setDefaultConfiguration:config];
+    });
+    return [RLMRealm defaultRealm];
 }
 
 - (NSOperationQueue *)operationQueue {
@@ -86,7 +87,6 @@
 - (dispatch_queue_t)backgroundQueue {
     static dispatch_once_t queueCreationGuard;
     static dispatch_queue_t backgroundQueue;
-    
     dispatch_once(&queueCreationGuard, ^{
         backgroundQueue = dispatch_queue_create("com.obrhoff.background", DISPATCH_QUEUE_CONCURRENT);
     });

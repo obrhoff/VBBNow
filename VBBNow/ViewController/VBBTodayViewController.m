@@ -20,9 +20,10 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 @interface VBBTodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, CLLocationManagerDelegate, CAAnimationDelegate>
 
 @property (nonatomic, readwrite, strong) VBBNetworkManager *networkManager;
-@property (nonatomic, readwrite, strong) IBOutlet NSTextField *locationLabel;
-@property (nonatomic, readwrite, strong) IBOutlet NCWidgetListViewController *listViewController;
 @property (nonatomic, readwrite, strong) CLLocationManager *locationManager;
+@property (nonatomic, readwrite, strong) NSTimer *reloadTimer;
+@property (nonatomic, readwrite, weak) IBOutlet NSTextField *locationLabel;
+@property (nonatomic, readwrite, weak) IBOutlet NCWidgetListViewController *listViewController;
 @property (nonatomic, readwrite, copy) didUpdateLocationBlock didUpdateLocationBlock;
 @property (nonatomic, readwrite, copy) didChangeAuthorizationStatus didChangeAuthorizationStatus;
 
@@ -44,40 +45,49 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     self.listViewController.contents = [[VBBStation class] sortByRelevance:storedLocation andLimit:5];
 }
 
--(void)reloadDataForLocation:(VBBLocation*)location {
+-(void)reloadData {
     
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if (location) {
-        CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
-        opacity.toValue = @(0.0);
-        opacity.duration = 0.35;
-        opacity.removedOnCompletion = NO;
-        opacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-        opacity.fillMode = kCAFillModeBoth;
-        opacity.delegate = self;
-        [opacity setValue:@"opacity" forKey:@"identifier"];
-        [opacity setValue:location forKey:@"location"];
-        [self.view.layer addAnimation:opacity forKey:@"opacity"];
-        
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
-        NSTimeInterval refreshInterval = 60 - components.second;
-        [self performSelector:@selector(reloadDataForLocation:) withObject:location afterDelay:refreshInterval];
+    [self.reloadTimer invalidate];
+    
+    VBBLocation *location = [VBBPersistanceManager manager].storedLocation;
+    
+    if (!location) {
+        return;
     }
-}
+    
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacity.toValue = @(0.0);
+    opacity.duration = 0.35;
+    opacity.removedOnCompletion = NO;
+    opacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    opacity.fillMode = kCAFillModeBoth;
+    opacity.delegate = self;
+    [opacity setValue:@"opacity" forKey:@"identifier"];
+    [opacity setValue:location forKey:@"location"];
+    [self.view.layer addAnimation:opacity forKey:@"opacity"];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
+    NSTimeInterval refreshInterval = 60 - components.second;
 
+    self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:refreshInterval
+                                                        target:self selector:@selector(reloadData) userInfo:nil repeats:NO];
+}
 
 #pragma mark - NCWidgetProviding
 
 -(void)fetchNearby: (void (^)(NCUpdateResult result))completionHandler {
  
     __weak typeof(self) weakSelf = self;
+    
+    void (^completionBlock)(NSArray *stations, VBBLocation *location) = ^(NSArray *stations, VBBLocation *location) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf reloadData];
+            completionHandler(stations.count ? NCUpdateResultNewData : NCUpdateResultFailed);
+        });
+    };
+    
     void (^responseBlock)(CLLocation *location) = ^void(CLLocation *location) {
-        [self.networkManager fetchNearedStations:location andCompletionHandler:^(NSArray *stations, VBBLocation *location) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (location) [weakSelf reloadDataForLocation:location];
-                completionHandler(stations.count ? NCUpdateResultNewData : NCUpdateResultFailed);
-            });
-        }];
+        [self.networkManager fetchNearedStations:location andCompletionHandler:completionBlock];
     };
     
     [self setDidUpdateLocationBlock:responseBlock];

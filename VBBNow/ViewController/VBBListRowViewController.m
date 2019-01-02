@@ -7,8 +7,8 @@
 //
 
 @import VBBFramework;
-#import <VBBFramework/VBBFramework.h>
 
+#import <VBBFramework/VBBFramework.h>
 #import "VBBListRowViewController.h"
 
 @interface VBBListRowViewController ()
@@ -20,10 +20,9 @@
 @implementation VBBListRowViewController
 
 -(void)viewDidLoad{
-    [super viewDidLoad];
     self.seperatorLayer = [CALayer new];
-    [self.view setWantsLayer:YES];
     [self.view.layer addSublayer:self.seperatorLayer];
+    [super viewDidLoad];
 }
 
 -(void)viewDidLayout {
@@ -37,7 +36,6 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"arrivalDate > %@", future];
     VBBDepature *nextDepature = [station.depatures objectsWithPredicate:predicate].firstObject;
     NSTimeInterval left = [nextDepature.arrivalDate timeIntervalSinceDate:[NSDate date]];
-    
     
     NSArray *timeDescriptions = [[[self timeFormatter] stringFromTimeInterval:left] componentsSeparatedByString:@" "];
     self.stationLabel.stringValue = station.stationName;

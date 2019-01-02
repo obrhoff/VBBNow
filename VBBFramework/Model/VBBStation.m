@@ -20,7 +20,7 @@
 
 + (NSArray *)sortByRelevance:(VBBLocation*)userLocation andLimit:(NSUInteger)limit {
     
-    RLMRealm *realm = [[VBBPersistanceManager class] createRealm];
+    RLMRealm *realm = [[VBBPersistanceManager class] realm];
     RLMResults *stations = [VBBStation allObjectsInRealm:realm];
     
     NSDate *now = [NSDate date];
