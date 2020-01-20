@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  VBB
+
+  Created by Dennis Oberhoff on 04.08.19.
+  Copyright © 2019 Dennis Oberhoff. All rights reserved.
+*/
+
+"NEXT" = "Weiter";
+"ALLOW" = "Erlauben";
+
+"VBBNOW_TITLE" = "VBB";
+"VBBNOW_TITLE_PERMISSIONS" = "Erlaubnis";
+"VBBNOW_INTRODUCTION_TEXT" = "Wilkommen VBBNow.";
+"VBBNOW_INTRODUCTION_DETAIL_TEXT" = "VBBNow zeigt dir in Echtzeit die Abfahrtzeiten des Nahverkehrs in deiner Nähe an.";
+"VBBNOW_INTRODUCTION_PERMISSION_TEXT" = "Damit VBBNow funktioniert, braucht es einen Zugang zu einer Umgebung.";
+
+"STATUS_GEOCODING" = "Geocoding...";
+"STATUS_LOADING_STATIONS" = "Lade Stationen";
+"STATUS_LOADING_STATIONS_DETAILS" = "Lade Stationsdetails";
+"STATUS_FAILED" = "Fehler :(";
+"STATUS_LOADING_UNKNOWN" = "Unbekannter Standort";
+"STATUS_RELOAD" = "Stationen Neuladen";

@@ -7,11 +7,84 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		41CECF18E34FE366E3303421 /* Pods_VBBPods_VBBNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E218DF1D9207421C3487148 /* Pods_VBBPods_VBBNow.framework */; };
+		0F4BD038674E6ECDF4E53CA9 /* Pods_VBBFrameworkPods_VBB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 285021482A6ED538287500DD /* Pods_VBBFrameworkPods_VBB.framework */; };
+		790388C022F4C993002326D9 /* NSBundle+VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 790388BE22F4C993002326D9 /* NSBundle+VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		790388C122F4C993002326D9 /* NSBundle+VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 790388BE22F4C993002326D9 /* NSBundle+VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		790388C222F4C993002326D9 /* NSBundle+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 790388BF22F4C993002326D9 /* NSBundle+VBB.m */; };
+		790388C322F4C993002326D9 /* NSBundle+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 790388BF22F4C993002326D9 /* NSBundle+VBB.m */; };
+		79051D6022B57B3B00694592 /* DepartureListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79051D5F22B57B3B00694592 /* DepartureListPresenter.swift */; };
+		791EDCDE22F37BF9006F6113 /* DeparturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791EDCDD22F37BF9006F6113 /* DeparturePresenter.swift */; };
+		79290564233558C8001D6737 /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79290563233558C8001D6737 /* OnboardingPresenter.swift */; };
+		794A506D2337AFDE00AFA228 /* VBBNetworkStatus-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794A506C2337AFDE00AFA228 /* VBBNetworkStatus-Extension.swift */; };
+		7951B06B22F4085800FBA206 /* View-Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951B06A22F4085800FBA206 /* View-Gradient.swift */; };
+		7951B06D22F4129400FBA206 /* VBBDeparture-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7951B06C22F4129400FBA206 /* VBBDeparture-Extension.swift */; };
+		7951B07022F4B69800FBA206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7951B06E22F4B69200FBA206 /* Assets.xcassets */; };
+		7951B07122F4B69800FBA206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7951B06E22F4B69200FBA206 /* Assets.xcassets */; };
+		7962705E234126E20076EB39 /* TimeInterval-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7962705D234126E20076EB39 /* TimeInterval-Extension.swift */; };
+		79653F5022BABAA60040A51F /* NSString+VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 79653F4E22BABAA60040A51F /* NSString+VBB.h */; };
+		79653F5122BABAA60040A51F /* NSString+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 79653F4F22BABAA60040A51F /* NSString+VBB.m */; };
+		79653F5222BABEA60040A51F /* NSDateComponentsFormatter+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 7967A74D22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m */; };
+		79653F5322BABEA60040A51F /* NSString+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 79653F4F22BABAA60040A51F /* NSString+VBB.m */; };
+		7967A74822B66AF3004FA671 /* VBBLine-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A74722B66AF3004FA671 /* VBBLine-Extension.swift */; };
+		7967A74E22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 7967A74C22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7967A74F22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 7967A74D22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m */; };
+		7967A75022B671F3004FA671 /* NSDateComponentsFormatter+VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 7967A74C22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7967A75422B679EB004FA671 /* VBBStation-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7967A75322B679EA004FA671 /* VBBStation-Extension.swift */; };
+		7968953E22B5574E002EAF84 /* VBBWatch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7968953D22B5574E002EAF84 /* VBBWatch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7968954422B5574E002EAF84 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7968954222B5574E002EAF84 /* Interface.storyboard */; };
+		7968954622B5574F002EAF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7968954522B5574F002EAF84 /* Assets.xcassets */; };
+		7968954D22B5574F002EAF84 /* VBBWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7968954C22B5574F002EAF84 /* VBBWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7968955222B5574F002EAF84 /* DepartureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7968955122B5574F002EAF84 /* DepartureListView.swift */; };
+		7968955422B5574F002EAF84 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7968955322B5574F002EAF84 /* HostingController.swift */; };
+		7968955622B5574F002EAF84 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7968955522B5574F002EAF84 /* ExtensionDelegate.swift */; };
+		7968955822B5574F002EAF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7968955722B5574F002EAF84 /* Assets.xcassets */; };
+		7968955B22B5574F002EAF84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7968955A22B5574F002EAF84 /* Preview Assets.xcassets */; };
+		7968956822B55762002EAF84 /* VBBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A8682C22B54CA40002F85D /* VBBFramework.framework */; };
+		7968956922B55762002EAF84 /* VBBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79A8682C22B54CA40002F85D /* VBBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7970D99822F3636400D96BEB /* VBBNetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E19086EF1A79886400364EA2 /* VBBNetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		797DF3AF233FF4CE00764404 /* NSNotification-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797DF3AE233FF4CE00764404 /* NSNotification-Extensions.swift */; };
+		79A32CF022E4CB2F0030A481 /* Pods_VBBFrameworkPods_VBBFramework_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDCCB7D0C262E7F2817D7DE4 /* Pods_VBBFrameworkPods_VBBFramework_macOS.framework */; };
+		79A32CF322E4CB490030A481 /* VBBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */; };
+		79A32CF422E4CB490030A481 /* VBBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		79A867DD22B54B160002F85D /* VBBFramework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A867DC22B54B160002F85D /* VBBFramework-umbrella.h */; };
+		79A8681122B54CA40002F85D /* VBBLine.m in Sources */ = {isa = PBXBuildFile; fileRef = E14CDF0B1A7EB911007B1C46 /* VBBLine.m */; };
+		79A8681222B54CA40002F85D /* VBBStationParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689E1A7990C500C2EA16 /* VBBStationParser.m */; };
+		79A8681322B54CA40002F85D /* VBBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */; };
+		79A8681422B54CA40002F85D /* VBBDepature.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9E1A7A46F1005C9D97 /* VBBDepature.m */; };
+		79A8681522B54CA40002F85D /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
+		79A8681622B54CA40002F85D /* VBBDepatureParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A9B1A7A46DB005C9D97 /* VBBDepatureParser.m */; };
+		79A8681722B54CA40002F85D /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
+		79A8681822B54CA40002F85D /* VBBaseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E1948A961A7A3EB0005C9D97 /* VBBaseParser.m */; };
+		79A8681922B54CA40002F85D /* VBBStation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A568A11A7991CE00C2EA16 /* VBBStation.m */; };
+		79A8681D22B54CA40002F85D /* VBBFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E157C33C2099CC2400C0CD60 /* VBBFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8681E22B54CA40002F85D /* VBBNetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E19086EF1A79886400364EA2 /* VBBNetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8681F22B54CA40002F85D /* VBBPersistanceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A568991A79893100C2EA16 /* VBBPersistanceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8682022B54CA40002F85D /* VBBStation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A568A01A7991CE00C2EA16 /* VBBStation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8682122B54CA40002F85D /* VBBDepature.h in Headers */ = {isa = PBXBuildFile; fileRef = E1948A9D1A7A46F1005C9D97 /* VBBDepature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8682222B54CA40002F85D /* VBBLine.h in Headers */ = {isa = PBXBuildFile; fileRef = E14CDF0A1A7EB911007B1C46 /* VBBLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8682322B54CA40002F85D /* VBBLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1FA45A91D4F7F1800D6F33D /* VBBLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79A8682422B54CA40002F85D /* VBBaseParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E1948A951A7A3EB0005C9D97 /* VBBaseParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		79A8682522B54CA40002F85D /* VBBStationParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A5689D1A7990C500C2EA16 /* VBBStationParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		79A8682722B54CA40002F85D /* VBBDepatureParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E1948A9A1A7A46DB005C9D97 /* VBBDepatureParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		79A8683E22B5518E0002F85D /* VBBFramework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79A867DC22B54B160002F85D /* VBBFramework-umbrella.h */; };
+		79A8C61A22BEB842002BE5D6 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A8C61922BEB842002BE5D6 /* ParentView.swift */; };
+		79AF31BD22F59AEA006F7881 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7951B07222F4BC1600FBA206 /* Icons.xcassets */; };
+		79AF31C122F6157A006F7881 /* LinePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AF31C022F6157A006F7881 /* LinePresenter.swift */; };
+		79AF31C322F61609006F7881 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AF31C222F61609006F7881 /* LineView.swift */; };
+		79AF31C822F61A8F006F7881 /* Realm-VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AF31C522F61A7B006F7881 /* Realm-VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79AF31C922F61A8F006F7881 /* Realm-VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF31C622F61A7B006F7881 /* Realm-VBB.m */; };
+		79AF31CA22F61A90006F7881 /* Realm-VBB.h in Headers */ = {isa = PBXBuildFile; fileRef = 79AF31C522F61A7B006F7881 /* Realm-VBB.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79AF31CB22F61A90006F7881 /* Realm-VBB.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AF31C622F61A7B006F7881 /* Realm-VBB.m */; };
 		79B1495A21DCB3A4001E5FEB /* VBBTodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791C44FA21DBDB8F00269E47 /* VBBTodayViewController.xib */; };
 		79B1495B21DCB3A7001E5FEB /* VBBListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791C44FC21DBDC0F00269E47 /* VBBListRowViewController.xib */; };
-		8CD4F290FE6C1AB8362E5EA6 /* Pods_VBBPods_VBBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BFD4E2F68B97E4359A32B4 /* Pods_VBBPods_VBBFramework.framework */; };
-		ACFB3B0EA651E6F34979F4CE /* Pods_VBBPods_VBB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667BF803F6EC46231455275D /* Pods_VBBPods_VBB.framework */; };
+		79B2591522F6E526005224E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79B2591722F6E526005224E2 /* Localizable.strings */; };
+		79C3AA4422B9689E00EACD7A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3AA4322B9689E00EACD7A /* OnboardingView.swift */; };
+		79C5648822B55BD000039D3C /* DepartureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5648722B55BD000039D3C /* DepartureView.swift */; };
+		79C6FB9422B832E000ABF0F4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79C6FB9322B832E000ABF0F4 /* MapKit.framework */; };
+		79EA57D222FA0279009A2D15 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EA57D122FA0279009A2D15 /* LoadingView.swift */; };
+		79ED02A222B96CE00089AB45 /* ParentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED02A122B96CE00089AB45 /* ParentPresenter.swift */; };
+		B0FA7E675B626B64CA9E295A /* Pods_VBBFrameworkPods_VBBNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE9A1EECB9500388A2A98A /* Pods_VBBFrameworkPods_VBBNow.framework */; };
+		B11114E7D32C0C2D70604DC9 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7968953522B554F3002EAF84 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework */; };
 		E157C33E2099CC2400C0CD60 /* VBBFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E157C33C2099CC2400C0CD60 /* VBBFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E157C3412099CC2400C0CD60 /* VBBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */; };
 		E157C3422099CC2400C0CD60 /* VBBFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -26,8 +99,6 @@
 		E157C37E2099CD9A00C0CD60 /* VBBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */; };
 		E157C37F2099CD9E00C0CD60 /* VBBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086F01A79886400364EA2 /* VBBNetworkManager.m */; };
 		E157C3802099CD9E00C0CD60 /* VBBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A5689A1A79893100C2EA16 /* VBBPersistanceManager.m */; };
-		E157C3812099CDAB00C0CD60 /* VBBFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */; };
-		E157C3822099D06A00C0CD60 /* VBBNetworkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E19086EF1A79886400364EA2 /* VBBNetworkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E157C3832099D06A00C0CD60 /* VBBPersistanceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A568991A79893100C2EA16 /* VBBPersistanceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E157C3842099D06A00C0CD60 /* VBBStation.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A568A01A7991CE00C2EA16 /* VBBStation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E157C3852099D06A00C0CD60 /* VBBDepature.h in Headers */ = {isa = PBXBuildFile; fileRef = E1948A9D1A7A46F1005C9D97 /* VBBDepature.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,16 +109,36 @@
 		E157C38A2099D06A00C0CD60 /* VBBDepatureParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E1948A9A1A7A46DB005C9D97 /* VBBDepatureParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E19086D61A79870300364EA2 /* MainMenu.xib */; };
 		E17F97A51A7C0E4800623FB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A01A7C0E4800623FB2 /* InfoPlist.strings */; };
-		E17F97A61A7C0E4800623FB2 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A21A7C0E4800623FB2 /* Icons.xcassets */; };
 		E17F97A81A7C0E4800623FB2 /* vbbnow.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */; };
 		E19086D11A79870300364EA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D01A79870300364EA2 /* AppDelegate.m */; };
 		E19086D31A79870300364EA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E19086D21A79870300364EA2 /* main.m */; };
 		E1AEBBE81A7B701D00196F97 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */; };
 		E1AEBBFC1A7B701D00196F97 /* VBBNow.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1AEBBE71A7B701D00196F97 /* VBBNow.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E1F6153B1A7D407F00EEA639 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17F97A21A7C0E4800623FB2 /* Icons.xcassets */; };
+		EE6B87726DE4BF0128458003 /* Pods_VBBFrameworkPods_VBBWatch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3421FA8B2C099BFC93F860C2 /* Pods_VBBFrameworkPods_VBBWatch_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7968953F22B5574E002EAF84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E19086C21A79870300364EA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7968953C22B5574E002EAF84;
+			remoteInfo = "VBBWatch WatchKit App";
+		};
+		7968954E22B5574F002EAF84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E19086C21A79870300364EA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7968954B22B5574F002EAF84;
+			remoteInfo = "VBBWatch WatchKit Extension";
+		};
+		7968956A22B55762002EAF84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E19086C21A79870300364EA2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79A8680E22B54CA40002F85D;
+			remoteInfo = "VBBFramework-WatchOS";
+		};
 		79B1496221DCB5A2001E5FEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E19086C21A79870300364EA2 /* Project object */;
@@ -72,6 +163,50 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7968956022B5574F002EAF84 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7968954D22B5574F002EAF84 /* VBBWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7968956422B5574F002EAF84 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				7968953E22B5574E002EAF84 /* VBBWatch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7968956C22B55762002EAF84 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7968956922B55762002EAF84 /* VBBFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A32CF522E4CB490030A481 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				79A32CF422E4CB490030A481 /* VBBFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E157C3462099CC2400C0CD60 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,22 +232,86 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0167B0997B867BBF926B3FB2 /* Pods-VBBFrameworkPods-VBBWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBWatch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBWatch Extension/Pods-VBBFrameworkPods-VBBWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		0ADE7AED1B652065D933F38B /* Pods-VBBFrameworkPods-VBBFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework/Pods-VBBFrameworkPods-VBBFramework.release.xcconfig"; sourceTree = "<group>"; };
 		0B61806681AAA7E29F1AA122 /* Pods-VBBPods-VBBFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBBFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBBFramework/Pods-VBBPods-VBBFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		0C26A8B1F7DEF56ACD31B606 /* Pods_VBBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12191626B6A522251DF25AA0 /* Pods-VBBFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFramework/Pods-VBBFramework.release.xcconfig"; sourceTree = "<group>"; };
-		16AAB8987028C777D0FBCE02 /* Pods-VBBPods-VBBNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBBNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBBNow/Pods-VBBPods-VBBNow.debug.xcconfig"; sourceTree = "<group>"; };
-		46BFD4E2F68B97E4359A32B4 /* Pods_VBBPods_VBBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBPods_VBBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		16D192B187425E69B9B2A938 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework-WatchOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework-WatchOS/Pods-VBBFrameworkPods-VBBFramework-WatchOS.release.xcconfig"; sourceTree = "<group>"; };
+		17869F29851E0C35950B3E0A /* Pods-VBBWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch Extension/Pods-VBBWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		20973B06F87F036D3A4110F2 /* Pods-VBBFrameworkPods-VBBFramework-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework-macOS/Pods-VBBFrameworkPods-VBBFramework-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		285021482A6ED538287500DD /* Pods_VBBFrameworkPods_VBB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFrameworkPods_VBB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		28E87E95EDA4B923462F4D83 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework-WatchOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework-WatchOS/Pods-VBBFrameworkPods-VBBFramework-WatchOS.debug.xcconfig"; sourceTree = "<group>"; };
+		2BC934B59A728B7BEA0636B3 /* Pods-VBBFrameworkPods-VBBNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBNow/Pods-VBBFrameworkPods-VBBNow.debug.xcconfig"; sourceTree = "<group>"; };
+		3421FA8B2C099BFC93F860C2 /* Pods_VBBFrameworkPods_VBBWatch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFrameworkPods_VBBWatch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C7FF169CB98E57F7920091C /* Pods-VBBFrameworkPods-VBBFramework-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework-macOS/Pods-VBBFrameworkPods-VBBFramework-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		4EA4D3DCA40C5D292659654B /* Pods-VBB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBB.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBB/Pods-VBB.release.xcconfig"; sourceTree = "<group>"; };
+		4F4E06631C481A8587DE5947 /* Pods-VBBWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch WatchKit Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch WatchKit Extension/Pods-VBBWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		54086035F2CBD9CEEAE40458 /* Pods-VBBNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBNow/Pods-VBBNow.debug.xcconfig"; sourceTree = "<group>"; };
+		5D7324615ABC71518CDB615F /* Pods-VBBFrameworkPods-VBBFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBFramework/Pods-VBBFrameworkPods-VBBFramework.debug.xcconfig"; sourceTree = "<group>"; };
 		667BF803F6EC46231455275D /* Pods_VBBPods_VBB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBPods_VBB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		67F15DD87868EF68F4B521BF /* Pods-VBBPods-VBBNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBBNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBBNow/Pods-VBBPods-VBBNow.release.xcconfig"; sourceTree = "<group>"; };
+		69955D582DA31771816542E1 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7891A1221A1C1E755E21A434 /* Pods-VBBFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFramework/Pods-VBBFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		790388BE22F4C993002326D9 /* NSBundle+VBB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+VBB.h"; sourceTree = "<group>"; };
+		790388BF22F4C993002326D9 /* NSBundle+VBB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+VBB.m"; sourceTree = "<group>"; };
+		79051D5F22B57B3B00694592 /* DepartureListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListPresenter.swift; sourceTree = "<group>"; };
 		791C44FA21DBDB8F00269E47 /* VBBTodayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBBTodayViewController.xib; sourceTree = "<group>"; };
 		791C44FC21DBDC0F00269E47 /* VBBListRowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VBBListRowViewController.xib; sourceTree = "<group>"; };
-		90DAD5A44B2AE01CFEFFBCA4 /* Pods_VBBNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		791EDCDD22F37BF9006F6113 /* DeparturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturePresenter.swift; sourceTree = "<group>"; };
+		79290563233558C8001D6737 /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		7929056523356C1C001D6737 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		794A506C2337AFDE00AFA228 /* VBBNetworkStatus-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VBBNetworkStatus-Extension.swift"; sourceTree = "<group>"; };
+		7951B06A22F4085800FBA206 /* View-Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Gradient.swift"; sourceTree = "<group>"; };
+		7951B06C22F4129400FBA206 /* VBBDeparture-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VBBDeparture-Extension.swift"; sourceTree = "<group>"; };
+		7951B06E22F4B69200FBA206 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7951B07222F4BC1600FBA206 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = VBB/Icons.xcassets; sourceTree = SOURCE_ROOT; };
+		7962705D234126E20076EB39 /* TimeInterval-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval-Extension.swift"; sourceTree = "<group>"; };
+		79653F4E22BABAA60040A51F /* NSString+VBB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+VBB.h"; sourceTree = "<group>"; };
+		79653F4F22BABAA60040A51F /* NSString+VBB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+VBB.m"; sourceTree = "<group>"; };
+		7967A74722B66AF3004FA671 /* VBBLine-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VBBLine-Extension.swift"; sourceTree = "<group>"; };
+		7967A74C22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDateComponentsFormatter+VBB.h"; sourceTree = "<group>"; };
+		7967A74D22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponentsFormatter+VBB.m"; sourceTree = "<group>"; };
+		7967A75322B679EA004FA671 /* VBBStation-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VBBStation-Extension.swift"; sourceTree = "<group>"; };
+		7968953522B554F3002EAF84 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7968953A22B5574E002EAF84 /* VBBWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VBBWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7968953D22B5574E002EAF84 /* VBBWatch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VBBWatch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7968954322B5574E002EAF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		7968954522B5574F002EAF84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7968954722B5574F002EAF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7968954C22B5574F002EAF84 /* VBBWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "VBBWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7968955122B5574F002EAF84 /* DepartureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListView.swift; sourceTree = "<group>"; };
+		7968955322B5574F002EAF84 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		7968955522B5574F002EAF84 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		7968955722B5574F002EAF84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7968955A22B5574F002EAF84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7968955C22B5574F002EAF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		797DF3AE233FF4CE00764404 /* NSNotification-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification-Extensions.swift"; sourceTree = "<group>"; };
+		79A867DB22B54B160002F85D /* VBBFramework.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = VBBFramework.modulemap; sourceTree = "<group>"; };
+		79A867DC22B54B160002F85D /* VBBFramework-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VBBFramework-umbrella.h"; sourceTree = "<group>"; };
+		79A8682C22B54CA40002F85D /* VBBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VBBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A8C61922BEB842002BE5D6 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		79AF31C022F6157A006F7881 /* LinePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinePresenter.swift; sourceTree = "<group>"; };
+		79AF31C222F61609006F7881 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		79AF31C522F61A7B006F7881 /* Realm-VBB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Realm-VBB.h"; sourceTree = "<group>"; };
+		79AF31C622F61A7B006F7881 /* Realm-VBB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Realm-VBB.m"; sourceTree = "<group>"; };
+		79B2591622F6E526005224E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		79C3AA4322B9689E00EACD7A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		79C5648722B55BD000039D3C /* DepartureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureView.swift; sourceTree = "<group>"; };
+		79C6FB9322B832E000ABF0F4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS6.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		79EA57D122FA0279009A2D15 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		79ED02A122B96CE00089AB45 /* ParentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentPresenter.swift; sourceTree = "<group>"; };
+		7AA5C8D3A5AC7FE7FFE62ACD /* Pods-VBBFrameworkPods-VBB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBB/Pods-VBBFrameworkPods-VBB.debug.xcconfig"; sourceTree = "<group>"; };
+		89322760E49051FD19D10F36 /* Pods-VBBWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch/Pods-VBBWatch.release.xcconfig"; sourceTree = "<group>"; };
+		93E3B5B9C59E98CA7CFD6885 /* Pods-VBBWatch WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch WatchKit Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch WatchKit Extension/Pods-VBBWatch WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		9E218DF1D9207421C3487148 /* Pods_VBBPods_VBBNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBPods_VBBNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0957EF3840658A2EB7B3B1A /* Pods-VBBPods-VBB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBB/Pods-VBBPods-VBB.debug.xcconfig"; sourceTree = "<group>"; };
-		B4EDD8701BB4D2A7152E0253 /* Pods-VBBPods-VBB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBB.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBB/Pods-VBBPods-VBB.release.xcconfig"; sourceTree = "<group>"; };
-		C3D0945F3F45278CE0C206A7 /* Pods_VBB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F15AF78642C8708D51A0C35 /* Pods-VBBFrameworkPods-VBBNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBNow/Pods-VBBFrameworkPods-VBBNow.release.xcconfig"; sourceTree = "<group>"; };
+		9F580EADBF13D1ED2D28A965 /* Pods-VBBWatch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch Extension/Pods-VBBWatch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		AFEE9A1EECB9500388A2A98A /* Pods_VBBFrameworkPods_VBBNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFrameworkPods_VBBNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2968187C6C527FD730FFB01 /* Pods-VBB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBB/Pods-VBB.debug.xcconfig"; sourceTree = "<group>"; };
+		BDCCB7D0C262E7F2817D7DE4 /* Pods_VBBFrameworkPods_VBBFramework_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBFrameworkPods_VBBFramework_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB625DCF924575090FED786C /* Pods-VBBFrameworkPods-VBBWatch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBBWatch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBBWatch Extension/Pods-VBBFrameworkPods-VBBWatch Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		DA14C1F48BCDD3F011F7DA68 /* Pods-VBBPods-VBBFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBPods-VBBFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBPods-VBBFramework/Pods-VBBPods-VBBFramework.release.xcconfig"; sourceTree = "<group>"; };
+		DBC5C40767773931E189155B /* Pods-VBBNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBNow/Pods-VBBNow.release.xcconfig"; sourceTree = "<group>"; };
 		E14CDF0A1A7EB911007B1C46 /* VBBLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBLine.h; sourceTree = "<group>"; };
 		E14CDF0B1A7EB911007B1C46 /* VBBLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBLine.m; sourceTree = "<group>"; };
 		E157C33A2099CC2400C0CD60 /* VBBFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VBBFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,10 +324,9 @@
 		E16440861A7AAB890008ECA3 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = Pods/build/Debug/libPods.a; sourceTree = "<group>"; };
 		E17A6ABA1C770CF900506B8A /* VBB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VBB.entitlements; sourceTree = "<group>"; };
 		E17F97A11A7C0E4800623FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		E17F97A21A7C0E4800623FB2 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = VBBNow/Icons.xcassets; sourceTree = SOURCE_ROOT; };
 		E17F97A31A7C0E4800623FB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "VBBNow/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		E17F97A41A7C0E4800623FB2 /* vbbnow.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = vbbnow.entitlements; path = "VBBNow/Supporting Files/vbbnow.entitlements"; sourceTree = SOURCE_ROOT; };
-		E19086CA1A79870300364EA2 /* VBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E19086CA1A79870300364EA2 /* VBBNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VBBNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E19086CE1A79870300364EA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E19086CF1A79870300364EA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E19086D01A79870300364EA2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -152,14 +350,49 @@
 		E1AEBBE71A7B701D00196F97 /* VBBNow.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VBBNow.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FA45A91D4F7F1800D6F33D /* VBBLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBLocation.h; sourceTree = "<group>"; };
 		E1FA45AA1D4F7F1800D6F33D /* VBBLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBLocation.m; sourceTree = "<group>"; };
+		E8708C61D9B673753DA164E6 /* Pods_VBBWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VBBWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0B41255AA6C835D0479A7B6 /* Pods-VBBFrameworkPods-VBB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBFrameworkPods-VBB.release.xcconfig"; path = "Pods/Target Support Files/Pods-VBBFrameworkPods-VBB/Pods-VBBFrameworkPods-VBB.release.xcconfig"; sourceTree = "<group>"; };
+		F4CA7E39BC970F70DF84E2A1 /* Pods-VBBWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VBBWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VBBWatch/Pods-VBBWatch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		389B04799A1AAFD2E3F38482 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7968954922B5574F002EAF84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79C6FB9422B832E000ABF0F4 /* MapKit.framework in Frameworks */,
+				7968956822B55762002EAF84 /* VBBFramework.framework in Frameworks */,
+				EE6B87726DE4BF0128458003 /* Pods_VBBFrameworkPods_VBBWatch_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A8681A22B54CA40002F85D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B11114E7D32C0C2D70604DC9 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B62765DEBCD442FD0EF7E12B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E157C3362099CC2400C0CD60 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD4F290FE6C1AB8362E5EA6 /* Pods_VBBPods_VBBFramework.framework in Frameworks */,
+				79A32CF022E4CB2F0030A481 /* Pods_VBBFrameworkPods_VBBFramework_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E157C3412099CC2400C0CD60 /* VBBFramework.framework in Frameworks */,
-				ACFB3B0EA651E6F34979F4CE /* Pods_VBBPods_VBB.framework in Frameworks */,
+				0F4BD038674E6ECDF4E53CA9 /* Pods_VBBFrameworkPods_VBB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,15 +409,130 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E157C3812099CDAB00C0CD60 /* VBBFramework.framework in Frameworks */,
 				E1AEBBE81A7B701D00196F97 /* NotificationCenter.framework in Frameworks */,
-				41CECF18E34FE366E3303421 /* Pods_VBBPods_VBBNow.framework in Frameworks */,
+				79A32CF322E4CB490030A481 /* VBBFramework.framework in Frameworks */,
+				B0FA7E675B626B64CA9E295A /* Pods_VBBFrameworkPods_VBBNow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		790E9CC322B5710100DBC9C4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				797DF3AE233FF4CE00764404 /* NSNotification-Extensions.swift */,
+				7962705D234126E20076EB39 /* TimeInterval-Extension.swift */,
+				7951B06C22F4129400FBA206 /* VBBDeparture-Extension.swift */,
+				7967A74722B66AF3004FA671 /* VBBLine-Extension.swift */,
+				794A506C2337AFDE00AFA228 /* VBBNetworkStatus-Extension.swift */,
+				7967A75322B679EA004FA671 /* VBBStation-Extension.swift */,
+				7951B06A22F4085800FBA206 /* View-Gradient.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7967A74922B67108004FA671 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				79AF31C522F61A7B006F7881 /* Realm-VBB.h */,
+				79AF31C622F61A7B006F7881 /* Realm-VBB.m */,
+				7967A74C22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h */,
+				7967A74D22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m */,
+				79653F4E22BABAA60040A51F /* NSString+VBB.h */,
+				79653F4F22BABAA60040A51F /* NSString+VBB.m */,
+				790388BE22F4C993002326D9 /* NSBundle+VBB.h */,
+				790388BF22F4C993002326D9 /* NSBundle+VBB.m */,
+			);
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		7968954122B5574E002EAF84 /* VBBWatch App */ = {
+			isa = PBXGroup;
+			children = (
+				7968954222B5574E002EAF84 /* Interface.storyboard */,
+				7968954522B5574F002EAF84 /* Assets.xcassets */,
+				7968954722B5574F002EAF84 /* Info.plist */,
+			);
+			path = "VBBWatch App";
+			sourceTree = "<group>";
+		};
+		7968955022B5574F002EAF84 /* VBBWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				79C5648622B5599600039D3C /* Controller */,
+				7968955522B5574F002EAF84 /* ExtensionDelegate.swift */,
+				790E9CC322B5710100DBC9C4 /* Extensions */,
+				79C3AA4222B95A9E00EACD7A /* Presenter */,
+				79C5648522B5598900039D3C /* Support Files */,
+				79C5648422B5598000039D3C /* Views */,
+			);
+			path = "VBBWatch Extension";
+			sourceTree = "<group>";
+		};
+		7968955922B5574F002EAF84 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7968955A22B5574F002EAF84 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		79A867DA22B54B040002F85D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E157C33C2099CC2400C0CD60 /* VBBFramework.h */,
+				79A867DC22B54B160002F85D /* VBBFramework-umbrella.h */,
+				79A867DB22B54B160002F85D /* VBBFramework.modulemap */,
+				7951B06E22F4B69200FBA206 /* Assets.xcassets */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		79C3AA4222B95A9E00EACD7A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				79051D5F22B57B3B00694592 /* DepartureListPresenter.swift */,
+				791EDCDD22F37BF9006F6113 /* DeparturePresenter.swift */,
+				79AF31C022F6157A006F7881 /* LinePresenter.swift */,
+				79290563233558C8001D6737 /* OnboardingPresenter.swift */,
+				79ED02A122B96CE00089AB45 /* ParentPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		79C5648422B5598000039D3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7968955122B5574F002EAF84 /* DepartureListView.swift */,
+				79C5648722B55BD000039D3C /* DepartureView.swift */,
+				79C3AA4322B9689E00EACD7A /* OnboardingView.swift */,
+				79A8C61922BEB842002BE5D6 /* ParentView.swift */,
+				79AF31C222F61609006F7881 /* LineView.swift */,
+				79EA57D122FA0279009A2D15 /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		79C5648522B5598900039D3C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7968955722B5574F002EAF84 /* Assets.xcassets */,
+				7968955C22B5574F002EAF84 /* Info.plist */,
+				7968955922B5574F002EAF84 /* Preview Content */,
+				79B2591722F6E526005224E2 /* Localizable.strings */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		79C5648622B5599600039D3C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7968955322B5574F002EAF84 /* HostingController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		8D27E6BEE4206BC56C37BDCD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,10 +540,28 @@
 				12191626B6A522251DF25AA0 /* Pods-VBBFramework.release.xcconfig */,
 				0B61806681AAA7E29F1AA122 /* Pods-VBBPods-VBBFramework.debug.xcconfig */,
 				DA14C1F48BCDD3F011F7DA68 /* Pods-VBBPods-VBBFramework.release.xcconfig */,
-				B0957EF3840658A2EB7B3B1A /* Pods-VBBPods-VBB.debug.xcconfig */,
-				B4EDD8701BB4D2A7152E0253 /* Pods-VBBPods-VBB.release.xcconfig */,
-				16AAB8987028C777D0FBCE02 /* Pods-VBBPods-VBBNow.debug.xcconfig */,
-				67F15DD87868EF68F4B521BF /* Pods-VBBPods-VBBNow.release.xcconfig */,
+				5D7324615ABC71518CDB615F /* Pods-VBBFrameworkPods-VBBFramework.debug.xcconfig */,
+				28E87E95EDA4B923462F4D83 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.debug.xcconfig */,
+				16D192B187425E69B9B2A938 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.release.xcconfig */,
+				0ADE7AED1B652065D933F38B /* Pods-VBBFrameworkPods-VBBFramework.release.xcconfig */,
+				F4CA7E39BC970F70DF84E2A1 /* Pods-VBBWatch.debug.xcconfig */,
+				89322760E49051FD19D10F36 /* Pods-VBBWatch.release.xcconfig */,
+				4F4E06631C481A8587DE5947 /* Pods-VBBWatch WatchKit Extension.debug.xcconfig */,
+				93E3B5B9C59E98CA7CFD6885 /* Pods-VBBWatch WatchKit Extension.release.xcconfig */,
+				3C7FF169CB98E57F7920091C /* Pods-VBBFrameworkPods-VBBFramework-macOS.debug.xcconfig */,
+				20973B06F87F036D3A4110F2 /* Pods-VBBFrameworkPods-VBBFramework-macOS.release.xcconfig */,
+				B2968187C6C527FD730FFB01 /* Pods-VBB.debug.xcconfig */,
+				4EA4D3DCA40C5D292659654B /* Pods-VBB.release.xcconfig */,
+				17869F29851E0C35950B3E0A /* Pods-VBBWatch Extension.debug.xcconfig */,
+				9F580EADBF13D1ED2D28A965 /* Pods-VBBWatch Extension.release.xcconfig */,
+				54086035F2CBD9CEEAE40458 /* Pods-VBBNow.debug.xcconfig */,
+				DBC5C40767773931E189155B /* Pods-VBBNow.release.xcconfig */,
+				7AA5C8D3A5AC7FE7FFE62ACD /* Pods-VBBFrameworkPods-VBB.debug.xcconfig */,
+				F0B41255AA6C835D0479A7B6 /* Pods-VBBFrameworkPods-VBB.release.xcconfig */,
+				2BC934B59A728B7BEA0636B3 /* Pods-VBBFrameworkPods-VBBNow.debug.xcconfig */,
+				9F15AF78642C8708D51A0C35 /* Pods-VBBFrameworkPods-VBBNow.release.xcconfig */,
+				CB625DCF924575090FED786C /* Pods-VBBFrameworkPods-VBBWatch Extension.debug.xcconfig */,
+				0167B0997B867BBF926B3FB2 /* Pods-VBBFrameworkPods-VBBWatch Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -203,14 +569,19 @@
 		E114AB8D017F74B47967DFA8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				79C6FB9322B832E000ABF0F4 /* MapKit.framework */,
+				7968953522B554F3002EAF84 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework */,
 				E16440861A7AAB890008ECA3 /* libPods.a */,
 				E1948A7E1A7A3DEB005C9D97 /* NotificationCenter.framework */,
-				C3D0945F3F45278CE0C206A7 /* Pods_VBB.framework */,
-				90DAD5A44B2AE01CFEFFBCA4 /* Pods_VBBNow.framework */,
 				0C26A8B1F7DEF56ACD31B606 /* Pods_VBBFramework.framework */,
 				667BF803F6EC46231455275D /* Pods_VBBPods_VBB.framework */,
-				46BFD4E2F68B97E4359A32B4 /* Pods_VBBPods_VBBFramework.framework */,
 				9E218DF1D9207421C3487148 /* Pods_VBBPods_VBBNow.framework */,
+				69955D582DA31771816542E1 /* Pods_VBBFrameworkPods_VBBFramework_WatchOS.framework */,
+				E8708C61D9B673753DA164E6 /* Pods_VBBWatch.framework */,
+				BDCCB7D0C262E7F2817D7DE4 /* Pods_VBBFrameworkPods_VBBFramework_macOS.framework */,
+				285021482A6ED538287500DD /* Pods_VBBFrameworkPods_VBB.framework */,
+				AFEE9A1EECB9500388A2A98A /* Pods_VBBFrameworkPods_VBBNow.framework */,
+				3421FA8B2C099BFC93F860C2 /* Pods_VBBFrameworkPods_VBBWatch_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,9 +591,10 @@
 			children = (
 				E157C33D2099CC2400C0CD60 /* Info.plist */,
 				E157C3492099CC3800C0CD60 /* Manager */,
+				7967A74922B67108004FA671 /* Miscellaneous */,
 				E157C3482099CC3000C0CD60 /* Model */,
 				E157C3472099CC2A00C0CD60 /* Parser */,
-				E157C33C2099CC2400C0CD60 /* VBBFramework.h */,
+				79A867DA22B54B040002F85D /* Support Files */,
 			);
 			path = VBBFramework;
 			sourceTree = "<group>";
@@ -303,6 +675,8 @@
 			children = (
 				E19086CC1A79870300364EA2 /* VBB */,
 				E1AEBBE91A7B701D00196F97 /* VBBNow */,
+				7968954122B5574E002EAF84 /* VBBWatch App */,
+				7968955022B5574F002EAF84 /* VBBWatch Extension */,
 				E157C33B2099CC2400C0CD60 /* VBBFramework */,
 				E19086CB1A79870300364EA2 /* Products */,
 				E114AB8D017F74B47967DFA8 /* Frameworks */,
@@ -313,9 +687,13 @@
 		E19086CB1A79870300364EA2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E19086CA1A79870300364EA2 /* VBB.app */,
+				E19086CA1A79870300364EA2 /* VBBNow.app */,
 				E1AEBBE71A7B701D00196F97 /* VBBNow.appex */,
 				E157C33A2099CC2400C0CD60 /* VBBFramework.framework */,
+				79A8682C22B54CA40002F85D /* VBBFramework.framework */,
+				7968953A22B5574E002EAF84 /* VBBWatch.app */,
+				7968953D22B5574E002EAF84 /* VBBWatch App.app */,
+				7968954C22B5574F002EAF84 /* VBBWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -326,7 +704,6 @@
 				E17A6ABA1C770CF900506B8A /* VBB.entitlements */,
 				E19086CF1A79870300364EA2 /* AppDelegate.h */,
 				E19086D01A79870300364EA2 /* AppDelegate.m */,
-				E17F97A21A7C0E4800623FB2 /* Icons.xcassets */,
 				E19086D61A79870300364EA2 /* MainMenu.xib */,
 				E19086CD1A79870300364EA2 /* Supporting Files */,
 			);
@@ -337,6 +714,7 @@
 		E19086CD1A79870300364EA2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7951B07222F4BC1600FBA206 /* Icons.xcassets */,
 				E19086CE1A79870300364EA2 /* Info.plist */,
 				E19086D21A79870300364EA2 /* main.m */,
 			);
@@ -355,19 +733,45 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		79A8681C22B54CA40002F85D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79A8681D22B54CA40002F85D /* VBBFramework.h in Headers */,
+				79A8681E22B54CA40002F85D /* VBBNetworkManager.h in Headers */,
+				79A8681F22B54CA40002F85D /* VBBPersistanceManager.h in Headers */,
+				7967A75022B671F3004FA671 /* NSDateComponentsFormatter+VBB.h in Headers */,
+				79A8682022B54CA40002F85D /* VBBStation.h in Headers */,
+				79A8682122B54CA40002F85D /* VBBDepature.h in Headers */,
+				79A8682222B54CA40002F85D /* VBBLine.h in Headers */,
+				79A8682322B54CA40002F85D /* VBBLocation.h in Headers */,
+				79A8683E22B5518E0002F85D /* VBBFramework-umbrella.h in Headers */,
+				790388C122F4C993002326D9 /* NSBundle+VBB.h in Headers */,
+				79AF31CA22F61A90006F7881 /* Realm-VBB.h in Headers */,
+				79A8682422B54CA40002F85D /* VBBaseParser.h in Headers */,
+				79A8682522B54CA40002F85D /* VBBStationParser.h in Headers */,
+				79A8682722B54CA40002F85D /* VBBDepatureParser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E157C3372099CC2400C0CD60 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E157C33E2099CC2400C0CD60 /* VBBFramework.h in Headers */,
-				E157C3822099D06A00C0CD60 /* VBBNetworkManager.h in Headers */,
 				E157C3832099D06A00C0CD60 /* VBBPersistanceManager.h in Headers */,
 				E157C3842099D06A00C0CD60 /* VBBStation.h in Headers */,
+				790388C022F4C993002326D9 /* NSBundle+VBB.h in Headers */,
 				E157C3852099D06A00C0CD60 /* VBBDepature.h in Headers */,
 				E157C3862099D06A00C0CD60 /* VBBLine.h in Headers */,
+				7967A74E22B6715D004FA671 /* NSDateComponentsFormatter+VBB.h in Headers */,
 				E157C3872099D06A00C0CD60 /* VBBLocation.h in Headers */,
+				7970D99822F3636400D96BEB /* VBBNetworkManager.h in Headers */,
 				E157C3882099D06A00C0CD60 /* VBBaseParser.h in Headers */,
 				E157C3892099D06A00C0CD60 /* VBBStationParser.h in Headers */,
+				79653F5022BABAA60040A51F /* NSString+VBB.h in Headers */,
+				79A867DD22B54B160002F85D /* VBBFramework-umbrella.h in Headers */,
+				79AF31C822F61A8F006F7881 /* Realm-VBB.h in Headers */,
 				E157C38A2099D06A00C0CD60 /* VBBDepatureParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,9 +779,85 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E157C3392099CC2400C0CD60 /* VBBFramework */ = {
+		7968953922B5574E002EAF84 /* VBBWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E157C3452099CC2400C0CD60 /* Build configuration list for PBXNativeTarget "VBBFramework" */;
+			buildConfigurationList = 7968956522B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch" */;
+			buildPhases = (
+				7968953822B5574E002EAF84 /* Resources */,
+				7968956422B5574F002EAF84 /* Embed Watch Content */,
+				B62765DEBCD442FD0EF7E12B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7968954022B5574E002EAF84 /* PBXTargetDependency */,
+			);
+			name = VBBWatch;
+			productName = VBBWatch;
+			productReference = 7968953A22B5574E002EAF84 /* VBBWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		7968953C22B5574E002EAF84 /* VBBWatch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7968956122B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch App" */;
+			buildPhases = (
+				7968953B22B5574E002EAF84 /* Resources */,
+				7968956022B5574F002EAF84 /* Embed App Extensions */,
+				389B04799A1AAFD2E3F38482 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7968954F22B5574F002EAF84 /* PBXTargetDependency */,
+			);
+			name = "VBBWatch App";
+			productName = "VBBWatch WatchKit App";
+			productReference = 7968953D22B5574E002EAF84 /* VBBWatch App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		7968954B22B5574F002EAF84 /* VBBWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7968955D22B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch Extension" */;
+			buildPhases = (
+				3924C1B2F8F28EC4FF923B99 /* [CP] Check Pods Manifest.lock */,
+				7968954822B5574F002EAF84 /* Sources */,
+				7968954922B5574F002EAF84 /* Frameworks */,
+				7968954A22B5574F002EAF84 /* Resources */,
+				7968956C22B55762002EAF84 /* Embed Frameworks */,
+				FF51DDE7E25771F1B1424D93 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7968956B22B55762002EAF84 /* PBXTargetDependency */,
+			);
+			name = "VBBWatch Extension";
+			productName = "VBBWatch WatchKit Extension";
+			productReference = 7968954C22B5574F002EAF84 /* VBBWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		79A8680E22B54CA40002F85D /* VBBFramework-WatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79A8682922B54CA40002F85D /* Build configuration list for PBXNativeTarget "VBBFramework-WatchOS" */;
+			buildPhases = (
+				79A8680F22B54CA40002F85D /* [CP] Check Pods Manifest.lock */,
+				79A8681022B54CA40002F85D /* Sources */,
+				79A8681A22B54CA40002F85D /* Frameworks */,
+				79A8681C22B54CA40002F85D /* Headers */,
+				79A8682822B54CA40002F85D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VBBFramework-WatchOS";
+			productName = VBBFramework;
+			productReference = 79A8682C22B54CA40002F85D /* VBBFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E157C3392099CC2400C0CD60 /* VBBFramework-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E157C3452099CC2400C0CD60 /* Build configuration list for PBXNativeTarget "VBBFramework-macOS" */;
 			buildPhases = (
 				264B07C77728EA84BC85CA4F /* [CP] Check Pods Manifest.lock */,
 				E157C3352099CC2400C0CD60 /* Sources */,
@@ -389,7 +869,7 @@
 			);
 			dependencies = (
 			);
-			name = VBBFramework;
+			name = "VBBFramework-macOS";
 			productName = VBBFramework;
 			productReference = E157C33A2099CC2400C0CD60 /* VBBFramework.framework */;
 			productType = "com.apple.product-type.framework";
@@ -398,13 +878,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E19086E71A79870300364EA2 /* Build configuration list for PBXNativeTarget "VBB" */;
 			buildPhases = (
-				614ACA198863A10FF6843720 /* [CP] Check Pods Manifest.lock */,
+				3F1BB7193E36977CE2FF86E6 /* [CP] Check Pods Manifest.lock */,
 				E19086C61A79870300364EA2 /* Sources */,
 				E19086C71A79870300364EA2 /* Frameworks */,
 				E19086C81A79870300364EA2 /* Resources */,
 				E1948A921A7A3DEB005C9D97 /* Embed App Extensions */,
 				E157C3462099CC2400C0CD60 /* Embed Frameworks */,
-				86541FE9AA960EC91AE11AC2 /* [CP] Embed Pods Frameworks */,
+				1770E394FD22251233F49B16 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -414,17 +894,18 @@
 			);
 			name = VBB;
 			productName = VBB/;
-			productReference = E19086CA1A79870300364EA2 /* VBB.app */;
+			productReference = E19086CA1A79870300364EA2 /* VBBNow.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E1AEBBE61A7B701D00196F97 /* VBBNow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1AEBBFD1A7B701D00196F97 /* Build configuration list for PBXNativeTarget "VBBNow" */;
 			buildPhases = (
-				9284CEDE3076668EC2ECA92D /* [CP] Check Pods Manifest.lock */,
+				8861021FDE16031313BF649E /* [CP] Check Pods Manifest.lock */,
 				E1AEBBE31A7B701D00196F97 /* Sources */,
 				E1AEBBE41A7B701D00196F97 /* Frameworks */,
 				E1AEBBE51A7B701D00196F97 /* Resources */,
+				79A32CF522E4CB490030A481 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -443,9 +924,29 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = VBB;
-				LastUpgradeCheck = 1010;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Dennis Oberhoff";
 				TargetAttributes = {
+					7968953922B5574E002EAF84 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
+					};
+					7968953C22B5574E002EAF84 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
+					};
+					7968954B22B5574F002EAF84 = {
+						CreatedOnToolsVersion = 11.0;
+						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
+					};
+					79A8680E22B54CA40002F85D = {
+						DevelopmentTeam = YE33ZK7Z99;
+						ProvisioningStyle = Automatic;
+					};
 					E157C3392099CC2400C0CD60 = {
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = YE33ZK7Z99;
@@ -477,11 +978,12 @@
 			};
 			buildConfigurationList = E19086C51A79870300364EA2 /* Build configuration list for PBXProject "VBB" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = E19086C11A79870300364EA2;
 			productRefGroup = E19086CB1A79870300364EA2 /* Products */;
@@ -490,16 +992,55 @@
 			targets = (
 				E19086C91A79870300364EA2 /* VBB */,
 				E1AEBBE61A7B701D00196F97 /* VBBNow */,
-				E157C3392099CC2400C0CD60 /* VBBFramework */,
+				7968953922B5574E002EAF84 /* VBBWatch */,
+				7968953C22B5574E002EAF84 /* VBBWatch App */,
+				7968954B22B5574F002EAF84 /* VBBWatch Extension */,
+				E157C3392099CC2400C0CD60 /* VBBFramework-macOS */,
+				79A8680E22B54CA40002F85D /* VBBFramework-WatchOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7968953822B5574E002EAF84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7968953B22B5574E002EAF84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7968954622B5574F002EAF84 /* Assets.xcassets in Resources */,
+				7968954422B5574E002EAF84 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7968954A22B5574F002EAF84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7968955B22B5574F002EAF84 /* Preview Assets.xcassets in Resources */,
+				79B2591522F6E526005224E2 /* Localizable.strings in Resources */,
+				7968955822B5574F002EAF84 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A8682822B54CA40002F85D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7951B07122F4B69800FBA206 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E157C3382099CC2400C0CD60 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7951B07022F4B69800FBA206 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +1048,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1F6153B1A7D407F00EEA639 /* Icons.xcassets in Resources */,
+				79AF31BD22F59AEA006F7881 /* Icons.xcassets in Resources */,
 				E15C8B6B1A7C0F3C0080EE8B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,7 +1060,6 @@
 				E17F97A81A7C0E4800623FB2 /* vbbnow.entitlements in Resources */,
 				79B1495B21DCB3A7001E5FEB /* VBBListRowViewController.xib in Resources */,
 				79B1495A21DCB3A4001E5FEB /* VBBTodayViewController.xib in Resources */,
-				E17F97A61A7C0E4800623FB2 /* Icons.xcassets in Resources */,
 				E17F97A51A7C0E4800623FB2 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +1067,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1770E394FD22251233F49B16 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VBBFrameworkPods-VBB/Pods-VBBFrameworkPods-VBB-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBBFrameworkPods-VBB/Pods-VBBFrameworkPods-VBB-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		264B07C77728EA84BC85CA4F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,14 +1096,58 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VBBPods-VBBFramework-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VBBFrameworkPods-VBBFramework-macOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		614ACA198863A10FF6843720 /* [CP] Check Pods Manifest.lock */ = {
+		3924C1B2F8F28EC4FF923B99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VBBFrameworkPods-VBBWatch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F1BB7193E36977CE2FF86E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VBBFrameworkPods-VBB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79A8680F22B54CA40002F85D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -556,21 +1158,43 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VBBPods-VBB-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VBBFrameworkPods-VBBFramework-WatchOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86541FE9AA960EC91AE11AC2 /* [CP] Embed Pods Frameworks */ = {
+		8861021FDE16031313BF649E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VBBFrameworkPods-VBBNow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF51DDE7E25771F1B1424D93 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VBBPods-VBB/Pods-VBBPods-VBB-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-VBBFrameworkPods-VBBWatch Extension/Pods-VBBFrameworkPods-VBBWatch Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm-watchOS/Realm.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -578,34 +1202,64 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VBBPods-VBB/Pods-VBBPods-VBB-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9284CEDE3076668EC2ECA92D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VBBPods-VBBNow-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VBBFrameworkPods-VBBWatch Extension/Pods-VBBFrameworkPods-VBBWatch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7968954822B5574F002EAF84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79290564233558C8001D6737 /* OnboardingPresenter.swift in Sources */,
+				7968955422B5574F002EAF84 /* HostingController.swift in Sources */,
+				79C3AA4422B9689E00EACD7A /* OnboardingView.swift in Sources */,
+				79ED02A222B96CE00089AB45 /* ParentPresenter.swift in Sources */,
+				7968955222B5574F002EAF84 /* DepartureListView.swift in Sources */,
+				7962705E234126E20076EB39 /* TimeInterval-Extension.swift in Sources */,
+				797DF3AF233FF4CE00764404 /* NSNotification-Extensions.swift in Sources */,
+				7951B06B22F4085800FBA206 /* View-Gradient.swift in Sources */,
+				79A8C61A22BEB842002BE5D6 /* ParentView.swift in Sources */,
+				7967A74822B66AF3004FA671 /* VBBLine-Extension.swift in Sources */,
+				791EDCDE22F37BF9006F6113 /* DeparturePresenter.swift in Sources */,
+				794A506D2337AFDE00AFA228 /* VBBNetworkStatus-Extension.swift in Sources */,
+				79AF31C122F6157A006F7881 /* LinePresenter.swift in Sources */,
+				7951B06D22F4129400FBA206 /* VBBDeparture-Extension.swift in Sources */,
+				7968955622B5574F002EAF84 /* ExtensionDelegate.swift in Sources */,
+				79AF31C322F61609006F7881 /* LineView.swift in Sources */,
+				79051D6022B57B3B00694592 /* DepartureListPresenter.swift in Sources */,
+				79C5648822B55BD000039D3C /* DepartureView.swift in Sources */,
+				7967A75422B679EB004FA671 /* VBBStation-Extension.swift in Sources */,
+				79EA57D222FA0279009A2D15 /* LoadingView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79A8681022B54CA40002F85D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				790388C322F4C993002326D9 /* NSBundle+VBB.m in Sources */,
+				79A8681122B54CA40002F85D /* VBBLine.m in Sources */,
+				79A8681222B54CA40002F85D /* VBBStationParser.m in Sources */,
+				79A8681322B54CA40002F85D /* VBBLocation.m in Sources */,
+				79A8681422B54CA40002F85D /* VBBDepature.m in Sources */,
+				79653F5222BABEA60040A51F /* NSDateComponentsFormatter+VBB.m in Sources */,
+				79A8681522B54CA40002F85D /* VBBPersistanceManager.m in Sources */,
+				79A8681622B54CA40002F85D /* VBBDepatureParser.m in Sources */,
+				79A8681722B54CA40002F85D /* VBBNetworkManager.m in Sources */,
+				79653F5322BABEA60040A51F /* NSString+VBB.m in Sources */,
+				79A8681822B54CA40002F85D /* VBBaseParser.m in Sources */,
+				79AF31CB22F61A90006F7881 /* Realm-VBB.m in Sources */,
+				79A8681922B54CA40002F85D /* VBBStation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E157C3352099CC2400C0CD60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				790388C222F4C993002326D9 /* NSBundle+VBB.m in Sources */,
 				E157C37D2099CD9A00C0CD60 /* VBBLine.m in Sources */,
 				E157C3792099CD9400C0CD60 /* VBBStationParser.m in Sources */,
 				E157C37E2099CD9A00C0CD60 /* VBBLocation.m in Sources */,
@@ -613,7 +1267,10 @@
 				E157C3802099CD9E00C0CD60 /* VBBPersistanceManager.m in Sources */,
 				E157C37A2099CD9400C0CD60 /* VBBDepatureParser.m in Sources */,
 				E157C37F2099CD9E00C0CD60 /* VBBNetworkManager.m in Sources */,
+				7967A74F22B6715D004FA671 /* NSDateComponentsFormatter+VBB.m in Sources */,
+				79653F5122BABAA60040A51F /* NSString+VBB.m in Sources */,
 				E157C3782099CD9400C0CD60 /* VBBaseParser.m in Sources */,
+				79AF31C922F61A8F006F7881 /* Realm-VBB.m in Sources */,
 				E157C37B2099CD9A00C0CD60 /* VBBStation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,6 +1296,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7968954022B5574E002EAF84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7968953C22B5574E002EAF84 /* VBBWatch App */;
+			targetProxy = 7968953F22B5574E002EAF84 /* PBXContainerItemProxy */;
+		};
+		7968954F22B5574F002EAF84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7968954B22B5574F002EAF84 /* VBBWatch Extension */;
+			targetProxy = 7968954E22B5574F002EAF84 /* PBXContainerItemProxy */;
+		};
+		7968956B22B55762002EAF84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 79A8680E22B54CA40002F85D /* VBBFramework-WatchOS */;
+			targetProxy = 7968956A22B55762002EAF84 /* PBXContainerItemProxy */;
+		};
 		79B1496321DCB5A2001E5FEB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1AEBBE61A7B701D00196F97 /* VBBNow */;
@@ -646,17 +1318,34 @@
 		};
 		E157C3402099CC2400C0CD60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E157C3392099CC2400C0CD60 /* VBBFramework */;
+			target = E157C3392099CC2400C0CD60 /* VBBFramework-macOS */;
 			targetProxy = E157C33F2099CC2400C0CD60 /* PBXContainerItemProxy */;
 		};
 		E157C38C2099D5DD00C0CD60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E157C3392099CC2400C0CD60 /* VBBFramework */;
+			target = E157C3392099CC2400C0CD60 /* VBBFramework-macOS */;
 			targetProxy = E157C38B2099D5DD00C0CD60 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7968954222B5574E002EAF84 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7968954322B5574E002EAF84 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		79B2591722F6E526005224E2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79B2591622F6E526005224E2 /* en */,
+				7929056523356C1C001D6737 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		E17F97A01A7C0E4800623FB2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -676,9 +1365,198 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E157C3432099CC2400C0CD60 /* Debug */ = {
+		7968955E22B5574F002EAF84 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B61806681AAA7E29F1AA122 /* Pods-VBBPods-VBBFramework.debug.xcconfig */;
+			baseConfigurationReference = CB625DCF924575090FED786C /* Pods-VBBFrameworkPods-VBBWatch Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "VBBWatch\\ Extension/Support\\ Files/Preview\\ Content";
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VBBWatch Extension/Support Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		7968955F22B5574F002EAF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0167B0997B867BBF926B3FB2 /* Pods-VBBFrameworkPods-VBBWatch Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_ASSET_PATHS = "VBBWatch\\ Extension/Support\\ Files/Preview\\ Content";
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VBBWatch Extension/Support Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		7968956222B5574F002EAF84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = VBBWatch_Extension;
+				INFOPLIST_FILE = "VBBWatch App/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		7968956322B5574F002EAF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = VBBWatch_Extension;
+				INFOPLIST_FILE = "VBBWatch App/Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		7968956622B5574F002EAF84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7968956722B5574F002EAF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79A8682A22B54CA40002F85D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28E87E95EDA4B923462F4D83 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -711,18 +1589,20 @@
 				INFOPLIST_FILE = VBBFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MODULEMAP_FILE = "VBBFramework/Support Files/VBBFramework.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBFramework;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = VBBFramework;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
-		E157C3442099CC2400C0CD60 /* Release */ = {
+		79A8682B22B54CA40002F85D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA14C1F48BCDD3F011F7DA68 /* Pods-VBBPods-VBBFramework.release.xcconfig */;
+			baseConfigurationReference = 16D192B187425E69B9B2A938 /* Pods-VBBFrameworkPods-VBBFramework-WatchOS.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -755,10 +1635,108 @@
 				INFOPLIST_FILE = VBBFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MODULEMAP_FILE = "VBBFramework/Support Files/VBBFramework.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBFramework;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = VBBFramework;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		E157C3432099CC2400C0CD60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C7FF169CB98E57F7920091C /* Pods-VBBFrameworkPods-VBBFramework-macOS.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VBBFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "VBBFramework/Support Files/VBBFramework.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBFramework;
+				PRODUCT_MODULE_NAME = VBBFramework;
+				PRODUCT_NAME = VBBFramework;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E157C3442099CC2400C0CD60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20973B06F87F036D3A4110F2 /* Pods-VBBFrameworkPods-VBBFramework-macOS.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = VBBFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "VBBFramework/Support Files/VBBFramework.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBFramework;
+				PRODUCT_MODULE_NAME = VBBFramework;
+				PRODUCT_NAME = VBBFramework;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -768,6 +1746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -821,6 +1800,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -860,53 +1840,63 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
 		E19086E81A79870300364EA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0957EF3840658A2EB7B3B1A /* Pods-VBBPods-VBB.debug.xcconfig */;
+			baseConfigurationReference = 7AA5C8D3A5AC7FE7FFE62ACD /* Pods-VBBFrameworkPods-VBB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 11;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBMac;
+				PRODUCT_NAME = VBBNow;
 			};
 			name = Debug;
 		};
 		E19086E91A79870300364EA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4EDD8701BB4D2A7152E0253 /* Pods-VBBPods-VBB.release.xcconfig */;
+			baseConfigurationReference = F0B41255AA6C835D0479A7B6 /* Pods-VBBFrameworkPods-VBB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VBB/VBB.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 11;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "VBB//Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.obrhoff.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBMac;
+				PRODUCT_NAME = VBBNow;
 			};
 			name = Release;
 		};
 		E1AEBBFE1A7B701D00196F97 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16AAB8987028C777D0FBCE02 /* Pods-VBBPods-VBBNow.debug.xcconfig */;
+			baseConfigurationReference = 2BC934B59A728B7BEA0636B3 /* Pods-VBBFrameworkPods-VBBNow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "VBBNow/Supporting Files/VBBNow.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -914,8 +1904,9 @@
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				INFOPLIST_FILE = "VBBNow/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBB.Widget;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBMac.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -923,19 +1914,21 @@
 		};
 		E1AEBBFF1A7B701D00196F97 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67F15DD87868EF68F4B521BF /* Pods-VBBPods-VBBNow.release.xcconfig */;
+			baseConfigurationReference = 9F15AF78642C8708D51A0C35 /* Pods-VBBFrameworkPods-VBBNow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "VBBNow/Supporting Files/VBBNow.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = YE33ZK7Z99;
+				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				INFOPLIST_FILE = "VBBNow/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBB.Widget;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.obrhoff.VBBMac.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -944,7 +1937,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E157C3452099CC2400C0CD60 /* Build configuration list for PBXNativeTarget "VBBFramework" */ = {
+		7968955D22B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7968955E22B5574F002EAF84 /* Debug */,
+				7968955F22B5574F002EAF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7968956122B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7968956222B5574F002EAF84 /* Debug */,
+				7968956322B5574F002EAF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7968956522B5574F002EAF84 /* Build configuration list for PBXNativeTarget "VBBWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7968956622B5574F002EAF84 /* Debug */,
+				7968956722B5574F002EAF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79A8682922B54CA40002F85D /* Build configuration list for PBXNativeTarget "VBBFramework-WatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A8682A22B54CA40002F85D /* Debug */,
+				79A8682B22B54CA40002F85D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E157C3452099CC2400C0CD60 /* Build configuration list for PBXNativeTarget "VBBFramework-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E157C3432099CC2400C0CD60 /* Debug */,

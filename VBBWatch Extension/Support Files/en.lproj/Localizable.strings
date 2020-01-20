@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  VBB
+
+  Created by Dennis Oberhoff on 04.08.19.
+  Copyright © 2019 Dennis Oberhoff. All rights reserved.
+*/
+
+"NEXT" = "Next";
+"ALLOW" = "Allow";
+
+"VBBNOW_TITLE" = "VBB";
+"VBBNOW_TITLE_PERMISSIONS" = "Permissions";
+"VBBNOW_INTRODUCTION_TEXT" = "Welcome to VBBNow. A Transit App for Berlin/Brandenburg.";
+"VBBNOW_INTRODUCTION_DETAIL_TEXT" = "VBBNow shows you realtime departure times in Berlin/Brandenburg.";
+"VBBNOW_INTRODUCTION_PERMISSION_TEXT" = "VBBNow work only with access to your location.";
+
+"STATUS_GEOCODING" = "Geocoding...";
+"STATUS_LOADING_STATIONS" = "Loading stations";
+"STATUS_LOADING_STATIONS_DETAILS" = "Loading station details";
+"STATUS_FAILED" = "Failed :(";
+"STATUS_LOADING_UNKNOWN" = "Unknown Location";
+"STATUS_RELOAD" = "Refresh Stations";
+
+"NO_STATIONS" = "No Stations around you.";

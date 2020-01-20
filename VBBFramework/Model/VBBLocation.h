@@ -9,10 +9,10 @@
 @import CoreLocation;
 @import Contacts;
 
-@interface VBBLocation : NSObject <NSCoding>
+@interface VBBLocation : NSObject <NSSecureCoding>
 
-@property (nonatomic, readwrite, strong) CLLocation *location;
-@property (nonatomic, readwrite, strong) NSString *address;
-@property (nonatomic, readwrite, strong) NSDate *date;
+@property(nonatomic, readwrite, strong, nullable) CLLocation *location;
+@property(nonatomic, readwrite, strong, nullable) NSString *address;
+@property(nonatomic, readwrite, strong, nullable) NSDate *date;
 
 @end

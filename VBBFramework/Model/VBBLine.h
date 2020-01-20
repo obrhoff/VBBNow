@@ -8,12 +8,25 @@
 
 #import <Realm/Realm.h>
 
+typedef NS_ENUM (NSInteger, VBBLineType) {
+    VBBLineTypeSBahn = 1,
+    VBBLineTypeUBahn = 2,
+    VBBLineTypeTram = 4,
+    VBBLineTypeBus = 8,
+    VBBLineTypeMetro = 12,
+    VBBLineTypeBahn = 32,
+};
+
 @interface VBBLine : RLMObject
 
-@property (nonatomic) NSString *lineId;
-@property (nonatomic) NSString *lineEnd;
-@property (nonatomic) NSString *lineName;
-@property (nonatomic) NSInteger departureType;
+@property(readonly, nonnull) RLMLinkingObjects<RLMObject *> *departures;
+@property(nonatomic, nonnull) NSString *lineId;
+@property(nonatomic, nonnull) NSString *lineEnd;
+@property(nonatomic, nonnull) NSString *lineName;
+@property(nonatomic) NSInteger departureType;
+
+-(VBBLineType)lineType;
++(NSString* _Nonnull)assetNameForType:(VBBLineType)lineType;
 
 @end
 

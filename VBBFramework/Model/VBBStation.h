@@ -16,19 +16,21 @@
 
 @interface VBBStation : RLMObject
 
-@property (nonatomic) NSString *stationName;
-@property (nonatomic) NSString *stationId;
-@property (nonatomic) NSInteger stationClass;
-@property (nonatomic) NSString *stationType;
+@property(nonatomic, nonnull) NSString *stationName;
+@property(nonatomic, nonnull) NSString *stationId;
+@property(nonatomic, nonnull) NSString *stationType;
+@property(nonatomic) NSInteger stationClass;
 
-@property (readonly) CLLocation *location;
+@property(nonnull, readonly) CLLocation *location;
 
-@property RLMArray <VBBDepature> *depatures;
-@property RLMArray <VBBLine> *lines;
+@property(nonnull) RLMArray<VBBDepature> *depatures;
+@property(nonnull) RLMArray<VBBLine> *lines;
 
--(void)setLocation:(CLLocation*)location;
--(CLLocation*)location;
-+ (NSArray *)sortByRelevance:(VBBLocation*)userLocation andLimit:(NSUInteger)limit;
++ (NSArray <VBBStation*>* _Nonnull)sortByRelevance:(VBBLocation* _Nonnull)userLocation andLimit:(NSUInteger)limit;
+
+- (VBBDepature* _Nullable)nextDeparture: (NSTimeInterval)futureInterval;
+- (void)setLocation:(CLLocation * _Nonnull)location;
+- (CLLocation * _Nonnull)location;
 
 @end
 

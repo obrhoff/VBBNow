@@ -1,0 +1,6 @@
+framework module VBBFramework {
+  umbrella header "VBBFramework.h"
+
+  export *
+  module * { export * }
+}

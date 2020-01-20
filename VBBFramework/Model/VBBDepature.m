@@ -11,9 +11,21 @@
 
 @implementation VBBDepature
 
-+(NSDictionary<NSString *,RLMPropertyDescriptor *> *)linkingObjectsProperties {
-    return [NSDictionary dictionaryWithObject:[RLMPropertyDescriptor descriptorWithClass:VBBStation.class propertyName:NSStringFromSelector(@selector(depatures))] forKey:NSStringFromSelector(@selector(station))];
+-(BOOL)delayed {
+    return self.delay > 0;
 }
 
+-(NSDate *)arrivalDate {
+    return [self.scheduledDate dateByAddingTimeInterval:self.delay];
+}
+
++ (NSDictionary<NSString *,RLMPropertyDescriptor *> *)linkingObjectsProperties {
+    return @{NSStringFromSelector(@selector(station)): [RLMPropertyDescriptor descriptorWithClass:VBBStation.class
+                                                                                     propertyName:NSStringFromSelector(@selector(depatures))] };
+}
+
++ (NSString *)primaryKey {
+    return NSStringFromSelector(@selector(departureId));
+}
 
 @end

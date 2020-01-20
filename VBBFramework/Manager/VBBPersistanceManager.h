@@ -14,12 +14,12 @@
 
 @interface VBBPersistanceManager : NSObject
 
-@property (nonatomic, readonly) NSOperationQueue *operationQueue;
+@property(class, readonly, strong, nonnull) VBBPersistanceManager *manager;
+@property(class, readonly, strong, nonnull) RLMRealm *realm;
 
--(void)trim;
--(VBBLocation*)storedLocation;
--(void)storeLocation:(VBBLocation*)location;
-+(VBBPersistanceManager *)manager;
-+(RLMRealm*)realm;
+@property(nonatomic, readonly, nonnull) NSOperationQueue *operationQueue;
+@property(nonatomic, nullable) VBBLocation *storedLocation;
+
++ (void)trim;
 
 @end

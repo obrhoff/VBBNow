@@ -15,17 +15,18 @@
 #import "VBBListRowViewController.h"
 
 typedef void (^didUpdateLocationBlock)(CLLocation *location);
+
 typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
 @interface VBBTodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, CLLocationManagerDelegate, CAAnimationDelegate>
 
-@property (nonatomic, readwrite, strong) VBBNetworkManager *networkManager;
-@property (nonatomic, readwrite, strong) CLLocationManager *locationManager;
-@property (nonatomic, readwrite, strong) NSTimer *reloadTimer;
-@property (nonatomic, readwrite, weak) IBOutlet NSTextField *locationLabel;
-@property (nonatomic, readwrite, weak) IBOutlet NCWidgetListViewController *listViewController;
-@property (nonatomic, readwrite, copy) didUpdateLocationBlock didUpdateLocationBlock;
-@property (nonatomic, readwrite, copy) didChangeAuthorizationStatus didChangeAuthorizationStatus;
+@property(nonatomic, readwrite, strong) VBBNetworkManager *networkManager;
+@property(nonatomic, readwrite, strong) CLLocationManager *locationManager;
+@property(nonatomic, readwrite, strong) NSTimer *reloadTimer;
+@property(nonatomic, readwrite, weak) IBOutlet NSTextField *locationLabel;
+@property(nonatomic, readwrite, weak) IBOutlet NCWidgetListViewController *listViewController;
+@property(nonatomic, readwrite, copy) didUpdateLocationBlock didUpdateLocationBlock;
+@property(nonatomic, readwrite, copy) didChangeAuthorizationStatus didChangeAuthorizationStatus;
 
 @end
 
@@ -38,23 +39,23 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     self.networkManager = [VBBNetworkManager new];
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
-    
+
     VBBLocation *storedLocation = [VBBPersistanceManager manager].storedLocation;
-    if (storedLocation.address) [self.locationLabel setStringValue:storedLocation.address];
+    if (storedLocation.address) [self.locationLabel setStringValue:[storedLocation.address stringByReplacingOccurrencesOfString:@"\n" withString:@", "]];
     self.listViewController.preferredContentSize = CGSizeMake(320, 350);
-    self.listViewController.contents = [[VBBStation class] sortByRelevance:storedLocation andLimit:5];
+    self.listViewController.contents = [VBBStation sortByRelevance:storedLocation andLimit:5];
 }
 
--(void)reloadData {
-    
+- (void)reloadData {
+
     [self.reloadTimer invalidate];
-    
+
     VBBLocation *location = [VBBPersistanceManager manager].storedLocation;
-    
+
     if (!location) {
         return;
     }
-    
+
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacity.toValue = @(0.0);
     opacity.duration = 0.35;
@@ -65,7 +66,7 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
     [opacity setValue:@"opacity" forKey:@"identifier"];
     [opacity setValue:location forKey:@"location"];
     [self.view.layer addAnimation:opacity forKey:@"opacity"];
-    
+
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitSecond fromDate:[NSDate date]];
     NSTimeInterval refreshInterval = 60 - components.second;
 
@@ -75,24 +76,27 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
 #pragma mark - NCWidgetProviding
 
--(void)fetchNearby: (void (^)(NCUpdateResult result))completionHandler {
- 
+- (void)fetchNearby:(void (^)(NCUpdateResult result))completionHandler {
+
     __weak typeof(self) weakSelf = self;
-    
+
     void (^completionBlock)(NSArray *stations, VBBLocation *location) = ^(NSArray *stations, VBBLocation *location) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf reloadData];
             completionHandler(stations.count ? NCUpdateResultNewData : NCUpdateResultFailed);
         });
     };
-    
+
     void (^responseBlock)(CLLocation *location) = ^void(CLLocation *location) {
+        if (location == nil) {
+            location = [VBBPersistanceManager manager].storedLocation.location;
+        }
         [self.networkManager fetchNearedStations:location andCompletionHandler:completionBlock];
     };
-    
+
     [self setDidUpdateLocationBlock:responseBlock];
     [self.locationManager startUpdatingLocation];
-    
+
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult result))completionHandler {
@@ -124,9 +128,9 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
 
 #pragma mark CoreAnimation Delegate
 
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    
-    NSString *key = [anim valueForKey:@"identifier"];
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+
+    NSString * key = [anim valueForKey:@"identifier"];
     if ([key isEqualTo:@"opacity"]) {
         VBBLocation *location = [anim valueForKey:@"location"];
         CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -138,28 +142,28 @@ typedef void (^didChangeAuthorizationStatus)(CLAuthorizationStatus status);
         opacity.fromValue = [self.view.layer.presentationLayer ?: self.view.layer valueForKeyPath:opacity.keyPath];
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
-        self.listViewController.contents = [[VBBStation class] sortByRelevance:location andLimit:5];
+        self.listViewController.contents = [VBBStation sortByRelevance:location andLimit:5];
         [self.view.layer setValue:opacity.toValue forKeyPath:opacity.keyPath];
-        if (location.address) [self.locationLabel setStringValue:location.address];
+        if (location.address) [self.locationLabel setStringValue:[location.address stringByReplacingOccurrencesOfString:@"\n" withString:@", "]];
         [CATransaction commit];
         [self.view.layer addAnimation:opacity forKey:@"opacity"];
     }
-    
+
 }
 
 #pragma mark CLLocationManagerDelegate
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if (self.didUpdateLocationBlock) self.didUpdateLocationBlock(locations.firstObject);
     self.didUpdateLocationBlock = nil;
 }
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     if (self.didUpdateLocationBlock) self.didUpdateLocationBlock(nil);
     self.didUpdateLocationBlock = nil;
 }
 
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if (self.didChangeAuthorizationStatus) {
         self.didChangeAuthorizationStatus(status);
         self.didChangeAuthorizationStatus = nil;

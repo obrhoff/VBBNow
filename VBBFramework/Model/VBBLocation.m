@@ -13,7 +13,7 @@
 
 @implementation VBBLocation
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     VBBLocation *location = [VBBLocation new];
     location.location = [aDecoder decodeObjectForKey:@"location"];
     location.address = [aDecoder decodeObjectForKey:@"address"];
@@ -21,17 +21,22 @@
     return location;
 }
 
--(void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.location forKey:@"location"];
-    [aCoder encodeObject:self.date forKey:@"date"];
-    [aCoder encodeObject:self.address forKey:@"address"];
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.location forKey:@"location"];
+    [coder encodeObject:self.date forKey:@"date"];
+    [coder encodeObject:self.address forKey:@"address"];
 }
 
--(BOOL)isEqual:(VBBLocation*)object {
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (BOOL)isEqual:(VBBLocation *)object {
     if ([object isKindOfClass:[self class]]) return NO;
     MKMapPoint this = MKMapPointForCoordinate(self.location.coordinate);
     MKMapPoint other = MKMapPointForCoordinate(object.location.coordinate);
     return MKMapPointEqualToPoint(this, other);
 }
+
 
 @end

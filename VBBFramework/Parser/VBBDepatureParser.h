@@ -11,6 +11,6 @@
 
 @interface VBBDepatureParser : VBBaseParser
 
--(instancetype)initWithStationId:(NSString*)stationId;
+- (instancetype)initWithStationId:(NSString *)stationId;
 
 @end

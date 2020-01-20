@@ -11,6 +11,6 @@
 
 @interface VBBStationParser : VBBaseParser
 
-@property (nonatomic, readonly, strong) NSArray *stations;
+@property(nonatomic, readonly, strong) NSArray *stations;
 
 @end

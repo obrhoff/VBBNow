@@ -8,15 +8,15 @@
 
 #import "VBBaseParser.h"
 
-@interface VBBaseParser()
+@interface VBBaseParser ()
 
-@property (nonatomic, readwrite, strong) RLMRealm *realm;
+@property(nonatomic, readwrite, strong) RLMRealm *realm;
 
 @end
 
 @implementation VBBaseParser
 
--(instancetype)init{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.realm = [[VBBPersistanceManager class] realm];
@@ -24,11 +24,11 @@
     return self;
 }
 
--(void)parserDidStartDocument:(NSXMLParser *)parser {
+- (void)parserDidStartDocument:(NSXMLParser *)parser {
     [self.realm beginWriteTransaction];
 }
 
--(void)parserDidEndDocument:(NSXMLParser *)parser {
+- (void)parserDidEndDocument:(NSXMLParser *)parser {
     [self.realm commitWriteTransaction];
 }
 
